@@ -10,13 +10,8 @@ public class PersonagemRepository {
     private final ObservableList<Personagem> personagens =
             FXCollections.observableArrayList();
 
-    public void salvar(String nome, int nivel, Classes classe){
-        Personagem p = new Personagem(
-            nome,
-            nivel,
-            classe
-        );
-        personagens.add(p);
+    public void salvar(Personagem personagem){
+        personagens.add(personagem);
     }
 
     public ObservableList<Personagem> listar(){

@@ -3,6 +3,7 @@ package com.example.rpg_manager;
 import com.example.rpg_manager.model.Classes;
 import com.example.rpg_manager.model.Personagem;
 import com.example.rpg_manager.repository.PersonagemRepository;
+import com.example.rpg_manager.services.PersonagemServices;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -43,12 +44,11 @@ public class PersonagensController implements Initializable {
             colClasse.setCellValueFactory(new PropertyValueFactory<>("classe"));
             colNvl.setCellValueFactory(new PropertyValueFactory<>("nivel"));
 
-            tabela.setItems(repository.listar());
+            tabela.setItems(service.listar());
 
             nvlS.setValueFactory(
                     new SpinnerValueFactory.IntegerSpinnerValueFactory(1, 100, 1)
             );
-
 
     }
 
@@ -89,16 +89,20 @@ public class PersonagensController implements Initializable {
     @FXML
     TableColumn<Personagem, Integer> colNvl;
 
-
+    PersonagemServices service = new PersonagemServices();
 
     public void salvar(){
-        repository.salvar(
+
+        Personagem p = new Personagem(
                 nomeP.getText(),
 
                 nvlS.getValue(),
 
                 classesComboBox.getValue()
         );
+
+        service.salvar(p);
+
         limpar();
     }
 
