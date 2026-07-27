@@ -16,6 +16,8 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import static java.util.Arrays.setAll;
+
 public class MainController implements Initializable {
     @FXML
     private StackPane centerPane;
@@ -56,6 +58,17 @@ public class MainController implements Initializable {
         Parent tela = loader.load();
 
 
+
+        centerPane.getChildren().setAll(tela);
+    }
+
+    @FXML
+    private void abrirDiceRoll() throws IOException {
+        FXMLLoader loader = new FXMLLoader(
+                getClass().getResource("fxml/rolarDados.fxml")
+        );
+
+        Parent tela = loader.load();
 
         centerPane.getChildren().setAll(tela);
     }

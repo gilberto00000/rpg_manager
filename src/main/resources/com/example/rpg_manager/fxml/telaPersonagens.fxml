@@ -16,17 +16,17 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.StackPane?>
 
-<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1024.0" style="-fx-background-color: 111111;" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.rpg_manager.PersonagensController">
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1024.0" styleClass="telaPP" stylesheets="@../style/telaPersonagens.css" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.rpg_manager.PersonagensController">
    <cursor>
       <Cursor fx:constant="OPEN_HAND" />
    </cursor>
    <children>
       <BorderPane prefHeight="200.0" prefWidth="200.0">
          <top>
-            <Label text="Personagens" BorderPane.alignment="CENTER" />
+            <Label text="Personagens" textFill="WHITE" BorderPane.alignment="CENTER" />
          </top>
          <bottom>
-            <TableView fx:id="tabela" prefHeight="272.0" prefWidth="1024.0" style="-fx-border-width: 1;" BorderPane.alignment="CENTER">
+            <TableView fx:id="tabela" prefHeight="272.0" prefWidth="862.0" style="-fx-border-width: 1;" BorderPane.alignment="CENTER">
               <columns>
                 <TableColumn fx:id="colNome" prefWidth="136.0" text="Nome" />
                 <TableColumn fx:id="colClasse" prefWidth="129.0" text="Classe" />
@@ -47,19 +47,19 @@
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <Label text="Nome" />
+                  <Label text="Nome" textFill="WHITE" />
                   <TextField fx:id="nomeP" alignment="CENTER_LEFT" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.valignment="CENTER">
                      <GridPane.margin>
                         <Insets left="30.0" right="700.0" />
                      </GridPane.margin>
                   </TextField>
-                  <Label text="Classe" GridPane.rowIndex="1" />
+                  <Label text="Classe" textFill="WHITE" GridPane.rowIndex="1" />
                   <ComboBox fx:id="classesComboBox" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                      <GridPane.margin>
                         <Insets left="60.0" />
                      </GridPane.margin>
                   </ComboBox>
-                  <Label text="Lvl" GridPane.rowIndex="2" />
+                  <Label text="Lvl" textFill="WHITE" GridPane.rowIndex="2" />
                   <Spinner fx:id="nvlS" GridPane.columnIndex="1" GridPane.rowIndex="2">
                      <GridPane.margin>
                         <Insets left="60.0" />
@@ -67,8 +67,8 @@
                   </Spinner>
                   <HBox prefHeight="100.0" prefWidth="200.0" spacing="10.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
                      <children>
-                        <Button fx:id="saveBtn" mnemonicParsing="false" onAction="#salvar" text="Salvar" />
-                        <Button fx:id="clearBtn" mnemonicParsing="false" onAction="#limpar" text="Limpar" />
+                        <Button fx:id="saveBtn" mnemonicParsing="false" onAction="#salvar" text="Salvar" textFill="WHITE" />
+                        <Button fx:id="clearBtn" mnemonicParsing="false" onAction="#limpar" text="Limpar" textFill="WHITE" />
                      </children>
                      <GridPane.margin>
                         <Insets left="80.0" />

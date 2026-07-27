@@ -1,0 +1,15 @@
+
+.backk {
+    -fx-background-color: white;
+}
+
+
+.hori {
+    -fx-border-color: black;
+}
+
+.dadoBtn {
+    -fx-background-color: black;
+    -fx-border: none;
+    -fx-box-shadow: none;
+}
