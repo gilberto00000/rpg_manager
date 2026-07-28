@@ -1,5 +1,7 @@
 package com.example.rpg_manager;
 
+import com.example.rpg_manager.database.ConnectionFactory;
+import com.example.rpg_manager.database.IniciarDataBase;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -34,8 +36,12 @@ public class MainController implements Initializable {
     @FXML
     private ImageView backgroundId;
 
+
+    public ConnectionFactory connect = new ConnectionFactory();
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+
         Image image = new Image(
                 getClass().getResource("images/background.png").toExternalForm()
         );
@@ -47,6 +53,7 @@ public class MainController implements Initializable {
 
 
         leftPane.prefWidthProperty().bind(borderPane.widthProperty().multiply(0.25));
+
     }
 
     @FXML
@@ -66,6 +73,17 @@ public class MainController implements Initializable {
     private void abrirDiceRoll() throws IOException {
         FXMLLoader loader = new FXMLLoader(
                 getClass().getResource("fxml/rolarDados.fxml")
+        );
+
+        Parent tela = loader.load();
+
+        centerPane.getChildren().setAll(tela);
+    }
+
+    @FXML
+    private void abrirCenarios() throws IOException {
+        FXMLLoader loader = new FXMLLoader(
+                getClass().getResource("fxml/cenarios.fxml")
         );
 
         Parent tela = loader.load();

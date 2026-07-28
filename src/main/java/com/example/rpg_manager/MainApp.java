@@ -1,5 +1,7 @@
 package com.example.rpg_manager;
 
+import com.example.rpg_manager.database.ConnectionFactory;
+import com.example.rpg_manager.database.IniciarDataBase;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -11,9 +13,14 @@ import java.io.IOException;
 public class MainApp extends Application {
     @Override
     public void start(Stage stage) throws IOException {
+
+        IniciarDataBase.iniciar();
+
         FXMLLoader fxmlLoader = new FXMLLoader(MainApp.class.getResource("fxml/main.fxml"));
 
         Image icone = new Image(getClass().getResourceAsStream("icons/icon.png"));
+
+
 
         stage.getIcons().add(icone);
         Scene scene = new Scene(fxmlLoader.load());

@@ -3,9 +3,18 @@ package com.example.rpg_manager.model;
 import javafx.scene.control.Spinner;
 
 public class Personagem {
+    private int id;
     private String nome;
     private int nivel;
     private Classes classe;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public Personagem(String nome, int nivel, Classes classe) {
         this.nome = nome;

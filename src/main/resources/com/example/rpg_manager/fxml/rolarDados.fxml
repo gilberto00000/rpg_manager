@@ -10,7 +10,7 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="resultRoll" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" styleClass="backk" stylesheets="@../style/diceRoll.css" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.rpg_manager.DiceRollController">
+<AnchorPane fx:id="resultRoll" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1024.0" styleClass="backk" stylesheets="@../style/diceRoll.css" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.rpg_manager.DiceRollController">
    <children>
       <HBox alignment="CENTER" fillHeight="false" layoutY="273.0" prefHeight="100.0" prefWidth="671.0" spacing="100.0" styleClass="hori" stylesheets="@../style/diceRoll.css" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
          <children>
@@ -67,7 +67,7 @@
             <Group>
                <children>
                   <Polygon points="140.0, 0.0, 200.0, 60.0, 260.0, 0.0, 200.0, -65.0" stroke="BLACK" strokeType="INSIDE" />
-                  <Button id="10" layoutX="173.0" layoutY="-29.0" mnemonicParsing="false" onAction="#rolarDado" styleClass="dadoBtn" text="8" textFill="WHITE">
+                  <Button id="10" layoutX="166.0" layoutY="-31.0" mnemonicParsing="false" onAction="#rolarDado" styleClass="dadoBtn" text="10" textFill="WHITE">
                      <font>
                         <Font size="28.0" />
                      </font>

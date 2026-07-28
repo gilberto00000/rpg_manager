@@ -1,6 +1,7 @@
 module com.example.rpg_manager {
     requires javafx.controls;
     requires javafx.fxml;
+    requires java.sql;
 
     opens com.example.rpg_manager.model to javafx.base;
     opens com.example.rpg_manager to javafx.fxml;
