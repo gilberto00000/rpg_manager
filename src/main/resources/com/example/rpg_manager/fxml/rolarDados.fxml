@@ -12,7 +12,7 @@
 
 <AnchorPane fx:id="resultRoll" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" styleClass="backk" stylesheets="@../style/diceRoll.css" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.rpg_manager.DiceRollController">
    <children>
-      <HBox alignment="CENTER" fillHeight="false" layoutX="7.0" layoutY="276.0" prefHeight="100.0" prefWidth="671.0" spacing="100.0" styleClass="hori" stylesheets="@../style/diceRoll.css" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+      <HBox alignment="CENTER" fillHeight="false" layoutY="273.0" prefHeight="100.0" prefWidth="671.0" spacing="100.0" styleClass="hori" stylesheets="@../style/diceRoll.css" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
          <children>
             <Group>
                <children>
@@ -38,7 +38,7 @@
                <children>
       
                   <Rectangle arcHeight="5.0" arcWidth="5.0" height="120.0" stroke="BLACK" strokeType="INSIDE" width="120.0" />
-                  <Button id="6" alignment="CENTER" contentDisplay="CENTER" layoutX="13.0" layoutY="12.0" mnemonicParsing="false" onAction="#rolarDado" styleClass="dadoBtn" text="6" textFill="WHITE">
+                  <Button id="6" alignment="CENTER" contentDisplay="CENTER" layoutX="33.0" layoutY="31.0" mnemonicParsing="false" onAction="#rolarDado" styleClass="dadoBtn" text="6" textFill="WHITE">
                      <font>
                         <Font size="28.0" />
                      </font>
@@ -86,8 +86,8 @@
             </Group>
             <Group>
                <children>
-                  <Polygon points="-75.0, 40.0, 80.0, 40.0, 0.0, -70.0" stroke="BLACK" strokeType="INSIDE" />
-                  <Button id="20" alignment="CENTER" contentDisplay="CENTER" layoutX="-26.0" layoutY="-31.0" mnemonicParsing="false" onAction="#rolarDado" styleClass="dadoBtn" text="4" textFill="WHITE">
+                  <Polygon points="50.0, -30.0, 100.0, -2.0, 100.0, 62.0, 50.0, 86.0, 0.0, 62.0, 0.0, -2.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Button id="20" alignment="CENTER" contentDisplay="CENTER" layoutX="16.0" layoutY="-1.0" mnemonicParsing="false" onAction="#rolarDado" styleClass="dadoBtn" text="20" textFill="WHITE">
                      <font>
                         <Font size="28.0" />
                      </font>
@@ -96,8 +96,8 @@
             </Group>
             <Group>
                <children>
-                  <Rectangle arcHeight="5.0" arcWidth="5.0" height="120.0" stroke="BLACK" strokeType="INSIDE" width="120.0" />
-                  <Button id="100" alignment="CENTER" contentDisplay="CENTER" layoutX="13.0" layoutY="12.0" mnemonicParsing="false" onAction="#rolarDado" styleClass="dadoBtn" text="6" textFill="WHITE">
+                  <Polygon points="117.0, -2.5, 200.0, 60.0, 283.0, -2.5, 200.0, -65.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Button id="100" alignment="CENTER" contentDisplay="CENTER" layoutX="158.0" layoutY="-31.0" mnemonicParsing="false" onAction="#rolarDado" prefHeight="52.0" prefWidth="86.0" styleClass="dadoBtn" text="100" textFill="WHITE">
                      <font>
                         <Font size="28.0" />
                      </font>
