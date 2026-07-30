@@ -12,11 +12,12 @@ public class IniciarDataBase {
              Statement stmt = con.createStatement()) {
 
             stmt.execute("""
-                    CREATE TABLE IF NOT EXISTS personagem (
-                    id INTEGER PRIMARY KEY AUTOINCREMENT,
-                    nome TEXT NOT NULL,
-                    nivel INTEGER NOT NULL,
-                    classe TEXT NOT NULL
+                    CREATE TABLE personagem (
+                        id INTEGER PRIMARY KEY AUTOINCREMENT,
+                        nome TEXT NOT NULL,
+                        nivel INTEGER NOT NULL,
+                        classe INTEGER NOT NULL,
+                        avatar TEXT
                     );
             """);
 

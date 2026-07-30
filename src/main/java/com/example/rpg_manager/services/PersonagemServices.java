@@ -20,4 +20,12 @@ public class PersonagemServices {
     public ObservableList<Personagem> listar(){
         return repository.listar();
     }
+
+    public void atualizar(Personagem personagem) {
+        repository.atualizar(personagem);
+    }
+
+    public void excluir(Integer id){
+        repository.excluir(id);
+    }
 }

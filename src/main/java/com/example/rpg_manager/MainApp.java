@@ -18,14 +18,14 @@ public class MainApp extends Application {
 
         FXMLLoader fxmlLoader = new FXMLLoader(MainApp.class.getResource("fxml/main.fxml"));
 
-        Image icone = new Image(getClass().getResourceAsStream("icons/icon.png"));
+        Image icone = new Image(getClass().getResourceAsStream("icons/img.png"));
 
 
 
         stage.getIcons().add(icone);
         Scene scene = new Scene(fxmlLoader.load());
         scene.getStylesheets().add(
-                MainApp.class.getResource("style/main.css").toExternalForm()
+                MainApp.class.getResource("style/app.css").toExternalForm()
         );
         stage.setTitle("OtherSide 1.0");
         stage.setScene(scene);

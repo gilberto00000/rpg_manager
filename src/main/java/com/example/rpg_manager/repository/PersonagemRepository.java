@@ -37,10 +37,13 @@ public class PersonagemRepository {
                 Classes classe = classesRepository.buscarPorId(idClasse);
 
                 Personagem personagem = new Personagem(
+                        rs.getInt("id"),
                         nome,
                         nivel,
                         classe
                 );
+
+                personagem.setAvatar(rs.getString("avatar"));
 
                 lista.add(personagem);
             }
@@ -53,8 +56,8 @@ public class PersonagemRepository {
 
     public void salvar(Personagem personagem){
         String sql = """
-                INSERT INTO personagem(nome, nivel, classe)
-                VALUES (?, ?,?)
+                INSERT INTO personagem(nome, nivel, classe, avatar)
+                VALUES (?, ?, ?, ?)
                 """;
 
         try(Connection con = ConnectionFactory.getConnection();
@@ -66,7 +69,52 @@ public class PersonagemRepository {
             //isso vai dar uma dor de cabeça tão grande
             ps.setInt(3, personagem.getClasse().getId());
 
+            ps.setString(4, personagem.getAvatar());
+
             ps.executeUpdate();
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+    }
+
+    public void atualizar(Personagem personagem){
+        String sql = """
+                UPDATE personagem
+                SET nome = ?, nivel = ?, classe = ?, avatar = ?
+                WHERE id = ?
+                """;
+
+        try(
+                Connection con = ConnectionFactory.getConnection();
+                PreparedStatement ps = con.prepareStatement(sql)
+                ) {
+
+            ps.setString(1, personagem.getNome());
+            ps.setInt(2, personagem.getNivel());
+            ps.setInt(3, personagem.getClasse().getId());
+            ps.setString(4, personagem.getAvatar());
+            ps.setInt(5, personagem.getId());
+
+            ps.executeUpdate();
+
+        } catch (SQLException e){
+            e.printStackTrace();
+        }
+    }
+
+    public void excluir(Integer id){
+        String sql = "DELETE FROM personagem WHERE id = ?";
+
+        try(
+                Connection con = ConnectionFactory.getConnection();
+                PreparedStatement ps =  con.prepareStatement(sql)
+
+                ){
+
+            ps.setInt(1, id);
+            ps.executeUpdate();
+
+
         }catch (SQLException e){
             e.printStackTrace();
         }

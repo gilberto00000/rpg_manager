@@ -1,8 +1,74 @@
+.root {
+    -fx-font-family: "Segoe UI";
+    -fx-background-color: #0b0b0f;
+}
 
-.buttton{
-    -fx-background-radius: 5px;
-    -fx-border-color: white;
-    -fx-border-radius: 5px;
-    -fx-background-color: darkslateblue;
+.mainDiv {
+    -fx-background-color: rgba(18, 18, 24, 0.96);
 
+
+    -fx-border-color: #2a2a36;
+    -fx-border-width: 1;
+    -fx-effect: dropshadow(gaussian, rgba(139, 92, 246, 0.18), 40, 0.2, 0, 8);
+}
+
+.menuDiv {
+    -fx-background-color: #16161d;
+    -fx-border-color: #2f2f3d;
+    -fx-border-width: 1;
+    -fx-padding: 18;
+}
+
+.button {
+    -fx-background-color: #1b1627;
+    -fx-border-color: #5b3aa8;
+    -fx-border-width: 1;
+    -fx-background-radius: 12;
+    -fx-border-radius: 12;
+    -fx-text-fill: #e9ddff;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-pref-width: 180;
+    -fx-pref-height: 44;
+    -fx-cursor: hand;
+}
+
+.button:hover {
+    -fx-background-color: #5b3aa8;
+    -fx-text-fill: white;
+}
+
+.button:pressed {
+    -fx-background-color: #6d46d8;
+}
+
+#centerPane {
+    -fx-background-color: #121218;
+    -fx-background-radius: 18;
+    -fx-border-radius: 18;
+    -fx-border-color: #2a2a36;
+    -fx-border-width: 1;
+}
+
+.top-bar {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent transparent #2a2a36 transparent;
+    -fx-border-width: 0 0 1 0;
+}
+
+.bottom-bar {
+    -fx-background-color: transparent;
+    -fx-border-color: #2a2a36 transparent transparent transparent;
+    -fx-border-width: 1 0 0 0;
+}
+
+.title {
+    -fx-text-fill: #c4a6ff;
+    -fx-font-size: 22px;
+    -fx-font-weight: bold;
+}
+
+.status-label {
+    -fx-text-fill: #bdbdc7;
+    -fx-font-size: 12px;
 }

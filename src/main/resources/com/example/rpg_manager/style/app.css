@@ -1,0 +1,74 @@
+.root {
+    -fx-background-color: #0D0D12;
+}
+
+.scroll-pane {
+    -fx-background-color: transparent;
+    -fx-background: transparent;
+    -fx-border-color: transparent;
+}
+
+.scroll-pane > .viewport {
+    -fx-background-color: transparent;
+}
+
+.grid-pane {
+    -fx-background-color: #090910;
+    -fx-background-radius: 24;
+    -fx-border-radius: 24;
+    -fx-border-color: #232336;
+    -fx-border-width: 1;
+    -fx-padding: 24;
+}
+
+.card {
+    -fx-background-color: #18181F;
+    -fx-background-radius: 18;
+    -fx-border-color: #6D28D9;
+    -fx-border-radius: 18;
+    -fx-border-width: 1.5;
+    -fx-padding: 18;
+}
+
+.card:hover {
+    -fx-border-color: #8B5CF6;
+    -fx-effect: dropshadow(gaussian, rgba(109,40,217,0.35), 16, 0.25, 0, 6);
+}
+
+.card-title {
+    -fx-text-fill: white;
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+}
+
+.card-subtitle {
+    -fx-text-fill: #C4B5FD;
+    -fx-font-size: 13px;
+}
+
+.card-level {
+    -fx-text-fill: #E5E7EB;
+    -fx-font-size: 14px;
+}
+
+.primary-button {
+    -fx-background-color: #6D28D9;
+    -fx-text-fill: white;
+    -fx-background-radius: 10;
+    -fx-cursor: hand;
+}
+
+.primary-button:hover {
+    -fx-background-color: #7C3AED;
+}
+
+.danger-button {
+    -fx-background-color: #7F1D1D;
+    -fx-text-fill: white;
+    -fx-background-radius: 10;
+    -fx-cursor: hand;
+}
+
+.danger-button:hover {
+    -fx-background-color: #991B1B;
+}

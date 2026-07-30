@@ -3,10 +3,11 @@ package com.example.rpg_manager.model;
 import javafx.scene.control.Spinner;
 
 public class Personagem {
-    private int id;
+    private Integer id;
     private String nome;
     private int nivel;
     private Classes classe;
+    private String avatar;
 
     public int getId() {
         return id;
@@ -17,6 +18,13 @@ public class Personagem {
     }
 
     public Personagem(String nome, int nivel, Classes classe) {
+        this.nome = nome;
+        this.nivel = nivel;
+        this.classe = classe;
+    }
+
+    public Personagem(Integer id, String nome, int nivel, Classes classe) {
+        this.id = id;
         this.nome = nome;
         this.nivel = nivel;
         this.classe = classe;
@@ -44,6 +52,14 @@ public class Personagem {
 
     public void setClasse(Classes classe) {
         this.classe = classe;
+    }
+
+    public String getAvatar() {
+        return avatar;
+    }
+
+    public void setAvatar(String avatar) {
+        this.avatar = avatar;
     }
 
     @Override
