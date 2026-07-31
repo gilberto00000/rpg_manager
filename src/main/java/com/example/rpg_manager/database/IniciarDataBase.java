@@ -13,11 +13,29 @@ public class IniciarDataBase {
 
             stmt.execute("""
                     CREATE TABLE personagem (
+                    
                         id INTEGER PRIMARY KEY AUTOINCREMENT,
+                    
                         nome TEXT NOT NULL,
-                        nivel INTEGER NOT NULL,
-                        classe INTEGER NOT NULL,
-                        avatar TEXT
+                        avatar TEXT,
+                    
+                        classe INTEGER,
+                        nex INTEGER,
+                    
+                        pontos_disponiveis INTEGER,
+                    
+                        agilidade INTEGER,
+                        forca INTEGER,
+                        intelecto INTEGER,
+                        presenca INTEGER,
+                        vigor INTEGER,
+                    
+                        vida_atual INTEGER,
+                        pe_atual INTEGER,
+                        sanidade_atual INTEGER,
+                        pd_atual INTEGER,
+                    
+                        rodadas_morrendo INTEGER
                     );
             """);
 

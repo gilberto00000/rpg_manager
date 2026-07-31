@@ -20,7 +20,7 @@ public class PersonagemCardController {
     private Label classeLabel;
 
     @FXML
-    private Label nivelLabel;
+    private Label nexLabel;
 
     @FXML
     private Button editarBtn;
@@ -41,8 +41,14 @@ public class PersonagemCardController {
         this.personagem = personagem;
 
         nomeLabel.setText(personagem.getNome());
-        classeLabel.setText(personagem.getClasse().getNome());
-        nivelLabel.setText("Nível " + personagem.getNivel());
+
+        if (personagem.getClasse() != null) {
+            classeLabel.setText(personagem.getClasse().getNome());
+        } else {
+            classeLabel.setText("Sem classe");
+        }
+
+        nexLabel.setText("NEX " + personagem.getNex() + "%");
 
         if (personagem.getAvatar() == null || personagem.getAvatar().isBlank()) {
 

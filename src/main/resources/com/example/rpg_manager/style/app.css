@@ -2,6 +2,12 @@
     -fx-background-color: #0D0D12;
 }
 
+.text-field,
+.combo-box,
+.spinner {
+    -fx-pref-height: 42px;
+}
+
 .scroll-pane {
     -fx-background-color: transparent;
     -fx-background: transparent;
@@ -71,4 +77,203 @@
 
 .danger-button:hover {
     -fx-background-color: #991B1B;
+}
+
+/* ========= TextField ========= */
+
+.text-field {
+    -fx-background-color: #18181F;
+    -fx-background-radius: 12;
+    -fx-border-color: #2B2B45;
+    -fx-border-radius: 12;
+    -fx-border-width: 1.2;
+    -fx-text-fill: white;
+    -fx-prompt-text-fill: #7C7C95;
+    -fx-font-size: 14px;
+    -fx-padding: 10 14 10 14;
+}
+
+.text-field:focused {
+    -fx-border-color: #7C3AED;
+    -fx-border-width: 1.6;
+    -fx-effect: dropshadow(gaussian, rgba(124,58,237,0.25), 10, 0.2, 0, 0);
+}
+
+/* ========= ComboBox ========= */
+
+.combo-box {
+    -fx-background-color: #18181F;
+    -fx-background-radius: 12;
+    -fx-border-color: #2B2B45;
+    -fx-border-radius: 12;
+    -fx-border-width: 1.2;
+}
+
+.combo-box:focused {
+    -fx-border-color: #7C3AED;
+    -fx-border-width: 1.6;
+}
+
+.combo-box .list-cell {
+    -fx-background-color: transparent;
+    -fx-text-fill: white;
+    -fx-padding: 8 12 8 12;
+}
+
+.combo-box .arrow-button {
+    -fx-background-color: transparent;
+    -fx-background-radius: 0 12 12 0;
+}
+
+.combo-box .arrow {
+    -fx-background-color: #C4B5FD;
+}
+
+.combo-box-popup .list-view {
+    -fx-background-color: #18181F;
+    -fx-border-color: #7C3AED;
+    -fx-border-radius: 10;
+    -fx-background-radius: 10;
+}
+
+.combo-box-popup .list-cell {
+    -fx-background-color: #18181F;
+    -fx-text-fill: white;
+}
+
+.combo-box-popup .list-cell:hover {
+    -fx-background-color: #2A1B5E;
+}
+
+.combo-box-popup .list-cell:selected {
+    -fx-background-color: #6D28D9;
+}
+
+/* ========= Spinner ========= */
+
+.spinner {
+    -fx-background-color: #18181F;
+    -fx-background-radius: 12;
+    -fx-border-color: #2B2B45;
+    -fx-border-radius: 12;
+    -fx-border-width: 1.2;
+}
+
+.spinner:focused {
+    -fx-border-color: #7C3AED;
+    -fx-border-width: 1.6;
+}
+
+.spinner .text-field {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+    -fx-text-fill: white;
+    -fx-alignment: CENTER_LEFT;
+}
+
+.spinner .increment-arrow-button,
+.spinner .decrement-arrow-button {
+    -fx-background-color: #20202A;
+    -fx-background-radius: 0;
+}
+
+.spinner .increment-arrow-button:hover,
+.spinner .decrement-arrow-button:hover {
+    -fx-background-color: #2A1B5E;
+}
+
+.spinner .increment-arrow,
+.spinner .decrement-arrow {
+    -fx-background-color: #C4B5FD;
+}
+
+.top-bar {
+    -fx-background-color: #12121A;
+    -fx-padding: 18;
+}
+
+.titulo {
+    -fx-text-fill: white;
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+}
+
+.tab-pane {
+    -fx-background-color: #0D0D12;
+}
+
+.tab-pane .tab-header-area {
+    -fx-background-color: #12121A;
+}
+
+.tab {
+    -fx-background-color: #18181F;
+    -fx-background-radius: 12 12 0 0;
+}
+
+.tab:selected {
+    -fx-background-color: #6D28D9;
+}
+
+.tab .tab-label {
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+}
+
+.content-area {
+    -fx-padding: 30;
+    -fx-background-color: #111118;
+}
+
+.label {
+    -fx-text-fill: #E5E7EB;
+    -fx-font-size: 14px;
+    -fx-font-weight: 600;
+}
+
+.image-view {
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.45), 18, 0.25, 0, 8);
+}
+
+.atributo-control {
+    -fx-background-color: #18181F;
+    -fx-background-radius: 16;
+    -fx-border-color: #2B2B45;
+    -fx-border-radius: 16;
+}
+
+.atributo-nome {
+    -fx-text-fill: white;
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+}
+
+.atributo-valor {
+    -fx-text-fill: white;
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
+    -fx-min-width: 35px;
+    -fx-alignment: center;
+}
+
+.atributo-btn {
+    -fx-background-color: #6D28D9;
+    -fx-text-fill: white;
+    -fx-background-radius: 100;
+    -fx-min-width: 32px;
+    -fx-min-height: 32px;
+    -fx-max-width: 32px;
+    -fx-max-height: 32px;
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-cursor: hand;
+}
+
+.atributo-btn:hover {
+    -fx-background-color: #7C3AED;
+}
+
+.atributo-btn:disabled {
+    -fx-background-color: #3A3A4A;
+    -fx-text-fill: #888;
 }

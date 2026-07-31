@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.Spinner?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.control.Separator?>
+<BorderPane prefHeight="768" prefWidth="1366" styleClass="root" stylesheets="@../style/app.css" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.rpg_manager.FichaPersonagemController">
+
+    <top>
+
+        <HBox alignment="CENTER_LEFT" spacing="15" styleClass="top-bar">
+
+            <Button text="← Voltar"
+                    onAction="#voltar"
+                    styleClass="primary-button"/>
+
+            <Label styleClass="titulo" text="Ficha do Personagem" />
+
+            <Region HBox.hgrow="ALWAYS" />
+
+            <Button fx:id="salvarBtn"
+                    text="Salvar Personagem"
+                    onAction="#salvar"
+                    styleClass="primary-button"/>
+
+        </HBox>
+
+    </top>
+
+    <center>
+
+        <TabPane fx:id="tabPane">
+
+            <Tab text="Básico">
+                <HBox spacing="40" styleClass="content-area">
+
+                    <VBox spacing="15" alignment="TOP_CENTER">
+
+                        <ImageView fx:id="avatarPreview"
+                                   fitWidth="180"
+                                   fitHeight="220"
+                                   preserveRatio="true"/>
+
+                        <Button text="Escolher Avatar"
+                                onAction="#escolherAvatar"
+                                styleClass="primary-button"
+                                prefWidth="180"/>
+
+                    </VBox>
+
+                    <VBox spacing="18" prefWidth="450">
+
+                        <Label text="Nome do personagem"/>
+                        <TextField fx:id="nomeField"
+                                   promptText="Digite o nome do personagem"/>
+
+                        <Label text="Classe"/>
+                        <ComboBox fx:id="classeCombo"/>
+
+                        <Label text="NEX (%)"/>
+                        <Spinner fx:id="nexSpinner"/>
+
+                    </VBox>
+
+                </HBox>
+            </Tab>
+
+            <Tab text="Atributos">
+                <VBox spacing="20" styleClass="content-area">
+
+                    <HBox alignment="CENTER_LEFT" spacing="15">
+
+                        <Label text="Pontos disponíveis:"/>
+
+                        <TextField fx:id="pontosDisponiveisField"
+                                   prefWidth="80"/>
+
+                        <Button text="Aplicar"
+                                onAction="#aplicarPontosDisponiveis"
+                                styleClass="primary-button"/>
+
+                        <Region HBox.hgrow="ALWAYS"/>
+
+                        <Label text="Pontos restantes:"/>
+
+                        <Label fx:id="pontosRestantesLabel"
+                               text="10"
+                               styleClass="card-title"/>
+
+                    </HBox>
+
+                    <VBox fx:id="atributosContainer" spacing="12"/>
+
+                </VBox>
+            </Tab>
+
+            <Tab text="Status">
+
+                <VBox spacing="15">
+
+                    <HBox spacing="20">
+                        <Label text="Vida:"/>
+                        <Label fx:id="vidaLabel" text="20 / 20"/>
+                    </HBox>
+
+                    <HBox spacing="20">
+                        <Label text="PE:"/>
+                        <Label fx:id="peLabel" text="5 / 5"/>
+                    </HBox>
+
+                    <HBox spacing="20">
+                        <Label text="Sanidade:"/>
+                        <Label fx:id="sanidadeLabel" text="10 / 10"/>
+                    </HBox>
+
+                    <Separator/>
+
+                    <HBox spacing="20">
+                        <Label text="Defesa:"/>
+                        <Label fx:id="defesaLabel" text="10"/>
+                    </HBox>
+
+                    <HBox spacing="20">
+                        <Label text="Esquiva:"/>
+                        <Label fx:id="esquivaLabel" text="5"/>
+                    </HBox>
+
+                    <HBox spacing="20">
+                        <Label text="Bloqueio:"/>
+                        <Label fx:id="bloqueioLabel" text="5"/>
+                    </HBox>
+
+                    <HBox spacing="20">
+                        <Label text="Deslocamento:"/>
+                        <Label fx:id="deslocamentoLabel" text="9m"/>
+                    </HBox>
+
+                    <HBox spacing="20">
+                        <Label text="Limite PE/turno:"/>
+                        <Label fx:id="limitePeTurnoLabel" text="1"/>
+                    </HBox>
+
+                </VBox>
+
+            </Tab>
+
+            <Tab text="Perícias">
+
+                <AnchorPane fx:id="periciasPane" />
+
+            </Tab>
+
+            <Tab text="Equipamentos">
+
+                <AnchorPane fx:id="equipamentosPane" />
+
+            </Tab>
+
+            <Tab text="Habilidades">
+
+                <AnchorPane fx:id="habilidadesPane" />
+
+            </Tab>
+
+        </TabPane>
+
+    </center>
+
+</BorderPane>
