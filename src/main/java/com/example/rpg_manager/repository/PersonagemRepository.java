@@ -36,8 +36,27 @@ public class PersonagemRepository {
                 Classes classe = classesRepository.buscarPorId(idClasse);
                 p.setClasse(classe);
 
-                p.setNex(rs.getInt("nex"));
                 p.setAvatar(rs.getString("avatar"));
+                p.setNex(rs.getInt("nex"));
+
+                p.setPontosDisponiveis(
+                        rs.getInt("pontos_disponiveis")
+                );
+
+                p.setAgilidade(rs.getInt("agilidade"));
+                p.setForca(rs.getInt("forca"));
+                p.setIntelecto(rs.getInt("intelecto"));
+                p.setPresenca(rs.getInt("presenca"));
+                p.setVigor(rs.getInt("vigor"));
+
+                p.setVidaAtual(rs.getInt("vida_atual"));
+                p.setPeAtual(rs.getInt("pe_atual"));
+                p.setSanidadeAtual(rs.getInt("sanidade_atual"));
+                p.setPdAtual(rs.getInt("pd_atual"));
+
+                p.setRodadasMorrendo(
+                        rs.getInt("rodadas_morrendo")
+                );
 
                 lista.add(p);
             }
@@ -52,8 +71,29 @@ public class PersonagemRepository {
     public void salvar(Personagem personagem) {
 
         String sql = """
-                INSERT INTO personagem(nome, classe, nex, avatar)
-                VALUES (?, ?, ?, ?)
+                INSERT INTO personagem(
+                
+                    nome,
+                    avatar,
+                    classe,
+                    nex,
+                
+                    pontos_disponiveis,
+                
+                    agilidade,
+                    forca,
+                    intelecto,
+                    presenca,
+                    vigor,
+                
+                    vida_atual,
+                    pe_atual,
+                    sanidade_atual,
+                    pd_atual,
+                
+                    rodadas_morrendo
+                
+                ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
                 """;
 
         try (
@@ -65,9 +105,24 @@ public class PersonagemRepository {
         ) {
 
             ps.setString(1, personagem.getNome());
-            ps.setInt(2, personagem.getClasse().getId());
-            ps.setInt(3, personagem.getNex());
-            ps.setString(4, personagem.getAvatar());
+            ps.setString(2, personagem.getAvatar());
+            ps.setInt(3, personagem.getClasse().getId());
+            ps.setInt(4, personagem.getNex());
+
+            ps.setInt(5, personagem.getPontosDisponiveis());
+
+            ps.setInt(6, personagem.getAgilidade());
+            ps.setInt(7, personagem.getForca());
+            ps.setInt(8, personagem.getIntelecto());
+            ps.setInt(9, personagem.getPresenca());
+            ps.setInt(10, personagem.getVigor());
+
+            ps.setInt(11, personagem.getVidaAtual());
+            ps.setInt(12, personagem.getPeAtual());
+            ps.setInt(13, personagem.getSanidadeAtual());
+            ps.setInt(14, personagem.getPdAtual());
+
+            ps.setInt(15, personagem.getRodadasMorrendo());
 
             ps.executeUpdate();
 
@@ -86,7 +141,27 @@ public class PersonagemRepository {
 
         String sql = """
                 UPDATE personagem
-                SET nome = ?, classe = ?, nex = ?, avatar = ?
+                SET
+                    nome = ?,
+                    avatar = ?,
+                    classe = ?,
+                    nex = ?,
+                
+                    pontos_disponiveis = ?,
+                
+                    agilidade = ?,
+                    forca = ?,
+                    intelecto = ?,
+                    presenca = ?,
+                    vigor = ?,
+                
+                    vida_atual = ?,
+                    pe_atual = ?,
+                    sanidade_atual = ?,
+                    pd_atual = ?,
+                
+                    rodadas_morrendo = ?
+                
                 WHERE id = ?
                 """;
 
@@ -96,16 +171,36 @@ public class PersonagemRepository {
         ) {
 
             ps.setString(1, personagem.getNome());
-            ps.setInt(2, personagem.getClasse().getId());
-            ps.setInt(3, personagem.getNex());
-            ps.setString(4, personagem.getAvatar());
-            ps.setInt(5, personagem.getId());
+            ps.setString(2, personagem.getAvatar());
+            ps.setInt(3, personagem.getClasse().getId());
+            ps.setInt(4, personagem.getNex());
+
+            ps.setInt(5, personagem.getPontosDisponiveis());
+
+            ps.setInt(6, personagem.getAgilidade());
+            ps.setInt(7, personagem.getForca());
+            ps.setInt(8, personagem.getIntelecto());
+            ps.setInt(9, personagem.getPresenca());
+            ps.setInt(10, personagem.getVigor());
+
+            ps.setInt(11, personagem.getVidaAtual());
+            ps.setInt(12, personagem.getPeAtual());
+            ps.setInt(13, personagem.getSanidadeAtual());
+            ps.setInt(14, personagem.getPdAtual());
+
+            ps.setInt(15, personagem.getRodadasMorrendo());
 
             ps.executeUpdate();
+
+            int linhas = ps.executeUpdate();
+
+            System.out.println("Linhas atualizadas: " + linhas);
 
         } catch (SQLException e) {
             e.printStackTrace();
         }
+
+
     }
 
     public void excluir(Integer id) {

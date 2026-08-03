@@ -24,17 +24,19 @@
 
     <Label fx:id="nomeLabel" styleClass="card-title"/>
     <Label fx:id="classeLabel" styleClass="card-subtitle"/>
-    <Label fx:id="nivelLabel" styleClass="card-level"/>
+    <Label fx:id="nexLabel" styleClass="card-level"/>
 
     <Region VBox.vgrow="ALWAYS"/>
 
     <HBox spacing="10">
 
         <Button text="Editar"
+                fx:id="editarBtn"
                 styleClass="primary-button"
                 onAction="#editar"/>
 
         <Button text="Excluir"
+                fx:id="excluirBtn"
                 styleClass="danger-button"
                 onAction="#excluir"/>
 

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DdlMappings">
+    <mapping uuid="0fc114ae-c02e-438f-a51c-59e62f45c5b2" name="rpg Mapping">
+      <data-sources db="1e08f3b5-a9f2-4765-bb8e-615aecc0607a" />
+      <scope>
+        <node negative="1">
+          <node kind="database" negative="1" />
+          <node kind="schema" qname="main" />
+        </node>
+      </scope>
+    </mapping>
+  </component>
+</project>

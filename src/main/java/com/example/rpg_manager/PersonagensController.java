@@ -79,7 +79,32 @@ public class PersonagensController implements Initializable {
     }
 
     private void editarPersonagem(Personagem personagem) {
-        // vamos implementar depois
+
+        try {
+
+            FXMLLoader loader = new FXMLLoader(
+                    getClass().getResource(
+                            "fxml/FichaPersonagem.fxml"
+                    )
+            );
+
+            Parent root = loader.load();
+
+            FichaPersonagemController controller =
+                    loader.getController();
+
+            controller.setPersonagem(personagem);
+
+            Stage stage =
+                    (Stage) gridPersonagens.getScene().getWindow();
+
+            stage.setScene(new Scene(root));
+
+        } catch (IOException e) {
+
+            e.printStackTrace();
+
+        }
     }
 
     private void excluirPersonagem(Personagem personagem) {

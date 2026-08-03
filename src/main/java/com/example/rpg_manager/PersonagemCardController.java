@@ -68,6 +68,8 @@ public class PersonagemCardController {
 
     }
 
+
+
     public void setOnEditar(Consumer<Personagem> onEditar) {
         this.onEditar = onEditar;
     }

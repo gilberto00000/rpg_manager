@@ -93,6 +93,8 @@ public class FichaPersonagemController implements Initializable {
                 FXCollections.observableArrayList(classesRepository.listar())
         );
 
+        initializeAtributos();
+
         nexSpinner.setValueFactory(
                 new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 100, 0)
         );
@@ -107,7 +109,30 @@ public class FichaPersonagemController implements Initializable {
 
         personagemAtual = new Personagem();
 
-        initializeAtributos();
+
+
+        renderizarFicha();
+    }
+
+    public void setPersonagem(Personagem personagem) {
+
+        this.personagemAtual = personagem;
+
+        preencherCampos();
+
+    }
+
+    private void preencherCampos() {
+
+        nomeField.setText(personagemAtual.getNome());
+
+        classeCombo.setValue(personagemAtual.getClasse());
+
+        nexSpinner.getValueFactory().setValue(personagemAtual.getNex());
+
+        pontosDisponiveisField.setText(
+                String.valueOf(personagemAtual.getPontosDisponiveis())
+        );
 
         renderizarFicha();
     }
@@ -144,17 +169,40 @@ public class FichaPersonagemController implements Initializable {
 
     }
 
-    private Personagem montarPersonagem() {
+    private void montarPersonagem() {
+
+        if (personagemAtual == null) {
+            personagemAtual = new Personagem();
+        }
 
         personagemAtual.setNome(nomeField.getText());
-
-        personagemAtual.setAvatar(caminhoAvatar);
-
         personagemAtual.setClasse(classeCombo.getValue());
-
         personagemAtual.setNex(nexSpinner.getValue());
 
-        return personagemAtual;
+        personagemAtual.setPontosDisponiveis(
+                Integer.parseInt(pontosDisponiveisField.getText())
+        );
+
+        personagemAtual.setAgilidade(
+                controlesAtributos.get(Atributo.AGILIDADE).getValor()
+        );
+
+        personagemAtual.setForca(
+                controlesAtributos.get(Atributo.FORCA).getValor()
+        );
+
+        personagemAtual.setIntelecto(
+                controlesAtributos.get(Atributo.INTELECTO).getValor()
+        );
+
+        personagemAtual.setPresenca(
+                controlesAtributos.get(Atributo.PRESENCA).getValor()
+        );
+
+        personagemAtual.setVigor(
+                controlesAtributos.get(Atributo.VIGOR).getValor()
+        );
+
     }
 
     public void carregarPersonagem(Personagem personagem) {
@@ -192,6 +240,8 @@ public class FichaPersonagemController implements Initializable {
             service.atualizar(personagemAtual);
 
         }
+
+        System.out.println(personagemAtual.getId());
 
         voltar();
 
@@ -321,6 +371,8 @@ public class FichaPersonagemController implements Initializable {
         }
 
     }
+
+
 
     public void renderizarFicha(){
 

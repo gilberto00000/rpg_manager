@@ -12,7 +12,7 @@ public class IniciarDataBase {
              Statement stmt = con.createStatement()) {
 
             stmt.execute("""
-                    CREATE TABLE personagem (
+                    CREATE TABLE IF NOT EXISTS personagem (
                     
                         id INTEGER PRIMARY KEY AUTOINCREMENT,
                     
@@ -20,22 +20,22 @@ public class IniciarDataBase {
                         avatar TEXT,
                     
                         classe INTEGER,
-                        nex INTEGER,
+                        nex INTEGER DEFAULT 0,
                     
                         pontos_disponiveis INTEGER,
                     
-                        agilidade INTEGER,
-                        forca INTEGER,
-                        intelecto INTEGER,
-                        presenca INTEGER,
-                        vigor INTEGER,
-                    
-                        vida_atual INTEGER,
-                        pe_atual INTEGER,
-                        sanidade_atual INTEGER,
-                        pd_atual INTEGER,
-                    
-                        rodadas_morrendo INTEGER
+                        agilidade INTEGER DEFAULT 0,
+                        forca INTEGER DEFAULT 0,
+                        intelecto INTEGER DEFAULT 0,
+                        presenca INTEGER DEFAULT 0,
+                        vigor INTEGER DEFAULT 0,
+            
+                        vida_atual INTEGER DEFAULT 0,
+                        pe_atual INTEGER DEFAULT 0,
+                        sanidade_atual INTEGER DEFAULT 0,
+                        pd_atual INTEGER DEFAULT 0,
+            
+                        rodadas_morrendo INTEGER DEFAULT 0
                     );
             """);
 
