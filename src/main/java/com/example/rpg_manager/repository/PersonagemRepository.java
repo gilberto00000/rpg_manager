@@ -52,7 +52,6 @@ public class PersonagemRepository {
                 p.setVidaAtual(rs.getInt("vida_atual"));
                 p.setPeAtual(rs.getInt("pe_atual"));
                 p.setSanidadeAtual(rs.getInt("sanidade_atual"));
-                p.setPdAtual(rs.getInt("pd_atual"));
 
                 p.setRodadasMorrendo(
                         rs.getInt("rodadas_morrendo")
@@ -89,7 +88,6 @@ public class PersonagemRepository {
                     vida_atual,
                     pe_atual,
                     sanidade_atual,
-                    pd_atual,
                 
                     rodadas_morrendo
                 
@@ -120,9 +118,7 @@ public class PersonagemRepository {
             ps.setInt(11, personagem.getVidaAtual());
             ps.setInt(12, personagem.getPeAtual());
             ps.setInt(13, personagem.getSanidadeAtual());
-            ps.setInt(14, personagem.getPdAtual());
-
-            ps.setInt(15, personagem.getRodadasMorrendo());
+            ps.setInt(14, personagem.getRodadasMorrendo());
 
             ps.executeUpdate();
 
@@ -158,7 +154,6 @@ public class PersonagemRepository {
                     vida_atual = ?,
                     pe_atual = ?,
                     sanidade_atual = ?,
-                    pd_atual = ?,
                 
                     rodadas_morrendo = ?
                 
@@ -186,11 +181,10 @@ public class PersonagemRepository {
             ps.setInt(11, personagem.getVidaAtual());
             ps.setInt(12, personagem.getPeAtual());
             ps.setInt(13, personagem.getSanidadeAtual());
-            ps.setInt(14, personagem.getPdAtual());
 
-            ps.setInt(15, personagem.getRodadasMorrendo());
+            ps.setInt(14, personagem.getRodadasMorrendo());
 
-            ps.setInt(16, personagem.getId());
+            ps.setInt(15, personagem.getId());
 
             ps.executeUpdate();
 

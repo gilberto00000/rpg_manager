@@ -396,3 +396,113 @@
     -fx-border-color: #27272A;
     -fx-border-width: 1 0 0 0;
 }
+
+.resource-card {
+    -fx-background-color: #18181F;
+    -fx-background-radius: 18;
+    -fx-border-color: #34343D;
+    -fx-border-radius: 18;
+    -fx-border-width: 1;
+    -fx-padding: 18;
+    -fx-min-width: 230;
+    -fx-pref-width: 230;
+}
+
+.resource-card:hover {
+    -fx-border-color: #7C3AED;
+    -fx-effect: dropshadow(
+            gaussian,
+            rgba(109, 40, 217, 0.22),
+            14,
+            0.2,
+            0,
+            4
+    );
+}
+
+.resource-title {
+    -fx-text-fill: #C4B5FD;
+    -fx-font-size: 15px;
+    -fx-font-weight: bold;
+}
+
+.resource-value {
+    -fx-text-fill: #F9FAFB;
+    -fx-font-size: 17px;
+    -fx-font-weight: bold;
+}
+
+.progress-bar {
+    -fx-pref-height: 12;
+    -fx-background-radius: 999;
+}
+
+.progress-bar > .track {
+    -fx-background-color: #27272A;
+    -fx-background-radius: 999;
+    -fx-border-radius: 999;
+}
+
+.progress-bar > .bar {
+    -fx-background-radius: 999;
+    -fx-background-insets: 0;
+}
+
+.vida-progress > .bar {
+    -fx-background-color: linear-gradient(
+            to right,
+            #991B1B,
+            #EF4444
+    );
+}
+
+.pe-progress > .bar {
+    -fx-background-color: linear-gradient(
+            to right,
+            #4338CA,
+            #8B5CF6
+    );
+}
+
+.sanidade-progress > .bar {
+    -fx-background-color: linear-gradient(
+            to right,
+            #0F766E,
+            #2DD4BF
+    );
+}
+
+.danger-status-card {
+    -fx-background-color: #1C1114;
+    -fx-background-radius: 18;
+    -fx-border-color: #7F1D1D;
+    -fx-border-radius: 18;
+    -fx-border-width: 1.5;
+    -fx-padding: 18;
+    -fx-min-width: 230;
+    -fx-pref-width: 230;
+    -fx-alignment: center;
+}
+
+.danger-value {
+    -fx-text-fill: #FCA5A5;
+    -fx-font-size: 26px;
+    -fx-font-weight: bold;
+}
+
+.danger-plus-button {
+    -fx-background-color: #7F1D1D;
+    -fx-text-fill: white;
+    -fx-background-radius: 999;
+    -fx-min-width: 34;
+    -fx-min-height: 34;
+    -fx-pref-width: 34;
+    -fx-pref-height: 34;
+    -fx-font-size: 17px;
+    -fx-font-weight: bold;
+    -fx-cursor: hand;
+}
+
+.danger-plus-button:hover {
+    -fx-background-color: #991B1B;
+}

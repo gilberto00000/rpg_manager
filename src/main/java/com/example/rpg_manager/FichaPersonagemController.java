@@ -30,6 +30,13 @@ import java.util.ResourceBundle;
 
 public class FichaPersonagemController implements Initializable {
 
+
+    @FXML
+    private ProgressBar vidaProgress;
+    @FXML
+    private ProgressBar peProgress;
+    @FXML
+    private ProgressBar sanidadeProgress;
     @FXML
     private ImageView avatarPreview;
     @FXML
@@ -38,7 +45,6 @@ public class FichaPersonagemController implements Initializable {
     private ComboBox<Classes> classeCombo;
     @FXML
     private Spinner<Integer> nexSpinner;
-
     private String caminhoAvatar;
     @FXML
     private Button salvarBtn;
@@ -64,8 +70,6 @@ public class FichaPersonagemController implements Initializable {
     private Label deslocamentoLabel;
     @FXML
     private Label limitePePorTurnoLabel;
-    @FXML
-    private Label pdLabel;
     @FXML
     private Label rodadasMorrendoLabel;
     @FXML
@@ -389,10 +393,62 @@ public class FichaPersonagemController implements Initializable {
 
     }
 
+    private double calcularProgresso(int atual, int maximo) {
+        if (maximo <= 0) {
+            return 0;
+        }
 
+        double progresso = (double) atual / maximo;
 
-    public void renderizarFicha(){
+        return Math.max(0, Math.min(1, progresso));
+    }
 
+    public void atualizarStatus(){
+        int vidaAtual = personagemAtual.getVidaAtual();
+        int vidaMaxima = personagemAtual.getVidaMaxima();
+
+        int peAtual = personagemAtual.getPeAtual();
+        int peMaximo = personagemAtual.getPeMaximo();
+
+        int sanidadeAtual = personagemAtual.getSanidadeAtual();
+        int sanidadeMaxima = personagemAtual.getSanidadeMaxima();
+
+        vidaLabel.setText(vidaAtual + " / " + vidaMaxima);
+        peLabel.setText(peAtual + " / " + peMaximo);
+        sanidadeLabel.setText(sanidadeAtual + " / " + sanidadeMaxima);
+
+        vidaProgress.setProgress(calcularProgresso(vidaAtual, vidaMaxima));
+        peProgress.setProgress(calcularProgresso(peAtual, peMaximo));
+        sanidadeProgress.setProgress(
+                calcularProgresso(sanidadeAtual, sanidadeMaxima)
+        );
+
+        rodadasMorrendoLabel.setText(
+                personagemAtual.getRodadasMorrendo() + " / 3"
+        );
+
+        defesaLabel.setText(
+                String.valueOf(personagemAtual.getDefesa())
+        );
+
+        esquivaLabel.setText(
+                String.valueOf(personagemAtual.getEsquiva())
+        );
+
+        bloqueioLabel.setText(
+                String.valueOf(personagemAtual.getBloqueio())
+        );
+
+        deslocamentoLabel.setText(
+                personagemAtual.getDeslocamento() + " m"
+        );
+
+        limitePeLabel.setText(
+                String.valueOf(personagemAtual.getLimitePePorTurno())
+        );
+    }
+
+    private void atualizarAtributos(){
         //att os atributos
         pontosRestantesLabel.setText(
                 String.valueOf(personagemAtual.getPontosRestantes())
@@ -415,53 +471,12 @@ public class FichaPersonagemController implements Initializable {
             control.setMenosDesabilitado(valor <= 0);
 
         }
-        //att os status
+    }
 
-        vidaLabel.setText(
-                personagemAtual.getVidaAtual()
-                        + " / "
-                        + personagemAtual.getVidaMaxima()
-        );
+    public void renderizarFicha(){
+        atualizarAtributos();
+        atualizarStatus();
 
-        peLabel.setText(
-                personagemAtual.getPeAtual()
-                        + " / "
-                        + personagemAtual.getPeMaximo()
-        );
-
-        sanidadeLabel.setText(
-                personagemAtual.getSanidadeAtual()
-                        + " / "
-                        + personagemAtual.getSanidadeMaxima()
-        );
-
-        pdLabel.setText(
-                String.valueOf(personagemAtual.getPdAtual())
-        );
-
-        rodadasMorrendoLabel.setText(
-                personagemAtual.getRodadasMorrendo() + " / 3"
-        );
-
-        defesaLabel.setText(
-                String.valueOf(personagemAtual.getDefesa())
-        );
-
-        deslocamentoLabel.setText(
-                personagemAtual.getDeslocamento() + " m"
-        );
-
-        esquivaLabel.setText(
-                String.valueOf(personagemAtual.getEsquiva())
-        );
-
-        bloqueioLabel.setText(
-                String.valueOf(personagemAtual.getBloqueio())
-        );
-
-        limitePeLabel.setText(
-                String.valueOf(personagemAtual.getLimitePePorTurno())
-        );
     }
 
     // controle de status atual
@@ -533,27 +548,6 @@ public class FichaPersonagemController implements Initializable {
             personagemAtual.setSanidadeAtual(atual + 1);
             renderizarFicha();
         }
-    }
-
-    //controle de pd
-
-    @FXML
-    private void diminuirPd() {
-        int atual = personagemAtual.getPdAtual();
-
-        if (atual > 0) {
-            personagemAtual.setPdAtual(atual - 1);
-            renderizarFicha();
-        }
-    }
-
-    @FXML
-    private void aumentarPd() {
-        personagemAtual.setPdAtual(
-                personagemAtual.getPdAtual() + 1
-        );
-
-        renderizarFicha();
     }
 
     //controle de rodadas em momento

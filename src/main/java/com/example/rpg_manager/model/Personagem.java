@@ -27,7 +27,7 @@ public class Personagem {
     private int vidaAtual;
     private int peAtual;
     private int sanidadeAtual;
-    private int pdAtual;
+
     private int rodadasMorrendo;
     private int trilhaProgresso;
 
@@ -237,14 +237,6 @@ public class Personagem {
         this.sanidadeAtual = sanidadeAtual;
     }
 
-    public int getPdAtual() {
-        return pdAtual;
-    }
-
-    public void setPdAtual(int pdAtual) {
-        this.pdAtual = pdAtual;
-    }
-
     public int getRodadasMorrendo() {
         return rodadasMorrendo;
     }
@@ -309,7 +301,6 @@ public class Personagem {
                 ", vidaAtual=" + vidaAtual +
                 ", peAtual=" + peAtual +
                 ", sanidadeAtual=" + sanidadeAtual +
-                ", pdAtual=" + pdAtual +
                 ", rodadasMorrendo=" + rodadasMorrendo +
                 ", trilhaProgresso=" + trilhaProgresso +
                 ", condicoes=" + condicoes +

@@ -33,7 +33,6 @@ public class IniciarDataBase {
                         vida_atual INTEGER DEFAULT 0,
                         pe_atual INTEGER DEFAULT 0,
                         sanidade_atual INTEGER DEFAULT 0,
-                        pd_atual INTEGER DEFAULT 0,
             
                         rodadas_morrendo INTEGER DEFAULT 0
                     );

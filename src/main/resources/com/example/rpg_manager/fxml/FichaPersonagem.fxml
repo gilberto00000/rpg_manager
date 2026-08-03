@@ -17,6 +17,7 @@
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.ProgressBar?>
 <BorderPane prefHeight="768" prefWidth="1366" styleClass="root" stylesheets="@../style/app.css" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.rpg_manager.FichaPersonagemController">
 
     <top>
@@ -123,134 +124,135 @@
                                       vgap="16"
                                       styleClass="status-grid">
 
-                                <VBox spacing="8"
-                                      styleClass="status-card"
+                                <VBox spacing="10"
+                                      styleClass="resource-card"
                                       GridPane.columnIndex="0"
                                       GridPane.rowIndex="0">
 
-                                    <Label text="Vida"
-                                           styleClass="status-name"/>
+                                    <HBox alignment="CENTER_LEFT">
+                                        <Label text="Vida"
+                                               styleClass="resource-title"/>
 
-                                    <HBox spacing="12"
-                                          alignment="CENTER">
+                                        <Region HBox.hgrow="ALWAYS"/>
+
+                                        <Label fx:id="vidaLabel"
+                                               text="0 / 0"
+                                               styleClass="resource-value"/>
+                                    </HBox>
+
+                                    <ProgressBar fx:id="vidaProgress"
+                                                 progress="0"
+                                                 maxWidth="Infinity"
+                                                 styleClass="vida-progress"/>
+
+                                    <HBox alignment="CENTER"
+                                          spacing="12">
 
                                         <Button text="−"
                                                 onAction="#diminuirVida"
                                                 styleClass="status-minus-button"/>
 
-                                        <Label fx:id="vidaLabel"
-                                               text="0 / 0"
-                                               styleClass="status-value"/>
-
                                         <Button text="+"
                                                 onAction="#aumentarVida"
                                                 styleClass="status-plus-button"/>
-
                                     </HBox>
+
                                 </VBox>
 
-                                <VBox spacing="8"
-                                      styleClass="status-card"
+                                <VBox spacing="10"
+                                      styleClass="resource-card"
                                       GridPane.columnIndex="1"
                                       GridPane.rowIndex="0">
 
-                                    <Label text="PE"
-                                           styleClass="status-name"/>
+                                    <HBox alignment="CENTER_LEFT">
+                                        <Label text="PE"
+                                               styleClass="resource-title"/>
 
-                                    <HBox spacing="12"
-                                          alignment="CENTER">
+                                        <Region HBox.hgrow="ALWAYS"/>
+
+                                        <Label fx:id="peLabel"
+                                               text="0 / 0"
+                                               styleClass="resource-value"/>
+                                    </HBox>
+
+                                    <ProgressBar fx:id="peProgress"
+                                                 progress="0"
+                                                 maxWidth="Infinity"
+                                                 styleClass="pe-progress"/>
+
+                                    <HBox alignment="CENTER"
+                                          spacing="12">
 
                                         <Button text="−"
                                                 onAction="#diminuirPe"
                                                 styleClass="status-minus-button"/>
 
-                                        <Label fx:id="peLabel"
-                                               text="0 / 0"
-                                               styleClass="status-value"/>
-
                                         <Button text="+"
                                                 onAction="#aumentarPe"
                                                 styleClass="status-plus-button"/>
-
                                     </HBox>
+
                                 </VBox>
 
-                                <VBox spacing="8"
-                                      styleClass="status-card"
+                                <VBox spacing="10"
+                                      styleClass="resource-card"
                                       GridPane.columnIndex="2"
                                       GridPane.rowIndex="0">
 
-                                    <Label text="Sanidade"
-                                           styleClass="status-name"/>
+                                    <HBox alignment="CENTER_LEFT">
+                                        <Label text="Sanidade"
+                                               styleClass="resource-title"/>
 
-                                    <HBox spacing="12"
-                                          alignment="CENTER">
+                                        <Region HBox.hgrow="ALWAYS"/>
+
+                                        <Label fx:id="sanidadeLabel"
+                                               text="0 / 0"
+                                               styleClass="resource-value"/>
+                                    </HBox>
+
+                                    <ProgressBar fx:id="sanidadeProgress"
+                                                 progress="0"
+                                                 maxWidth="Infinity"
+                                                 styleClass="sanidade-progress"/>
+
+                                    <HBox alignment="CENTER"
+                                          spacing="12">
 
                                         <Button text="−"
                                                 onAction="#diminuirSanidade"
                                                 styleClass="status-minus-button"/>
 
-                                        <Label fx:id="sanidadeLabel"
-                                               text="0 / 0"
-                                               styleClass="status-value"/>
-
                                         <Button text="+"
                                                 onAction="#aumentarSanidade"
                                                 styleClass="status-plus-button"/>
-
                                     </HBox>
+
                                 </VBox>
 
-                                <VBox spacing="8"
-                                      styleClass="status-card"
+                                <VBox spacing="10"
+                                      styleClass="danger-status-card"
                                       GridPane.columnIndex="0"
                                       GridPane.rowIndex="1">
 
-                                    <Label text="PD"
-                                           styleClass="status-name"/>
-
-                                    <HBox spacing="12"
-                                          alignment="CENTER">
-
-                                        <Button text="−"
-                                                onAction="#diminuirPd"
-                                                styleClass="status-minus-button"/>
-
-                                        <Label fx:id="pdLabel"
-                                               text="0"
-                                               styleClass="status-value"/>
-
-                                        <Button text="+"
-                                                onAction="#aumentarPd"
-                                                styleClass="status-plus-button"/>
-
-                                    </HBox>
-                                </VBox>
-
-                                <VBox spacing="8"
-                                      styleClass="status-card"
-                                      GridPane.columnIndex="1"
-                                      GridPane.rowIndex="1">
-
                                     <Label text="Rodadas em morrendo"
-                                           styleClass="status-name"/>
+                                           styleClass="resource-title"/>
 
-                                    <HBox spacing="12"
-                                          alignment="CENTER">
+                                    <Label fx:id="rodadasMorrendoLabel"
+                                           text="0 / 3"
+                                           styleClass="danger-value"/>
+
+                                    <HBox alignment="CENTER"
+                                          spacing="12">
 
                                         <Button text="−"
                                                 onAction="#diminuirRodadasMorrendo"
                                                 styleClass="status-minus-button"/>
 
-                                        <Label fx:id="rodadasMorrendoLabel"
-                                               text="0 / 3"
-                                               styleClass="status-value"/>
-
                                         <Button text="+"
                                                 onAction="#aumentarRodadasMorrendo"
-                                                styleClass="status-plus-button"/>
-
+                                                styleClass="danger-plus-button"/>
                                     </HBox>
+
                                 </VBox>
                             </GridPane>
 
