@@ -15,6 +15,8 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.control.Separator?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.control.ScrollPane?>
 <BorderPane prefHeight="768" prefWidth="1366" styleClass="root" stylesheets="@../style/app.css" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.rpg_manager.FichaPersonagemController">
 
     <top>
@@ -106,53 +108,226 @@
             </Tab>
 
             <Tab text="Status">
+                <content>
+                    <ScrollPane fitToWidth="true"
+                                hbarPolicy="NEVER"
+                                styleClass="status-scroll">
 
-                <VBox spacing="15">
+                        <VBox spacing="22"
+                              styleClass="status-page">
 
-                    <HBox spacing="20">
-                        <Label text="Vida:"/>
-                        <Label fx:id="vidaLabel" text="20 / 20"/>
-                    </HBox>
+                            <Label text="Recursos atuais"
+                                   styleClass="section-title"/>
 
-                    <HBox spacing="20">
-                        <Label text="PE:"/>
-                        <Label fx:id="peLabel" text="5 / 5"/>
-                    </HBox>
+                            <GridPane hgap="18"
+                                      vgap="16"
+                                      styleClass="status-grid">
 
-                    <HBox spacing="20">
-                        <Label text="Sanidade:"/>
-                        <Label fx:id="sanidadeLabel" text="10 / 10"/>
-                    </HBox>
+                                <VBox spacing="8"
+                                      styleClass="status-card"
+                                      GridPane.columnIndex="0"
+                                      GridPane.rowIndex="0">
 
-                    <Separator/>
+                                    <Label text="Vida"
+                                           styleClass="status-name"/>
 
-                    <HBox spacing="20">
-                        <Label text="Defesa:"/>
-                        <Label fx:id="defesaLabel" text="10"/>
-                    </HBox>
+                                    <HBox spacing="12"
+                                          alignment="CENTER">
 
-                    <HBox spacing="20">
-                        <Label text="Esquiva:"/>
-                        <Label fx:id="esquivaLabel" text="5"/>
-                    </HBox>
+                                        <Button text="−"
+                                                onAction="#diminuirVida"
+                                                styleClass="status-minus-button"/>
 
-                    <HBox spacing="20">
-                        <Label text="Bloqueio:"/>
-                        <Label fx:id="bloqueioLabel" text="5"/>
-                    </HBox>
+                                        <Label fx:id="vidaLabel"
+                                               text="0 / 0"
+                                               styleClass="status-value"/>
 
-                    <HBox spacing="20">
-                        <Label text="Deslocamento:"/>
-                        <Label fx:id="deslocamentoLabel" text="9m"/>
-                    </HBox>
+                                        <Button text="+"
+                                                onAction="#aumentarVida"
+                                                styleClass="status-plus-button"/>
 
-                    <HBox spacing="20">
-                        <Label text="Limite PE/turno:"/>
-                        <Label fx:id="limitePeTurnoLabel" text="1"/>
-                    </HBox>
+                                    </HBox>
+                                </VBox>
 
-                </VBox>
+                                <VBox spacing="8"
+                                      styleClass="status-card"
+                                      GridPane.columnIndex="1"
+                                      GridPane.rowIndex="0">
 
+                                    <Label text="PE"
+                                           styleClass="status-name"/>
+
+                                    <HBox spacing="12"
+                                          alignment="CENTER">
+
+                                        <Button text="−"
+                                                onAction="#diminuirPe"
+                                                styleClass="status-minus-button"/>
+
+                                        <Label fx:id="peLabel"
+                                               text="0 / 0"
+                                               styleClass="status-value"/>
+
+                                        <Button text="+"
+                                                onAction="#aumentarPe"
+                                                styleClass="status-plus-button"/>
+
+                                    </HBox>
+                                </VBox>
+
+                                <VBox spacing="8"
+                                      styleClass="status-card"
+                                      GridPane.columnIndex="2"
+                                      GridPane.rowIndex="0">
+
+                                    <Label text="Sanidade"
+                                           styleClass="status-name"/>
+
+                                    <HBox spacing="12"
+                                          alignment="CENTER">
+
+                                        <Button text="−"
+                                                onAction="#diminuirSanidade"
+                                                styleClass="status-minus-button"/>
+
+                                        <Label fx:id="sanidadeLabel"
+                                               text="0 / 0"
+                                               styleClass="status-value"/>
+
+                                        <Button text="+"
+                                                onAction="#aumentarSanidade"
+                                                styleClass="status-plus-button"/>
+
+                                    </HBox>
+                                </VBox>
+
+                                <VBox spacing="8"
+                                      styleClass="status-card"
+                                      GridPane.columnIndex="0"
+                                      GridPane.rowIndex="1">
+
+                                    <Label text="PD"
+                                           styleClass="status-name"/>
+
+                                    <HBox spacing="12"
+                                          alignment="CENTER">
+
+                                        <Button text="−"
+                                                onAction="#diminuirPd"
+                                                styleClass="status-minus-button"/>
+
+                                        <Label fx:id="pdLabel"
+                                               text="0"
+                                               styleClass="status-value"/>
+
+                                        <Button text="+"
+                                                onAction="#aumentarPd"
+                                                styleClass="status-plus-button"/>
+
+                                    </HBox>
+                                </VBox>
+
+                                <VBox spacing="8"
+                                      styleClass="status-card"
+                                      GridPane.columnIndex="1"
+                                      GridPane.rowIndex="1">
+
+                                    <Label text="Rodadas em morrendo"
+                                           styleClass="status-name"/>
+
+                                    <HBox spacing="12"
+                                          alignment="CENTER">
+
+                                        <Button text="−"
+                                                onAction="#diminuirRodadasMorrendo"
+                                                styleClass="status-minus-button"/>
+
+                                        <Label fx:id="rodadasMorrendoLabel"
+                                               text="0 / 3"
+                                               styleClass="status-value"/>
+
+                                        <Button text="+"
+                                                onAction="#aumentarRodadasMorrendo"
+                                                styleClass="status-plus-button"/>
+
+                                    </HBox>
+                                </VBox>
+                            </GridPane>
+
+                            <Separator styleClass="status-separator"/>
+
+                            <Label text="Status calculados"
+                                   styleClass="section-title"/>
+
+                            <GridPane hgap="18"
+                                      vgap="16"
+                                      styleClass="status-grid">
+
+                                <VBox spacing="6"
+                                      styleClass="calculated-card"
+                                      GridPane.columnIndex="0"
+                                      GridPane.rowIndex="0">
+
+                                    <Label text="Defesa"
+                                           styleClass="status-name"/>
+                                    <Label fx:id="defesaLabel"
+                                           text="0"
+                                           styleClass="calculated-value"/>
+                                </VBox>
+
+                                <VBox spacing="6"
+                                      styleClass="calculated-card"
+                                      GridPane.columnIndex="1"
+                                      GridPane.rowIndex="0">
+
+                                    <Label text="Esquiva"
+                                           styleClass="status-name"/>
+                                    <Label fx:id="esquivaLabel"
+                                           text="0"
+                                           styleClass="calculated-value"/>
+                                </VBox>
+
+                                <VBox spacing="6"
+                                      styleClass="calculated-card"
+                                      GridPane.columnIndex="2"
+                                      GridPane.rowIndex="0">
+
+                                    <Label text="Bloqueio"
+                                           styleClass="status-name"/>
+                                    <Label fx:id="bloqueioLabel"
+                                           text="0"
+                                           styleClass="calculated-value"/>
+                                </VBox>
+
+                                <VBox spacing="6"
+                                      styleClass="calculated-card"
+                                      GridPane.columnIndex="0"
+                                      GridPane.rowIndex="1">
+
+                                    <Label text="Deslocamento"
+                                           styleClass="status-name"/>
+                                    <Label fx:id="deslocamentoLabel"
+                                           text="0 m"
+                                           styleClass="calculated-value"/>
+                                </VBox>
+
+                                <VBox spacing="6"
+                                      styleClass="calculated-card"
+                                      GridPane.columnIndex="1"
+                                      GridPane.rowIndex="1">
+
+                                    <Label text="Limite de PE/turno"
+                                           styleClass="status-name"/>
+                                    <Label fx:id="limitePeLabel"
+                                           text="0"
+                                           styleClass="calculated-value"/>
+                                </VBox>
+
+                            </GridPane>
+
+                        </VBox>
+                    </ScrollPane>
+                </content>
             </Tab>
 
             <Tab text="Perícias">

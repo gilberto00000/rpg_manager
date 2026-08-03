@@ -1,8 +1,6 @@
 package com.example.rpg_manager.model;
 import com.example.rpg_manager.services.CalculadoraStatus;
 
-import javafx.scene.control.Spinner;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -99,7 +97,7 @@ public class Personagem {
         return CalculadoraStatus.calcularDeslocamento(this);
     }
 
-    public int getLimitePeTurno() {
+    public int getLimitePePorTurno() {
         return CalculadoraStatus.calcularLimitePeTurno(this);
     }
 

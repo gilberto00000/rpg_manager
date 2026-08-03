@@ -30,7 +30,7 @@
 
     <HBox spacing="10">
 
-        <Button text="Editar"
+        <Button text="Ver"
                 fx:id="editarBtn"
                 styleClass="primary-button"
                 onAction="#editar"/>

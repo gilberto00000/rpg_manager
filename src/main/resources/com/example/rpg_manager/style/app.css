@@ -277,3 +277,122 @@
     -fx-background-color: #3A3A4A;
     -fx-text-fill: #888;
 }
+
+.status-scroll {
+    -fx-background-color: transparent;
+    -fx-background: transparent;
+    -fx-border-color: transparent;
+}
+
+.status-scroll > .viewport {
+    -fx-background-color: #0D0D12;
+}
+
+.status-page {
+    -fx-background-color: #0D0D12;
+    -fx-padding: 28;
+}
+
+.section-title {
+    -fx-text-fill: #F9FAFB;
+    -fx-font-size: 22px;
+    -fx-font-weight: bold;
+}
+
+.status-grid {
+    -fx-alignment: center;
+}
+
+.status-card {
+    -fx-background-color: #18181F;
+    -fx-background-radius: 18;
+    -fx-border-color: #3F3F46;
+    -fx-border-radius: 18;
+    -fx-border-width: 1;
+    -fx-padding: 18;
+    -fx-min-width: 220;
+    -fx-pref-width: 220;
+    -fx-alignment: center;
+}
+
+.status-card:hover {
+    -fx-border-color: #7C3AED;
+    -fx-effect: dropshadow(
+            gaussian,
+            rgba(109, 40, 217, 0.25),
+            14,
+            0.2,
+            0,
+            4
+    );
+}
+
+.status-name {
+    -fx-text-fill: #C4B5FD;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+}
+
+.status-value {
+    -fx-text-fill: white;
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+    -fx-min-width: 80;
+    -fx-alignment: center;
+}
+
+.status-plus-button,
+.status-minus-button {
+    -fx-background-radius: 999;
+    -fx-border-radius: 999;
+    -fx-min-width: 34;
+    -fx-min-height: 34;
+    -fx-pref-width: 34;
+    -fx-pref-height: 34;
+    -fx-font-size: 17px;
+    -fx-font-weight: bold;
+    -fx-text-fill: white;
+    -fx-cursor: hand;
+}
+
+.status-plus-button {
+    -fx-background-color: #6D28D9;
+}
+
+.status-plus-button:hover {
+    -fx-background-color: #7C3AED;
+}
+
+.status-minus-button {
+    -fx-background-color: #27272A;
+    -fx-border-color: #52525B;
+    -fx-border-width: 1;
+}
+
+.status-minus-button:hover {
+    -fx-background-color: #3F3F46;
+    -fx-border-color: #8B5CF6;
+}
+
+.calculated-card {
+    -fx-background-color: #141419;
+    -fx-background-radius: 16;
+    -fx-border-color: #27272A;
+    -fx-border-radius: 16;
+    -fx-border-width: 1;
+    -fx-padding: 18;
+    -fx-min-width: 220;
+    -fx-pref-width: 220;
+    -fx-alignment: center;
+}
+
+.calculated-value {
+    -fx-text-fill: #A78BFA;
+    -fx-font-size: 26px;
+    -fx-font-weight: bold;
+}
+
+.status-separator .line {
+    -fx-border-color: #27272A;
+    -fx-border-width: 1 0 0 0;
+}

@@ -20,6 +20,7 @@ import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.net.URL;
 import java.util.EnumMap;
@@ -37,6 +38,7 @@ public class FichaPersonagemController implements Initializable {
     private ComboBox<Classes> classeCombo;
     @FXML
     private Spinner<Integer> nexSpinner;
+
     private String caminhoAvatar;
     @FXML
     private Button salvarBtn;
@@ -61,7 +63,13 @@ public class FichaPersonagemController implements Initializable {
     @FXML
     private Label deslocamentoLabel;
     @FXML
-    private Label limitePeTurnoLabel;
+    private Label limitePePorTurnoLabel;
+    @FXML
+    private Label pdLabel;
+    @FXML
+    private Label rodadasMorrendoLabel;
+    @FXML
+    private Label limitePeLabel;
 
     private final Map<Atributo, AtributoControlController> controlesAtributos =
             new EnumMap<>(Atributo.class);
@@ -116,6 +124,14 @@ public class FichaPersonagemController implements Initializable {
 
     public void setPersonagem(Personagem personagem) {
         this.personagemAtual = personagem;
+        this.caminhoAvatar = personagem.getAvatar();
+
+        if (caminhoAvatar != null && !caminhoAvatar.isBlank()){
+
+            avatarPreview.setImage(
+                    new Image(new File(caminhoAvatar).toURI().toString())
+            );
+        }
 
         preencherCampos();
         renderizarFicha();
@@ -132,6 +148,7 @@ public class FichaPersonagemController implements Initializable {
         pontosDisponiveisField.setText(
                 String.valueOf(personagemAtual.getPontosDisponiveis())
         );
+
 
         renderizarFicha();
     }
@@ -418,8 +435,20 @@ public class FichaPersonagemController implements Initializable {
                         + personagemAtual.getSanidadeMaxima()
         );
 
+        pdLabel.setText(
+                String.valueOf(personagemAtual.getPdAtual())
+        );
+
+        rodadasMorrendoLabel.setText(
+                personagemAtual.getRodadasMorrendo() + " / 3"
+        );
+
         defesaLabel.setText(
                 String.valueOf(personagemAtual.getDefesa())
+        );
+
+        deslocamentoLabel.setText(
+                personagemAtual.getDeslocamento() + " m"
         );
 
         esquivaLabel.setText(
@@ -430,12 +459,123 @@ public class FichaPersonagemController implements Initializable {
                 String.valueOf(personagemAtual.getBloqueio())
         );
 
-        deslocamentoLabel.setText(
-                personagemAtual.getDeslocamento() + "m"
-        );
-
-        limitePeTurnoLabel.setText(
-                String.valueOf(personagemAtual.getLimitePeTurno())
+        limitePeLabel.setText(
+                String.valueOf(personagemAtual.getLimitePePorTurno())
         );
     }
+
+    // controle de status atual
+
+
+    // controle de pv
+    @FXML
+    private void diminuirVida() {
+        int atual = personagemAtual.getVidaAtual();
+
+        if (atual > 0) {
+            personagemAtual.setVidaAtual(atual - 1);
+            renderizarFicha();
+        }
+    }
+
+    @FXML
+    private void aumentarVida() {
+        int atual = personagemAtual.getVidaAtual();
+        int maxima = personagemAtual.getVidaMaxima();
+
+        if (atual < maxima) {
+            personagemAtual.setVidaAtual(atual + 1);
+            renderizarFicha();
+        }
+    }
+
+    //controle de pe
+
+    @FXML
+    private void diminuirPe() {
+        int atual = personagemAtual.getPeAtual();
+
+        if (atual > 0) {
+            personagemAtual.setPeAtual(atual - 1);
+            renderizarFicha();
+        }
+    }
+
+    @FXML
+    private void aumentarPe() {
+        int atual = personagemAtual.getPeAtual();
+        int maximo = personagemAtual.getPeMaximo();
+
+        if (atual < maximo) {
+            personagemAtual.setPeAtual(atual + 1);
+            renderizarFicha();
+        }
+    }
+
+    //controle de sanidade
+
+    @FXML
+    private void diminuirSanidade() {
+        int atual = personagemAtual.getSanidadeAtual();
+
+        if (atual > 0) {
+            personagemAtual.setSanidadeAtual(atual - 1);
+            renderizarFicha();
+        }
+    }
+
+    @FXML
+    private void aumentarSanidade() {
+        int atual = personagemAtual.getSanidadeAtual();
+        int maxima = personagemAtual.getSanidadeMaxima();
+
+        if (atual < maxima) {
+            personagemAtual.setSanidadeAtual(atual + 1);
+            renderizarFicha();
+        }
+    }
+
+    //controle de pd
+
+    @FXML
+    private void diminuirPd() {
+        int atual = personagemAtual.getPdAtual();
+
+        if (atual > 0) {
+            personagemAtual.setPdAtual(atual - 1);
+            renderizarFicha();
+        }
+    }
+
+    @FXML
+    private void aumentarPd() {
+        personagemAtual.setPdAtual(
+                personagemAtual.getPdAtual() + 1
+        );
+
+        renderizarFicha();
+    }
+
+    //controle de rodadas em momento
+
+    @FXML
+    private void diminuirRodadasMorrendo() {
+        int rodadas = personagemAtual.getRodadasMorrendo();
+
+        if (rodadas > 0) {
+            personagemAtual.setRodadasMorrendo(rodadas -1);
+            renderizarFicha();
+        }
+    }
+
+    @FXML
+    private void aumentarRodadasMorrendo(){
+        int rodadas = personagemAtual.getRodadasMorrendo();
+
+        if (rodadas < 3) {
+            personagemAtual.setRodadasMorrendo(rodadas + 1);
+            renderizarFicha();
+        }
+    }
+
 }
