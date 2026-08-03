@@ -190,6 +190,8 @@ public class PersonagemRepository {
 
             ps.setInt(15, personagem.getRodadasMorrendo());
 
+            ps.setInt(16, personagem.getId());
+
             ps.executeUpdate();
 
             int linhas = ps.executeUpdate();

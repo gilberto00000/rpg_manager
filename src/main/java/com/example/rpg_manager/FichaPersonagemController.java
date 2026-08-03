@@ -115,11 +115,10 @@ public class FichaPersonagemController implements Initializable {
     }
 
     public void setPersonagem(Personagem personagem) {
-
         this.personagemAtual = personagem;
 
         preencherCampos();
-
+        renderizarFicha();
     }
 
     private void preencherCampos() {
@@ -178,6 +177,7 @@ public class FichaPersonagemController implements Initializable {
         personagemAtual.setNome(nomeField.getText());
         personagemAtual.setClasse(classeCombo.getValue());
         personagemAtual.setNex(nexSpinner.getValue());
+        personagemAtual.setAvatar(caminhoAvatar);
 
         personagemAtual.setPontosDisponiveis(
                 Integer.parseInt(pontosDisponiveisField.getText())

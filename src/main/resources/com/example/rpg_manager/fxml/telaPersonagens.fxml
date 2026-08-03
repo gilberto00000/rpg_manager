@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.net.URL?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
@@ -12,12 +13,12 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.StackPane?>
 
-<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1024.0" styleClass="telaPP" stylesheets="@../style/telaPersonagens.css" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.rpg_manager.PersonagensController">
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1024.0" styleClass="telaPP" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.rpg_manager.PersonagensController">
    <cursor>
       <Cursor fx:constant="OPEN_HAND" />
    </cursor>
    <children>
-      <BorderPane prefHeight="200.0" prefWidth="200.0">
+      <BorderPane prefHeight="200.0" prefWidth="200.0" stylesheets="@../style/app.css">
          <top>
             <Label text="Personagens" textFill="WHITE" BorderPane.alignment="CENTER" />
          </top>
@@ -63,4 +64,8 @@
          </center>
       </BorderPane>
    </children>
+   <stylesheets>
+      <URL value="@../style/telaPersonagens.css" />
+      <URL value="@../style/app.css" />
+   </stylesheets>
 </StackPane>
