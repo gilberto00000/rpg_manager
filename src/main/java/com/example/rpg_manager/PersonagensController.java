@@ -9,6 +9,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import java.io.IOException;
@@ -42,25 +43,36 @@ public class PersonagensController implements Initializable {
     private void atualizarCards() {
         gridPersonagens.getChildren().clear();
 
+        List<Personagem> todos = service.listar();
+
+        atualizarControlesPaginacao(todos.size());
+
+        int inicio = paginaAtual * itensPorPagina;
+        int fim = Math.min(
+                inicio + itensPorPagina,
+                todos.size()
+        );
+
+        List<Personagem> pagina = todos.subList(inicio, fim);
+
         int coluna = 0;
         int linha = 0;
 
-        for (Personagem personagem : service.listar()) {
-
+        for (Personagem personagem : pagina) {
             try {
-
                 FXMLLoader loader = new FXMLLoader(
-                        getClass().getResource("fxml/personagem-card.fxml")
+                        getClass().getResource(
+                                "fxml/personagem-card.fxml"
+                        )
                 );
 
                 VBox card = loader.load();
 
-                PersonagemCardController controller = loader.getController();
+                PersonagemCardController controller =
+                        loader.getController();
 
                 controller.setPersonagem(personagem);
-
                 controller.setOnEditar(this::editarPersonagem);
-
                 controller.setOnExcluir(this::excluirPersonagem);
 
                 gridPersonagens.add(card, coluna, linha);
@@ -73,7 +85,10 @@ public class PersonagensController implements Initializable {
                 }
 
             } catch (IOException e) {
-                e.printStackTrace();
+                throw new RuntimeException(
+                        "Erro ao carregar card do personagem",
+                        e
+                );
             }
         }
     }
@@ -127,4 +142,97 @@ public class PersonagensController implements Initializable {
 
         }
     }
+
+    //paginação
+
+    @FXML
+    private Label paginationInfoLabel;
+
+    @FXML
+    private Button previousPageButton;
+
+    @FXML
+    private Button nextPageButton;
+
+    @FXML
+    private HBox pageButtonsContainer;
+
+    private int paginaAtual = 0;
+    private final int itensPorPagina = 6;
+    private int totalPaginas = 1;
+
+    @FXML
+    private void paginaAnterior() {
+        if (paginaAtual > 0) {
+            paginaAtual--;
+            atualizarCards();
+        }
+    }
+
+    @FXML
+    private void proximaPagina() {
+        if (paginaAtual < totalPaginas - 1) {
+            paginaAtual++;
+            atualizarCards();
+        }
+    }
+
+    private void atualizarControlesPaginacao(int totalPersonagens) {
+        totalPaginas = Math.max(
+                1,
+                (int) Math.ceil((double) totalPersonagens / itensPorPagina)
+        );
+
+        if (paginaAtual >= totalPaginas) {
+            paginaAtual = totalPaginas - 1;
+        }
+
+        previousPageButton.setDisable(paginaAtual == 0);
+        nextPageButton.setDisable(paginaAtual >= totalPaginas - 1);
+
+        int inicio = totalPersonagens == 0
+                ? 0
+                : paginaAtual * itensPorPagina + 1;
+
+        int fim = Math.min(
+                (paginaAtual + 1) * itensPorPagina,
+                totalPersonagens
+        );
+
+        paginationInfoLabel.setText(
+                inicio + "–" + fim + " de "
+                        + totalPersonagens + " personagens"
+        );
+
+        pageButtonsContainer.getChildren().clear();
+
+        for (int i = 0; i < totalPaginas; i++) {
+            int indicePagina = i;
+
+            Button pageButton = new Button(
+                    String.valueOf(i + 1)
+            );
+
+            pageButton.getStyleClass().add(
+                    "pagination-page-button"
+            );
+
+            if (i == paginaAtual) {
+                pageButton.getStyleClass().add(
+                        "pagination-page-button-active"
+                );
+            }
+
+            pageButton.setOnAction(event -> {
+                paginaAtual = indicePagina;
+                atualizarCards();
+            });
+
+            pageButtonsContainer
+                    .getChildren()
+                    .add(pageButton);
+        }
+    }
+
+
 }

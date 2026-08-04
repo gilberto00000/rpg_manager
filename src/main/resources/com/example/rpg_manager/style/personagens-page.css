@@ -1,0 +1,142 @@
+.personagens-page {
+    -fx-background-color: #0D0D12;
+}
+
+.personagens-header {
+    -fx-background-color: #121218;
+
+
+    -fx-padding: 30 40 26 40;
+
+    -fx-border-color: transparent transparent #27272A transparent;
+    -fx-border-width: 0 0 1 0;
+    -fx-alignment: center-left;
+}
+
+.personagens-title {
+    -fx-text-fill: #F9FAFB;
+    -fx-font-size: 30px;
+    -fx-font-weight: bold;
+}
+
+.personagens-subtitle {
+    -fx-text-fill: #A1A1AA;
+    -fx-font-size: 14px;
+}
+
+.create-character-button {
+    -fx-background-color: linear-gradient(
+            to bottom right,
+            #7C3AED,
+            #5B21B6
+    );
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-background-radius: 12;
+    -fx-cursor: hand;
+    -fx-effect: dropshadow(
+            gaussian,
+            rgba(109, 40, 217, 0.28),
+            12,
+            0.2,
+            0,
+            4
+    );
+    -fx-padding: 13 22;
+    -fx-min-height: 44;
+}
+
+.create-character-button:hover {
+    -fx-background-color: linear-gradient(
+            to bottom right,
+            #8B5CF6,
+            #6D28D9
+    );
+    -fx-translate-y: -1;
+}
+
+.create-character-button:pressed {
+    -fx-translate-y: 0;
+    -fx-opacity: 0.88;
+}
+
+.personagens-scroll {
+    -fx-background-color: transparent;
+    -fx-background: transparent;
+    -fx-border-color: transparent;
+}
+
+.personagens-scroll > .viewport {
+    -fx-background-color: #0D0D12;
+}
+
+.personagens-grid {
+    -fx-background-color: #0D0D12;
+}
+
+.pagination-bar {
+    -fx-background-color: #121218;
+    -fx-padding: 16 24 16 24;
+    -fx-border-color: #27272A transparent transparent transparent;
+    -fx-border-width: 1 0 0 0;
+}
+
+.pagination-info {
+    -fx-text-fill: #A1A1AA;
+    -fx-font-size: 13px;
+}
+
+.pagination-arrow {
+    -fx-background-color: #1C1C24;
+    -fx-text-fill: #E5E7EB;
+    -fx-border-color: #34343D;
+    -fx-border-width: 1;
+    -fx-border-radius: 10;
+    -fx-background-radius: 10;
+    -fx-min-width: 38;
+    -fx-min-height: 38;
+    -fx-pref-width: 38;
+    -fx-pref-height: 38;
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+    -fx-cursor: hand;
+}
+
+.pagination-arrow:hover {
+    -fx-background-color: #27272F;
+    -fx-border-color: #7C3AED;
+    -fx-text-fill: white;
+}
+
+.pagination-arrow:disabled {
+    -fx-opacity: 0.35;
+    -fx-cursor: default;
+}
+
+.pagination-page-button {
+    -fx-background-color: transparent;
+    -fx-text-fill: #A1A1AA;
+    -fx-border-color: transparent;
+    -fx-background-radius: 10;
+    -fx-border-radius: 10;
+    -fx-min-width: 38;
+    -fx-min-height: 38;
+    -fx-pref-width: 38;
+    -fx-pref-height: 38;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-cursor: hand;
+}
+
+.pagination-page-button:hover {
+    -fx-background-color: #1C1C24;
+    -fx-text-fill: white;
+}
+
+.pagination-page-button-active {
+    -fx-background-color: #6D28D9;
+    -fx-text-fill: white;
+    -fx-border-color: #8B5CF6;
+    -fx-border-width: 1;
+}

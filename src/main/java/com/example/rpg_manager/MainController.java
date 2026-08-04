@@ -42,11 +42,6 @@ public class MainController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
-        Image image = new Image(
-                getClass().getResource("images/background.png").toExternalForm()
-        );
-
-        backgroundId.setImage(image);
 
         backgroundId.fitWidthProperty().bind(mainPane.widthProperty());
         backgroundId.fitHeightProperty().bind(mainPane.heightProperty());
