@@ -91,7 +91,7 @@ public class PersonagemRepository {
                 
                     rodadas_morrendo
                 
-                ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+                ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
                 """;
 
         try (
@@ -122,10 +122,10 @@ public class PersonagemRepository {
 
             ps.executeUpdate();
 
-            ResultSet keys = ps.getGeneratedKeys();
-
-            if (keys.next()) {
-                personagem.setId(keys.getInt(1));
+            try (ResultSet generatedKeys = ps.getGeneratedKeys()) {
+                if (generatedKeys.next()) {
+                    personagem.setId(generatedKeys.getInt(1));
+                }
             }
 
         } catch (SQLException e) {
@@ -186,7 +186,6 @@ public class PersonagemRepository {
 
             ps.setInt(15, personagem.getId());
 
-            ps.executeUpdate();
 
             int linhas = ps.executeUpdate();
 

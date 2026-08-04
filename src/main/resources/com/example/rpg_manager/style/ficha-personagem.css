@@ -1,0 +1,691 @@
+
+/* =========================================================
+   FICHA DO PERSONAGEM — ESTRUTURA PRINCIPAL
+   Classes compatíveis com FichaPersonagem.fxml
+========================================================= */
+
+.root {
+    -fx-background-color: #0D0D12;
+    -fx-font-family: "Segoe UI";
+}
+
+
+/* =========================================================
+   BARRA SUPERIOR
+========================================================= */
+
+.top-bar {
+    -fx-background-color: #121218;
+
+    /* topo, direita, baixo, esquerda */
+    -fx-padding: 20 32 20 32;
+
+    -fx-border-color:
+            transparent
+            transparent
+            #292930
+            transparent;
+
+    -fx-border-width: 0 0 1 0;
+    -fx-alignment: center-left;
+}
+
+.tab-pane {
+    -fx-focus-color: transparent;
+    -fx-faint-focus-color: transparent;
+}
+
+.tab-pane > .tab-header-area > .headers-region > .tab {
+    -fx-focus-color: transparent;
+    -fx-faint-focus-color: transparent;
+}
+
+.tab-pane > .tab-header-area > .headers-region > .tab .focus-indicator {
+    -fx-border-color: transparent;
+}
+
+.tab-pane > .tab-header-area > .headers-region > .tab:selected {
+    -fx-background-color: #272331;
+    -fx-border-color: transparent transparent #8B5CF6 transparent;
+    -fx-border-width: 0 0 3 0;
+}
+
+.tab-pane > .tab-header-area > .headers-region > .tab:selected {
+    -fx-border-color: transparent;
+    -fx-border-width: 0;
+}
+
+.titulo {
+    -fx-text-fill: #F9FAFB;
+    -fx-font-size: 25px;
+    -fx-font-weight: bold;
+}
+
+
+/* =========================================================
+   BOTÕES PRINCIPAIS
+========================================================= */
+
+.primary-button {
+    -fx-background-color: linear-gradient(
+            to bottom right,
+            #7C3AED,
+            #5B21B6
+    );
+
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+
+    -fx-background-radius: 11;
+    -fx-border-radius: 11;
+
+    -fx-padding: 11 18;
+    -fx-min-height: 40;
+
+    -fx-cursor: hand;
+
+    -fx-effect: dropshadow(
+            gaussian,
+            rgba(109, 40, 217, 0.25),
+            12,
+            0.18,
+            0,
+            3
+    );
+}
+
+.primary-button:hover {
+    -fx-background-color: linear-gradient(
+            to bottom right,
+            #8B5CF6,
+            #6D28D9
+    );
+
+    -fx-translate-y: -1;
+}
+
+.primary-button:pressed {
+    -fx-translate-y: 0;
+    -fx-scale-x: 0.98;
+    -fx-scale-y: 0.98;
+}
+
+.primary-button:disabled {
+    -fx-opacity: 0.45;
+}
+
+
+/* =========================================================
+   TAB PANE
+========================================================= */
+
+.tab-pane {
+    -fx-background-color: #0D0D12;
+    -fx-tab-min-height: 42;
+}
+
+.tab-pane > .tab-header-area {
+    -fx-padding: 10 22 0 22;
+}
+
+.tab-pane > .tab-header-area > .tab-header-background {
+    -fx-background-color: #121218;
+    -fx-border-color:
+            transparent
+            transparent
+            #292930
+            transparent;
+
+    -fx-border-width: 0 0 1 0;
+}
+
+.tab-pane > .tab-header-area > .headers-region > .tab {
+    -fx-background-color: transparent;
+    -fx-background-radius: 10 10 0 0;
+
+    -fx-border-color: transparent;
+    -fx-padding: 5 15;
+
+    -fx-cursor: hand;
+}
+
+.tab-pane > .tab-header-area > .headers-region > .tab:hover {
+    -fx-background-color: #1C1C24;
+}
+
+.tab-pane > .tab-header-area > .headers-region > .tab:selected {
+    -fx-background-color: #272331;
+
+    -fx-border-color:
+            transparent
+            transparent
+            #8B5CF6
+            transparent;
+
+    -fx-border-width: 0 0 3 0;
+}
+
+.tab-pane .tab-label {
+    -fx-text-fill: #A1A1AA;
+    -fx-font-size: 13px;
+    -fx-font-weight: bold;
+}
+
+.tab-pane .tab:selected .tab-label {
+    -fx-text-fill: #F5F3FF;
+}
+
+.tab-pane > .tab-content-area {
+    -fx-background-color: #0D0D12;
+}
+
+
+/* =========================================================
+   ÁREAS DE CONTEÚDO
+   Usado nas abas Básico e Atributos
+========================================================= */
+
+.content-area {
+    -fx-background-color: #0D0D12;
+    -fx-padding: 32 40 32 40;
+}
+
+
+/* =========================================================
+   LABELS E CAMPOS DA ABA BÁSICO
+========================================================= */
+
+.content-area > .label {
+    -fx-text-fill: #D4D4D8;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+}
+
+.text-field,
+.combo-box,
+.spinner {
+    -fx-background-color: #18181F;
+    -fx-background-radius: 11;
+
+    -fx-border-color: #3F3F46;
+    -fx-border-radius: 11;
+    -fx-border-width: 1;
+
+    -fx-text-fill: #F9FAFB;
+    -fx-font-size: 14px;
+
+    -fx-min-height: 42;
+    -fx-pref-height: 42;
+}
+
+.text-field {
+    -fx-padding: 0 13;
+    -fx-prompt-text-fill: #71717A;
+}
+
+.text-field:hover,
+.combo-box:hover,
+.spinner:hover {
+    -fx-border-color: #52525B;
+}
+
+.text-field:focused,
+.combo-box:focused,
+.spinner:focused {
+    -fx-border-color: #8B5CF6;
+    -fx-border-width: 1.5;
+
+    -fx-effect: dropshadow(
+            gaussian,
+            rgba(124, 58, 237, 0.18),
+            8,
+            0.15,
+            0,
+            0
+    );
+}
+
+
+/* =========================================================
+   COMBOBOX
+========================================================= */
+
+.combo-box .list-cell {
+    -fx-background-color: transparent;
+    -fx-text-fill: #F4F4F5;
+    -fx-padding: 8 12;
+}
+
+.combo-box > .arrow-button {
+    -fx-background-color: transparent;
+}
+
+.combo-box > .arrow-button > .arrow {
+    -fx-background-color: #A78BFA;
+}
+
+.combo-box-popup .list-view {
+    -fx-background-color: #18181F;
+    -fx-border-color: #3F3F46;
+    -fx-border-radius: 9;
+    -fx-background-radius: 9;
+    -fx-padding: 4;
+}
+
+.combo-box-popup .list-cell {
+    -fx-background-color: #18181F;
+    -fx-text-fill: #E4E4E7;
+}
+
+.combo-box-popup .list-cell:hover {
+    -fx-background-color: #27272F;
+}
+
+.combo-box-popup .list-cell:selected {
+    -fx-background-color: #6D28D9;
+    -fx-text-fill: white;
+}
+
+
+/* =========================================================
+   SPINNER
+========================================================= */
+
+.spinner .text-field {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+    -fx-background-radius: 10 0 0 10;
+}
+
+.spinner .increment-arrow-button,
+.spinner .decrement-arrow-button {
+    -fx-background-color: #27272A;
+    -fx-border-color: transparent;
+    -fx-cursor: hand;
+}
+
+.spinner .increment-arrow-button:hover,
+.spinner .decrement-arrow-button:hover {
+    -fx-background-color: #3F3F46;
+}
+
+.spinner .increment-arrow,
+.spinner .decrement-arrow {
+    -fx-background-color: #A78BFA;
+}
+
+
+/* =========================================================
+   AVATAR
+========================================================= */
+
+#avatarPreview {
+    -fx-effect: dropshadow(
+            gaussian,
+            rgba(109, 40, 217, 0.32),
+            18,
+            0.22,
+            0,
+            5
+    );
+}
+
+
+/* =========================================================
+   ABA ATRIBUTOS
+========================================================= */
+
+.card-title {
+    -fx-text-fill: #A78BFA;
+    -fx-font-size: 22px;
+    -fx-font-weight: bold;
+}
+
+#atributosContainer {
+    -fx-padding: 8 0 0 0;
+}
+
+
+/* =========================================================
+   ABA STATUS — SCROLL
+========================================================= */
+
+.status-scroll {
+    -fx-background-color: transparent;
+    -fx-background: transparent;
+    -fx-border-color: transparent;
+    -fx-padding: 0;
+}
+
+.status-scroll > .viewport {
+    -fx-background-color: #0D0D12;
+}
+
+.status-scroll .corner {
+    -fx-background-color: #0D0D12;
+}
+
+.status-scroll .scroll-bar:vertical {
+    -fx-background-color: transparent;
+    -fx-pref-width: 10;
+}
+
+.status-scroll .scroll-bar:vertical .track {
+    -fx-background-color: #15151B;
+    -fx-background-radius: 999;
+}
+
+.status-scroll .scroll-bar:vertical .thumb {
+    -fx-background-color: #3F3F46;
+    -fx-background-radius: 999;
+}
+
+.status-scroll .scroll-bar:vertical .thumb:hover {
+    -fx-background-color: #6D28D9;
+}
+
+.status-scroll .scroll-bar .increment-button,
+.status-scroll .scroll-bar .decrement-button {
+    -fx-background-color: transparent;
+    -fx-padding: 0;
+}
+
+.status-scroll .scroll-bar .increment-arrow,
+.status-scroll .scroll-bar .decrement-arrow {
+    -fx-shape: "";
+    -fx-padding: 0;
+}
+
+
+/* =========================================================
+   ABA STATUS — CONTEÚDO
+========================================================= */
+
+.status-page {
+    -fx-background-color: #0D0D12;
+    -fx-padding: 30 36 36 36;
+}
+
+.section-title {
+    -fx-text-fill: #F9FAFB;
+    -fx-font-size: 22px;
+    -fx-font-weight: bold;
+}
+
+.status-grid {
+    -fx-alignment: center;
+}
+
+
+/* =========================================================
+   RECURSOS ATUAIS
+========================================================= */
+
+.resource-card {
+    -fx-background-color: #18181F;
+    -fx-background-radius: 18;
+
+    -fx-border-color: #34343D;
+    -fx-border-radius: 18;
+    -fx-border-width: 1;
+
+    -fx-padding: 18;
+
+    -fx-min-width: 225;
+    -fx-pref-width: 245;
+    -fx-min-height: 140;
+}
+
+.resource-card:hover {
+    -fx-border-color: #7C3AED;
+
+    -fx-effect: dropshadow(
+            gaussian,
+            rgba(109, 40, 217, 0.22),
+            14,
+            0.18,
+            0,
+            4
+    );
+}
+
+.resource-title {
+    -fx-text-fill: #C4B5FD;
+    -fx-font-size: 15px;
+    -fx-font-weight: bold;
+}
+
+.resource-value {
+    -fx-text-fill: #F9FAFB;
+    -fx-font-size: 17px;
+    -fx-font-weight: bold;
+}
+
+
+/* =========================================================
+   BARRAS DE RECURSOS
+========================================================= */
+
+.progress-bar {
+    -fx-pref-height: 13;
+    -fx-min-height: 13;
+}
+
+.progress-bar > .track {
+    -fx-background-color: #29292F;
+    -fx-background-radius: 999;
+    -fx-border-radius: 999;
+}
+
+.progress-bar > .bar {
+    -fx-background-radius: 999;
+    -fx-background-insets: 0;
+    -fx-padding: 0;
+}
+
+.vida-progress > .bar {
+    -fx-background-color: linear-gradient(
+            to right,
+            #991B1B,
+            #EF4444
+    );
+}
+
+.pe-progress > .bar {
+    -fx-background-color: linear-gradient(
+            to right,
+            #4338CA,
+            #8B5CF6
+    );
+}
+
+.sanidade-progress > .bar {
+    -fx-background-color: linear-gradient(
+            to right,
+            #0F766E,
+            #2DD4BF
+    );
+}
+
+
+/* =========================================================
+   BOTÕES DE ALTERAÇÃO DE STATUS
+========================================================= */
+
+.status-plus-button,
+.status-minus-button,
+.danger-plus-button {
+    -fx-background-radius: 999;
+    -fx-border-radius: 999;
+
+    -fx-min-width: 36;
+    -fx-min-height: 36;
+    -fx-pref-width: 36;
+    -fx-pref-height: 36;
+
+    -fx-padding: 0;
+
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
+    -fx-text-fill: white;
+
+    -fx-cursor: hand;
+}
+
+.status-plus-button {
+    -fx-background-color: #6D28D9;
+    -fx-border-color: #8B5CF6;
+    -fx-border-width: 1;
+}
+
+.status-plus-button:hover {
+    -fx-background-color: #7C3AED;
+}
+
+.status-minus-button {
+    -fx-background-color: #27272A;
+    -fx-border-color: #52525B;
+    -fx-border-width: 1;
+}
+
+.status-minus-button:hover {
+    -fx-background-color: #3F3F46;
+    -fx-border-color: #8B5CF6;
+}
+
+.status-plus-button:pressed,
+.status-minus-button:pressed,
+.danger-plus-button:pressed {
+    -fx-scale-x: 0.94;
+    -fx-scale-y: 0.94;
+}
+
+.status-plus-button:disabled,
+.status-minus-button:disabled,
+.danger-plus-button:disabled {
+    -fx-opacity: 0.35;
+}
+
+
+/* =========================================================
+   RODADAS EM MORRENDO
+========================================================= */
+
+.danger-status-card {
+    -fx-background-color: #1C1114;
+    -fx-background-radius: 18;
+
+    -fx-border-color: #7F1D1D;
+    -fx-border-radius: 18;
+    -fx-border-width: 1.5;
+
+    -fx-padding: 18;
+
+    -fx-min-width: 225;
+    -fx-pref-width: 245;
+    -fx-min-height: 140;
+
+    -fx-alignment: center;
+}
+
+.danger-status-card:hover {
+    -fx-border-color: #DC2626;
+
+    -fx-effect: dropshadow(
+            gaussian,
+            rgba(153, 27, 27, 0.30),
+            14,
+            0.2,
+            0,
+            4
+    );
+}
+
+.danger-value {
+    -fx-text-fill: #FCA5A5;
+    -fx-font-size: 27px;
+    -fx-font-weight: bold;
+}
+
+.danger-plus-button {
+    -fx-background-color: #7F1D1D;
+    -fx-border-color: #B91C1C;
+    -fx-border-width: 1;
+}
+
+.danger-plus-button:hover {
+    -fx-background-color: #991B1B;
+}
+
+
+/* =========================================================
+   SEPARADOR DA ABA STATUS
+========================================================= */
+
+.status-separator {
+    -fx-padding: 6 0;
+}
+
+.status-separator .line {
+    -fx-border-color: #2D2D35;
+    -fx-border-width: 1 0 0 0;
+}
+
+
+/* =========================================================
+   STATUS CALCULADOS
+========================================================= */
+
+.calculated-card {
+    -fx-background-color: #141419;
+    -fx-background-radius: 16;
+
+    -fx-border-color: #2E2E36;
+    -fx-border-radius: 16;
+    -fx-border-width: 1;
+
+    -fx-padding: 18;
+
+    -fx-min-width: 225;
+    -fx-pref-width: 245;
+    -fx-min-height: 110;
+
+    -fx-alignment: center;
+}
+
+.calculated-card:hover {
+    -fx-border-color: #6D28D9;
+
+    -fx-effect: dropshadow(
+            gaussian,
+            rgba(109, 40, 217, 0.17),
+            12,
+            0.16,
+            0,
+            3
+    );
+}
+
+.status-name {
+    -fx-text-fill: #A1A1AA;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+}
+
+.calculated-value {
+    -fx-text-fill: #A78BFA;
+    -fx-font-size: 27px;
+    -fx-font-weight: bold;
+}
+
+
+/* =========================================================
+   ABAS AINDA VAZIAS
+========================================================= */
+
+#periciasPane,
+#equipamentosPane,
+#habilidadesPane {
+    -fx-background-color: #0D0D12;
+}

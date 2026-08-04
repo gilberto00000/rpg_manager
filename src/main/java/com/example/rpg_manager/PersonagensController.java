@@ -28,16 +28,43 @@ public class PersonagensController implements Initializable {
         atualizarCards();
     }
 
+
+
+
+
     @FXML
-    private void novoPersonagem() throws IOException {
-        FXMLLoader loader = new FXMLLoader(
-                getClass().getResource("fxml/FichaPersonagem.fxml")
-        );
+    private void novoPersonagem() {
+        try {
+            FXMLLoader loader = new FXMLLoader(
+                    getClass().getResource(
+                            "/com/example/rpg_manager/fxml/FichaPersonagem.fxml"
+                    )
+            );
 
-        Parent root = loader.load();
+            Parent root = loader.load();
 
-        Stage stage = (Stage) gridPersonagens.getScene().getWindow();
-        stage.setScene(new Scene(root));
+            FichaPersonagemController controller = loader.getController();
+
+            controller.setAoSalvar(this::atualizarCards);
+
+            Scene scene = new Scene(root);
+
+            Stage novaJanela = new Stage();
+
+            novaJanela.setTitle("Novo personagem");
+            novaJanela.setScene(scene);
+            novaJanela.setMinWidth(900);
+            novaJanela.setMinHeight(650);
+
+            novaJanela.show();
+
+        } catch (IOException e) {
+            throw new RuntimeException(
+                    "Erro ao abrir ficha do personagem",
+                    e
+            );
+        }
+
     }
 
     private void atualizarCards() {
@@ -94,12 +121,10 @@ public class PersonagensController implements Initializable {
     }
 
     private void editarPersonagem(Personagem personagem) {
-
         try {
-
             FXMLLoader loader = new FXMLLoader(
                     getClass().getResource(
-                            "fxml/FichaPersonagem.fxml"
+                            "/com/example/rpg_manager/fxml/FichaPersonagem.fxml"
                     )
             );
 
@@ -109,16 +134,25 @@ public class PersonagensController implements Initializable {
                     loader.getController();
 
             controller.setPersonagem(personagem);
+            controller.setAoSalvar(this::atualizarCards);
 
-            Stage stage =
-                    (Stage) gridPersonagens.getScene().getWindow();
+            Stage novaJanela = new Stage();
 
-            stage.setScene(new Scene(root));
+            novaJanela.setTitle(
+                    "Ficha — " + personagem.getNome()
+            );
+
+            novaJanela.setScene(new Scene(root));
+            novaJanela.setMinWidth(900);
+            novaJanela.setMinHeight(650);
+
+            novaJanela.show();
 
         } catch (IOException e) {
-
-            e.printStackTrace();
-
+            throw new RuntimeException(
+                    "Erro ao abrir ficha do personagem",
+                    e
+            );
         }
     }
 

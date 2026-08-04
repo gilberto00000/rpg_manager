@@ -1,13 +1,110 @@
-
-
-
-.label {
-    -fx-font-weight: bold;
-
+.personagens-page {
+    -fx-background-color: #0D0D12;
 }
 
+.personagens-header {
+    -fx-background-color: #121218;
+    -fx-padding: 30 40 26 40;
+    -fx-border-color: transparent transparent #27272A transparent;
+    -fx-border-width: 0 0 1 0;
+}
 
-.button{
-    -fx-color: darkslategray;
+.personagens-title {
+    -fx-text-fill: #F9FAFB;
+    -fx-font-size: 30px;
+    -fx-font-weight: bold;
+}
 
+.personagens-subtitle {
+    -fx-text-fill: #A1A1AA;
+    -fx-font-size: 14px;
+}
+
+.create-character-button {
+    -fx-background-color: linear-gradient(
+            to bottom right,
+            #7C3AED,
+            #5B21B6
+    );
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-background-radius: 12;
+    -fx-padding: 13 22;
+    -fx-min-height: 44;
+    -fx-cursor: hand;
+}
+
+.create-character-button:hover {
+    -fx-background-color: linear-gradient(
+            to bottom right,
+            #8B5CF6,
+            #6D28D9
+    );
+}
+
+.personagens-scroll {
+    -fx-background: transparent;
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+}
+
+.personagens-scroll > .viewport {
+    -fx-background-color: #0D0D12;
+}
+
+.personagens-grid {
+    -fx-background-color: #0D0D12;
+}
+
+.pagination-bar {
+    -fx-background-color: #121218;
+    -fx-padding: 16 24;
+    -fx-border-color: #27272A transparent transparent transparent;
+    -fx-border-width: 1 0 0 0;
+}
+
+.pagination-info {
+    -fx-text-fill: #A1A1AA;
+    -fx-font-size: 13px;
+}
+
+.pagination-arrow,
+.pagination-page-button {
+    -fx-background-radius: 10;
+    -fx-border-radius: 10;
+    -fx-min-width: 38;
+    -fx-min-height: 38;
+    -fx-pref-width: 38;
+    -fx-pref-height: 38;
+    -fx-cursor: hand;
+}
+
+.pagination-arrow {
+    -fx-background-color: #1C1C24;
+    -fx-text-fill: #E5E7EB;
+    -fx-border-color: #34343D;
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+}
+
+.pagination-arrow:hover {
+    -fx-border-color: #7C3AED;
+}
+
+.pagination-page-button {
+    -fx-background-color: transparent;
+    -fx-text-fill: #A1A1AA;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+}
+
+.pagination-page-button:hover {
+    -fx-background-color: #1C1C24;
+    -fx-text-fill: white;
+}
+
+.pagination-page-button-active {
+    -fx-background-color: #6D28D9;
+    -fx-text-fill: white;
 }

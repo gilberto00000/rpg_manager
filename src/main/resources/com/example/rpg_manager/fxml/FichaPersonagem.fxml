@@ -1,41 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.net.URL?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ProgressBar?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.Spinner?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.Region?>
-
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.control.Spinner?>
-<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.ImageView?>
-<?import javafx.scene.control.Separator?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.control.ScrollPane?>
-<?import javafx.scene.control.ProgressBar?>
-<BorderPane prefHeight="768" prefWidth="1366" styleClass="root" stylesheets="@../style/app.css" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.rpg_manager.FichaPersonagemController">
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane prefHeight="768" prefWidth="1366" styleClass="root" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.rpg_manager.FichaPersonagemController">
 
     <top>
 
         <HBox alignment="CENTER_LEFT" spacing="15" styleClass="top-bar">
 
-            <Button text="← Voltar"
-                    onAction="#voltar"
-                    styleClass="primary-button"/>
+            <Button onAction="#voltar" fx:id="voltarBtn" styleClass="primary-button" text="← Voltar" />
 
             <Label styleClass="titulo" text="Ficha do Personagem" />
 
             <Region HBox.hgrow="ALWAYS" />
 
-            <Button fx:id="salvarBtn"
-                    text="Salvar Personagem"
-                    onAction="#salvar"
-                    styleClass="primary-button"/>
+            <Button fx:id="salvarBtn" onAction="#salvar" styleClass="primary-button" text="Salvar Personagem" />
 
         </HBox>
 
@@ -48,31 +46,24 @@
             <Tab text="Básico">
                 <HBox spacing="40" styleClass="content-area">
 
-                    <VBox spacing="15" alignment="TOP_CENTER">
+                    <VBox alignment="TOP_CENTER" spacing="15">
 
-                        <ImageView fx:id="avatarPreview"
-                                   fitWidth="180"
-                                   fitHeight="220"
-                                   preserveRatio="true"/>
+                        <ImageView fx:id="avatarPreview" fitHeight="220" fitWidth="180" preserveRatio="true" />
 
-                        <Button text="Escolher Avatar"
-                                onAction="#escolherAvatar"
-                                styleClass="primary-button"
-                                prefWidth="180"/>
+                        <Button onAction="#escolherAvatar" prefWidth="180" styleClass="primary-button" text="Escolher Avatar" />
 
                     </VBox>
 
-                    <VBox spacing="18" prefWidth="450">
+                    <VBox prefWidth="450" spacing="18">
 
-                        <Label text="Nome do personagem"/>
-                        <TextField fx:id="nomeField"
-                                   promptText="Digite o nome do personagem"/>
+                        <Label text="Nome do personagem" />
+                        <TextField fx:id="nomeField" promptText="Digite o nome do personagem" />
 
-                        <Label text="Classe"/>
-                        <ComboBox fx:id="classeCombo"/>
+                        <Label text="Classe" />
+                        <ComboBox fx:id="classeCombo" />
 
-                        <Label text="NEX (%)"/>
-                        <Spinner fx:id="nexSpinner"/>
+                        <Label text="NEX (%)" />
+                        <Spinner fx:id="nexSpinner" editable="true" />
 
                     </VBox>
 
@@ -84,246 +75,167 @@
 
                     <HBox alignment="CENTER_LEFT" spacing="15">
 
-                        <Label text="Pontos disponíveis:"/>
+                        <Label text="Pontos disponíveis:" />
 
-                        <TextField fx:id="pontosDisponiveisField"
-                                   prefWidth="80"/>
+                        <TextField fx:id="pontosDisponiveisField" prefWidth="80" />
 
-                        <Button text="Aplicar"
-                                onAction="#aplicarPontosDisponiveis"
-                                styleClass="primary-button"/>
+                        <Button onAction="#aplicarPontosDisponiveis" styleClass="primary-button" text="Aplicar" />
 
-                        <Region HBox.hgrow="ALWAYS"/>
+                        <Region HBox.hgrow="ALWAYS" />
 
-                        <Label text="Pontos restantes:"/>
+                        <Label text="Pontos restantes:" />
 
-                        <Label fx:id="pontosRestantesLabel"
-                               text="10"
-                               styleClass="card-title"/>
+                        <Label fx:id="pontosRestantesLabel" styleClass="card-title" text="10" />
 
                     </HBox>
 
-                    <VBox fx:id="atributosContainer" spacing="12"/>
+                    <VBox fx:id="atributosContainer" spacing="12" />
 
                 </VBox>
             </Tab>
 
             <Tab text="Status">
                 <content>
-                    <ScrollPane fitToWidth="true"
-                                hbarPolicy="NEVER"
-                                styleClass="status-scroll">
+                    <ScrollPane fitToWidth="true" hbarPolicy="NEVER" styleClass="status-scroll">
 
-                        <VBox spacing="22"
-                              styleClass="status-page">
+                        <VBox spacing="22" styleClass="status-page">
 
-                            <Label text="Recursos atuais"
-                                   styleClass="section-title"/>
+                            <Label styleClass="section-title" text="Recursos atuais" />
 
-                            <GridPane hgap="18"
-                                      vgap="16"
-                                      styleClass="status-grid">
+                            <GridPane hgap="18" styleClass="status-grid" vgap="16">
 
-                                <VBox spacing="10"
-                                      styleClass="resource-card"
-                                      GridPane.columnIndex="0"
-                                      GridPane.rowIndex="0">
+                                <VBox spacing="10" styleClass="resource-card" GridPane.columnIndex="0" GridPane.rowIndex="0">
 
                                     <HBox alignment="CENTER_LEFT">
-                                        <Label text="Vida"
-                                               styleClass="resource-title"/>
+                                        <Label styleClass="resource-title" text="Vida" />
 
-                                        <Region HBox.hgrow="ALWAYS"/>
+                                        <Region HBox.hgrow="ALWAYS" />
 
-                                        <Label fx:id="vidaLabel"
-                                               text="0 / 0"
-                                               styleClass="resource-value"/>
+                                        <Label fx:id="vidaLabel" styleClass="resource-value" text="0 / 0" />
                                     </HBox>
 
-                                    <ProgressBar fx:id="vidaProgress"
-                                                 progress="0"
-                                                 maxWidth="Infinity"
-                                                 styleClass="vida-progress"/>
+                                    <ProgressBar fx:id="vidaProgress" maxWidth="Infinity" progress="0" styleClass="vida-progress" />
 
-                                    <HBox alignment="CENTER"
-                                          spacing="12">
+                                    <HBox alignment="CENTER" spacing="12">
 
-                                        <Button text="−"
-                                                onAction="#diminuirVida"
-                                                styleClass="status-minus-button"/>
+                                        <Button onAction="#diminuirVida" styleClass="status-minus-button" text="−" />
 
-                                        <Button text="+"
-                                                onAction="#aumentarVida"
-                                                styleClass="status-plus-button"/>
+                                        <Button onAction="#aumentarVida" styleClass="status-plus-button" text="+" />
                                     </HBox>
 
                                 </VBox>
 
-                                <VBox spacing="10"
-                                      styleClass="resource-card"
-                                      GridPane.columnIndex="1"
-                                      GridPane.rowIndex="0">
+                                <VBox spacing="10" styleClass="resource-card" GridPane.columnIndex="1" GridPane.rowIndex="0">
 
                                     <HBox alignment="CENTER_LEFT">
-                                        <Label text="PE"
-                                               styleClass="resource-title"/>
+                                        <Label styleClass="resource-title" text="PE" />
 
-                                        <Region HBox.hgrow="ALWAYS"/>
+                                        <Region HBox.hgrow="ALWAYS" />
 
-                                        <Label fx:id="peLabel"
-                                               text="0 / 0"
-                                               styleClass="resource-value"/>
+                                        <Label fx:id="peLabel" styleClass="resource-value" text="0 / 0" />
                                     </HBox>
 
-                                    <ProgressBar fx:id="peProgress"
-                                                 progress="0"
-                                                 maxWidth="Infinity"
-                                                 styleClass="pe-progress"/>
+                                    <ProgressBar fx:id="peProgress" maxWidth="Infinity" progress="0" styleClass="pe-progress" />
 
-                                    <HBox alignment="CENTER"
-                                          spacing="12">
+                                    <HBox alignment="CENTER" spacing="12">
 
-                                        <Button text="−"
-                                                onAction="#diminuirPe"
-                                                styleClass="status-minus-button"/>
+                                        <Button onAction="#diminuirPe" styleClass="status-minus-button" text="−" />
 
-                                        <Button text="+"
-                                                onAction="#aumentarPe"
-                                                styleClass="status-plus-button"/>
+                                        <Button onAction="#aumentarPe" styleClass="status-plus-button" text="+" />
                                     </HBox>
 
                                 </VBox>
 
-                                <VBox spacing="10"
-                                      styleClass="resource-card"
-                                      GridPane.columnIndex="2"
-                                      GridPane.rowIndex="0">
+                                <VBox spacing="10" styleClass="resource-card" GridPane.columnIndex="2" GridPane.rowIndex="0">
 
                                     <HBox alignment="CENTER_LEFT">
-                                        <Label text="Sanidade"
-                                               styleClass="resource-title"/>
+                                        <Label styleClass="resource-title" text="Sanidade" />
 
-                                        <Region HBox.hgrow="ALWAYS"/>
+                                        <Region HBox.hgrow="ALWAYS" />
 
-                                        <Label fx:id="sanidadeLabel"
-                                               text="0 / 0"
-                                               styleClass="resource-value"/>
+                                        <Label fx:id="sanidadeLabel" styleClass="resource-value" text="0 / 0" />
                                     </HBox>
 
-                                    <ProgressBar fx:id="sanidadeProgress"
-                                                 progress="0"
-                                                 maxWidth="Infinity"
-                                                 styleClass="sanidade-progress"/>
+                                    <ProgressBar fx:id="sanidadeProgress" maxWidth="Infinity" progress="0" styleClass="sanidade-progress" />
 
-                                    <HBox alignment="CENTER"
-                                          spacing="12">
+                                    <HBox alignment="CENTER" spacing="12">
 
-                                        <Button text="−"
-                                                onAction="#diminuirSanidade"
-                                                styleClass="status-minus-button"/>
+                                        <Button onAction="#diminuirSanidade" styleClass="status-minus-button" text="−" />
 
-                                        <Button text="+"
-                                                onAction="#aumentarSanidade"
-                                                styleClass="status-plus-button"/>
+                                        <Button onAction="#aumentarSanidade" styleClass="status-plus-button" text="+" />
                                     </HBox>
 
                                 </VBox>
 
-                                <VBox spacing="10"
-                                      styleClass="danger-status-card"
-                                      GridPane.columnIndex="0"
-                                      GridPane.rowIndex="1">
+                                <VBox spacing="10" styleClass="danger-status-card" GridPane.columnIndex="0" GridPane.rowIndex="1">
 
-                                    <Label text="Rodadas em morrendo"
-                                           styleClass="resource-title"/>
+                                    <Label styleClass="resource-title" text="Rodadas em morrendo" />
 
-                                    <Label fx:id="rodadasMorrendoLabel"
-                                           text="0 / 3"
-                                           styleClass="danger-value"/>
+                                    <Label fx:id="rodadasMorrendoLabel" styleClass="danger-value" text="0 / 3" />
 
-                                    <HBox alignment="CENTER"
-                                          spacing="12">
+                                    <HBox alignment="CENTER" spacing="12">
 
-                                        <Button text="−"
-                                                onAction="#diminuirRodadasMorrendo"
-                                                styleClass="status-minus-button"/>
+                                        <Button onAction="#diminuirRodadasMorrendo" styleClass="status-minus-button" text="−" />
 
-                                        <Button text="+"
-                                                onAction="#aumentarRodadasMorrendo"
-                                                styleClass="danger-plus-button"/>
+                                        <Button onAction="#aumentarRodadasMorrendo" styleClass="danger-plus-button" text="+" />
                                     </HBox>
 
                                 </VBox>
+                        <columnConstraints>
+                           <ColumnConstraints />
+                           <ColumnConstraints />
+                           <ColumnConstraints />
+                        </columnConstraints>
+                        <rowConstraints>
+                           <RowConstraints />
+                           <RowConstraints />
+                        </rowConstraints>
                             </GridPane>
 
-                            <Separator styleClass="status-separator"/>
+                            <Separator styleClass="status-separator" />
 
-                            <Label text="Status calculados"
-                                   styleClass="section-title"/>
+                            <Label styleClass="section-title" text="Status calculados" />
 
-                            <GridPane hgap="18"
-                                      vgap="16"
-                                      styleClass="status-grid">
+                            <GridPane hgap="18" styleClass="status-grid" vgap="16">
 
-                                <VBox spacing="6"
-                                      styleClass="calculated-card"
-                                      GridPane.columnIndex="0"
-                                      GridPane.rowIndex="0">
+                                <VBox spacing="6" styleClass="calculated-card" GridPane.columnIndex="0" GridPane.rowIndex="0">
 
-                                    <Label text="Defesa"
-                                           styleClass="status-name"/>
-                                    <Label fx:id="defesaLabel"
-                                           text="0"
-                                           styleClass="calculated-value"/>
+                                    <Label styleClass="status-name" text="Defesa" />
+                                    <Label fx:id="defesaLabel" styleClass="calculated-value" text="0" />
                                 </VBox>
 
-                                <VBox spacing="6"
-                                      styleClass="calculated-card"
-                                      GridPane.columnIndex="1"
-                                      GridPane.rowIndex="0">
+                                <VBox spacing="6" styleClass="calculated-card" GridPane.columnIndex="1" GridPane.rowIndex="0">
 
-                                    <Label text="Esquiva"
-                                           styleClass="status-name"/>
-                                    <Label fx:id="esquivaLabel"
-                                           text="0"
-                                           styleClass="calculated-value"/>
+                                    <Label styleClass="status-name" text="Esquiva" />
+                                    <Label fx:id="esquivaLabel" styleClass="calculated-value" text="0" />
                                 </VBox>
 
-                                <VBox spacing="6"
-                                      styleClass="calculated-card"
-                                      GridPane.columnIndex="2"
-                                      GridPane.rowIndex="0">
+                                <VBox spacing="6" styleClass="calculated-card" GridPane.columnIndex="2" GridPane.rowIndex="0">
 
-                                    <Label text="Bloqueio"
-                                           styleClass="status-name"/>
-                                    <Label fx:id="bloqueioLabel"
-                                           text="0"
-                                           styleClass="calculated-value"/>
+                                    <Label styleClass="status-name" text="Bloqueio" />
+                                    <Label fx:id="bloqueioLabel" styleClass="calculated-value" text="0" />
                                 </VBox>
 
-                                <VBox spacing="6"
-                                      styleClass="calculated-card"
-                                      GridPane.columnIndex="0"
-                                      GridPane.rowIndex="1">
+                                <VBox spacing="6" styleClass="calculated-card" GridPane.columnIndex="0" GridPane.rowIndex="1">
 
-                                    <Label text="Deslocamento"
-                                           styleClass="status-name"/>
-                                    <Label fx:id="deslocamentoLabel"
-                                           text="0 m"
-                                           styleClass="calculated-value"/>
+                                    <Label styleClass="status-name" text="Deslocamento" />
+                                    <Label fx:id="deslocamentoLabel" styleClass="calculated-value" text="0 m" />
                                 </VBox>
 
-                                <VBox spacing="6"
-                                      styleClass="calculated-card"
-                                      GridPane.columnIndex="1"
-                                      GridPane.rowIndex="1">
+                                <VBox spacing="6" styleClass="calculated-card" GridPane.columnIndex="1" GridPane.rowIndex="1">
 
-                                    <Label text="Limite de PE/turno"
-                                           styleClass="status-name"/>
-                                    <Label fx:id="limitePeLabel"
-                                           text="0"
-                                           styleClass="calculated-value"/>
+                                    <Label styleClass="status-name" text="Limite de PE/turno" />
+                                    <Label fx:id="limitePeLabel" styleClass="calculated-value" text="0" />
                                 </VBox>
+                        <columnConstraints>
+                           <ColumnConstraints />
+                           <ColumnConstraints />
+                           <ColumnConstraints />
+                        </columnConstraints>
+                        <rowConstraints>
+                           <RowConstraints />
+                           <RowConstraints />
+                        </rowConstraints>
 
                             </GridPane>
 
@@ -353,5 +265,9 @@
         </TabPane>
 
     </center>
+    <stylesheets>
+        <URL value="@../style/app.css"/>
+        <URL value="@../style/ficha-personagem.css"/>
+    </stylesheets>
 
 </BorderPane>

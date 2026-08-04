@@ -6,35 +6,20 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Region?>
 
-<HBox xmlns="http://javafx.com/javafx/21"
-      xmlns:fx="http://javafx.com/fxml"
-      fx:controller="com.example.rpg_manager.AtributoControlController"
-      alignment="CENTER_LEFT"
-      spacing="15"
-      styleClass="atributo-control">
+<HBox alignment="CENTER_LEFT" spacing="15" styleClass="attribute-control" stylesheets="@../style/atributo-control.css" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.rpg_manager.AtributoControlController">
 
     <padding>
-        <Insets top="8" right="12" bottom="8" left="12"/>
+        <Insets bottom="8" left="12" right="12" top="8" />
     </padding>
 
-    <Label fx:id="nomeLabel"
-           text="Agilidade"
-           styleClass="atributo-nome"/>
+    <Label fx:id="nomeLabel" styleClass="attribute-name" text="Agilidade" />
 
-    <Region HBox.hgrow="ALWAYS"/>
+    <Region HBox.hgrow="ALWAYS" />
 
-    <Button fx:id="menosBtn"
-            text="-"
-            onAction="#diminuir"
-            styleClass="atributo-btn"/>
+    <Button fx:id="menosBtn" onAction="#diminuir" styleClass="attribute-button" text="-" />
 
-    <Label fx:id="valorLabel"
-           text="0"
-           styleClass="atributo-valor"/>
+    <Label fx:id="valorLabel" styleClass="attribute-value" text="0" />
 
-    <Button fx:id="maisBtn"
-            text="+"
-            onAction="#aumentar"
-            styleClass="atributo-btn"/>
+    <Button fx:id="maisBtn" onAction="#aumentar" styleClass="attribute-button" text="+" />
 
 </HBox>

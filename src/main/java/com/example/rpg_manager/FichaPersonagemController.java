@@ -32,6 +32,8 @@ public class FichaPersonagemController implements Initializable {
 
 
     @FXML
+    private Button voltarBtn;
+    @FXML
     private ProgressBar vidaProgress;
     @FXML
     private ProgressBar peProgress;
@@ -89,10 +91,7 @@ public class FichaPersonagemController implements Initializable {
         Parent root = loader.load();
 
         Stage stage = (Stage) salvarBtn.getScene().getWindow();
-
-        stage.setScene(new Scene(root));
-
-        stage.show();
+        stage.close();
     }
 
     private PersonagemServices service = new PersonagemServices();
@@ -264,8 +263,23 @@ public class FichaPersonagemController implements Initializable {
 
         System.out.println(personagemAtual.getId());
 
-        voltar();
+        if ( aoSalvar != null){
+            aoSalvar.run();
+        }
 
+        fecharJanela();
+
+    }
+
+    private Runnable aoSalvar;
+
+    public void setAoSalvar(Runnable aoSalvar){
+        this.aoSalvar = aoSalvar;
+    }
+
+    private void fecharJanela() {
+        Stage stage = (Stage) salvarBtn.getScene().getWindow();
+        stage.close();
     }
 
     private void initializeAtributos() {

@@ -1,0 +1,49 @@
+.character-card {
+    -fx-background-color: #18181F;
+    -fx-background-radius: 18;
+    -fx-border-color: #6D28D9;
+    -fx-border-radius: 18;
+    -fx-border-width: 1.5;
+    -fx-padding: 18;
+    -fx-spacing: 10;
+    -fx-alignment: center;
+}
+
+.character-card:hover {
+    -fx-border-color: #8B5CF6;
+    -fx-effect: dropshadow(
+            gaussian,
+            rgba(109, 40, 217, 0.35),
+            16,
+            0.25,
+            0,
+            6
+    );
+}
+
+.character-name {
+    -fx-text-fill: white;
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+}
+
+.character-class {
+    -fx-text-fill: #C4B5FD;
+    -fx-font-size: 13px;
+}
+
+.character-nex {
+    -fx-text-fill: #E5E7EB;
+    -fx-font-size: 14px;
+}
+
+.character-avatar {
+    -fx-effect: dropshadow(
+            gaussian,
+            rgba(109, 40, 217, 0.35),
+            10,
+            0.2,
+            0,
+            3
+    );
+}
