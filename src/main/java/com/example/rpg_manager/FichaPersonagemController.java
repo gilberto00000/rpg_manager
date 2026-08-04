@@ -1,8 +1,6 @@
 package com.example.rpg_manager;
 
-import com.example.rpg_manager.model.Atributo;
-import com.example.rpg_manager.model.Classes;
-import com.example.rpg_manager.model.Personagem;
+import com.example.rpg_manager.model.*;
 import com.example.rpg_manager.repository.ClassesRepository;
 import com.example.rpg_manager.services.PersonagemServices;
 import com.example.rpg_manager.utils.ConfirmDialog;
@@ -19,11 +17,13 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
-
+import java.util.Comparator;
+import java.util.List;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.net.URL;
+import java.text.Normalizer;
 import java.util.*;
 
 
@@ -75,6 +75,10 @@ public class FichaPersonagemController implements Initializable {
     private Label rodadasMorrendoLabel;
     @FXML
     private Label limitePeLabel;
+    @FXML
+    private VBox periciasContainer;
+    @FXML
+    private TextField buscarPericiaField;
 
     private final Map<Atributo, AtributoControlController> controlesAtributos =
             new EnumMap<>(Atributo.class);
@@ -117,11 +121,19 @@ public class FichaPersonagemController implements Initializable {
                 )
         );
 
+
+
         personagemAtual = new Personagem();
 
 
 
         renderizarFicha();
+        carregarPericias();
+        inicializarPericiasSeNecessario();
+
+        buscarPericiaField.textProperty().addListener(
+                (observable, textoAnterior, textoNovo) -> carregarPericias()
+        );
     }
 
     public void setPersonagem(Personagem personagem) {
@@ -137,6 +149,9 @@ public class FichaPersonagemController implements Initializable {
 
         preencherCampos();
         renderizarFicha();
+
+        inicializarPericiasSeNecessario();
+        carregarPericias();
     }
 
     private void preencherCampos() {
@@ -328,6 +343,7 @@ public class FichaPersonagemController implements Initializable {
         }
 
         renderizarFicha();
+
     }
 
     private void alterarAtributo(Atributo atributo, int delta) {
@@ -609,4 +625,116 @@ public class FichaPersonagemController implements Initializable {
         renderizarFicha();
     }
 
+    // carregar pericias
+
+    private void carregarPericias() {
+
+        periciasContainer.getChildren().clear();
+
+        String busca = buscarPericiaField == null
+                ? ""
+                : normalizarTexto(buscarPericiaField.getText());
+
+        List<Pericia> periciasFiltradas =
+                personagemAtual.getPericias()
+                        .stream()
+
+                        // Filtra pelo nome da perícia
+                        .filter(pericia -> {
+                            String nomePericia = normalizarTexto(
+                                    pericia.getTipo().toString()
+                            );
+
+                            return nomePericia.contains(busca);
+                        })
+
+                        // Treinadas aparecem primeiro
+                        .sorted(
+                                Comparator
+                                        .comparing(
+                                                Pericia::isTreinado
+                                        )
+                                        .reversed()
+
+                                        // Dentro de cada grupo,
+                                        // organiza por nome
+                                        .thenComparing(
+                                                pericia ->
+                                                        pericia.getTipo()
+                                                                .toString(),
+                                                String.CASE_INSENSITIVE_ORDER
+                                        )
+                        )
+
+                        .toList();
+
+        for (Pericia pericia : periciasFiltradas) {
+
+            try {
+                FXMLLoader loader = new FXMLLoader(
+                        getClass().getResource(
+                                "/com/example/rpg_manager/fxml/PericiaControl.fxml"
+                        )
+                );
+
+                HBox controlePericia = loader.load();
+
+                PericiaControlController controller =
+                        loader.getController();
+
+                controller.configurar(
+                        pericia,
+                        personagemAtual,
+
+                        // Ao marcar como treinada ou alterar bônus,
+                        // reorganiza a lista
+                        this::carregarPericias
+                );
+
+                periciasContainer
+                        .getChildren()
+                        .add(controlePericia);
+
+            } catch (IOException e) {
+                throw new RuntimeException(
+                        "Erro ao carregar a perícia "
+                                + pericia.getTipo(),
+                        e
+                );
+            }
+        }
+    }
+
+    private void inicializarPericiasSeNecessario() {
+
+        if (personagemAtual.getPericias() == null) {
+            personagemAtual.setPericias(
+                    new ArrayList<>()
+            );
+        }
+
+        if (personagemAtual.getPericias().isEmpty()) {
+            for (PericiaTipo tipo : PericiaTipo.values()) {
+                personagemAtual.getPericias().add(
+                        new Pericia(tipo)
+                );
+            }
+        }
+    }
+
+    private String normalizarTexto(String texto) {
+
+        if (texto == null) {
+            return "";
+        }
+
+        String semAcentos = Normalizer.normalize(
+                texto,
+                Normalizer.Form.NFD
+        ).replaceAll("\\p{M}", "");
+
+        return semAcentos
+                .trim()
+                .toLowerCase();
+    }
 }

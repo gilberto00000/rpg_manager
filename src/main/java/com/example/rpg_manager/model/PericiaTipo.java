@@ -33,7 +33,9 @@ public enum PericiaTipo {
     private String nome;
     private Atributo atributoBase;
 
-    PericiaTipo(String acrobacia, Atributo atributo) {
+    PericiaTipo(String nome, Atributo atributoBase) {
+        this.nome = nome;
+        this.atributoBase = atributoBase;
     }
 
     // construtor, getters e toString()
@@ -57,9 +59,6 @@ public enum PericiaTipo {
 
     @Override
     public String toString() {
-        return "PericiaTipo{" +
-                "nome='" + nome + '\'' +
-                ", atributoBase=" + atributoBase +
-                '}';
+        return nome;
     }
 }

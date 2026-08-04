@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
+
+<HBox xmlns="http://javafx.com/javafx/21"
+      xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.example.rpg_manager.PericiaControlController"
+      alignment="CENTER_LEFT"
+      spacing="18"
+      styleClass="pericia-control">
+
+    <VBox spacing="3"
+          prefWidth="210">
+
+        <Label fx:id="nomeLabel"
+               text="Acrobacia"
+               styleClass="pericia-name"/>
+
+        <Label fx:id="atributoLabel"
+               text="Agilidade"
+               styleClass="pericia-attribute"/>
+
+    </VBox>
+
+    <Region HBox.hgrow="ALWAYS"/>
+
+    <CheckBox fx:id="treinadoCheckBox"
+              text="Treinado"
+              onAction="#alterarTreinamento"
+              styleClass="pericia-trained"/>
+
+    <HBox alignment="CENTER"
+          spacing="9">
+
+        <Label text="Bônus"
+               styleClass="pericia-secondary-label"/>
+
+        <Button text="−"
+                onAction="#diminuirBonus"
+                styleClass="pericia-adjust-button"/>
+
+        <Label fx:id="bonusLabel"
+               text="0"
+               styleClass="pericia-bonus-value"/>
+
+        <Button text="+"
+                onAction="#aumentarBonus"
+                styleClass="pericia-adjust-button"/>
+
+    </HBox>
+
+    <VBox alignment="CENTER"
+          spacing="2"
+          prefWidth="85">
+
+        <Label text="Total"
+               styleClass="pericia-secondary-label"/>
+
+        <Label fx:id="totalLabel"
+               text="+0"
+               styleClass="pericia-total"/>
+
+    </VBox>
+
+    <stylesheets>
+        <URL value="@../style/pericia-control.css"/>
+    </stylesheets>
+
+</HBox>

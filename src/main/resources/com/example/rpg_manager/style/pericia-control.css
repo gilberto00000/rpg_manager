@@ -1,0 +1,103 @@
+.pericia-control {
+    -fx-background-color: #18181F;
+    -fx-background-radius: 14;
+
+    -fx-border-color: #34343D;
+    -fx-border-radius: 14;
+    -fx-border-width: 1;
+
+    -fx-padding: 15 18;
+}
+
+.pericia-control:hover {
+    -fx-border-color: #6D28D9;
+
+    -fx-effect: dropshadow(
+            gaussian,
+            rgba(109, 40, 217, 0.16),
+            10,
+            0.15,
+            0,
+            3
+    );
+}
+
+.pericia-name {
+    -fx-text-fill: #F9FAFB;
+    -fx-font-size: 15px;
+    -fx-font-weight: bold;
+}
+
+.pericia-attribute {
+    -fx-text-fill: #A78BFA;
+    -fx-font-size: 12px;
+}
+
+.pericia-secondary-label {
+    -fx-text-fill: #A1A1AA;
+    -fx-font-size: 12px;
+}
+
+.pericia-trained {
+    -fx-text-fill: #D4D4D8;
+    -fx-font-size: 13px;
+    -fx-cursor: hand;
+}
+
+.pericia-trained .box {
+    -fx-background-color: #27272A;
+    -fx-background-radius: 5;
+
+    -fx-border-color: #52525B;
+    -fx-border-radius: 5;
+}
+
+.pericia-trained:selected .box {
+    -fx-background-color: #6D28D9;
+    -fx-border-color: #8B5CF6;
+}
+
+.pericia-trained:selected .mark {
+    -fx-background-color: white;
+}
+
+.pericia-adjust-button {
+    -fx-background-color: #27272A;
+    -fx-text-fill: white;
+
+    -fx-border-color: #52525B;
+    -fx-border-radius: 999;
+    -fx-background-radius: 999;
+
+    -fx-min-width: 32;
+    -fx-min-height: 32;
+    -fx-pref-width: 32;
+    -fx-pref-height: 32;
+
+    -fx-padding: 0;
+
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+
+    -fx-cursor: hand;
+}
+
+.pericia-adjust-button:hover {
+    -fx-background-color: #3F3F46;
+    -fx-border-color: #8B5CF6;
+}
+
+.pericia-bonus-value {
+    -fx-text-fill: #F4F4F5;
+    -fx-font-size: 15px;
+    -fx-font-weight: bold;
+
+    -fx-min-width: 35;
+    -fx-alignment: center;
+}
+
+.pericia-total {
+    -fx-text-fill: #A78BFA;
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+}

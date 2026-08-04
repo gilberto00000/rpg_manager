@@ -256,9 +256,39 @@
             </Tab>
 
             <Tab text="Perícias">
+                <content>
+                    <ScrollPane fitToWidth="true"
+                                hbarPolicy="NEVER"
+                                styleClass="pericias-scroll">
 
-                <AnchorPane fx:id="periciasPane" />
+                        <VBox spacing="18"
+                              styleClass="pericias-page">
 
+                            <HBox alignment="CENTER_LEFT"
+                                  spacing="15">
+
+                                <VBox spacing="4">
+                                    <Label text="Perícias"
+                                           styleClass="section-title"/>
+
+                                    <Label text="Configure treinamento e bônus de cada perícia."
+                                           styleClass="section-subtitle"/>
+                                </VBox>
+
+                                <Region HBox.hgrow="ALWAYS"/>
+
+                                <TextField fx:id="buscarPericiaField"
+                                           promptText="Buscar perícia..."
+                                           prefWidth="260"/>
+                            </HBox>
+
+                            <VBox fx:id="periciasContainer"
+                                  spacing="10"/>
+
+                        </VBox>
+
+                    </ScrollPane>
+                </content>
             </Tab>
 
             <Tab text="Equipamentos">

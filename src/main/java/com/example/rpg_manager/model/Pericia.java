@@ -7,6 +7,14 @@ public class Pericia {
     private boolean treinado;
     private int bonusManual;
 
+    public Pericia() {
+    }
+
+    public Pericia(PericiaTipo tipo) {
+        this.tipo = tipo;
+        this.treinado = false;
+        this.bonusManual = 0;
+    }
 
     public int calcularBonus(Personagem personagem) {
 
@@ -44,5 +52,11 @@ public class Pericia {
         this.treinado = treinado;
     }
 
+    public int getBonusManual() {
+        return bonusManual;
+    }
 
+    public void setBonusManual(int bonusManual) {
+        this.bonusManual = bonusManual;
+    }
 }

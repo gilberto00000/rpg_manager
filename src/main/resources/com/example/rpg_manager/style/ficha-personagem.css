@@ -715,12 +715,39 @@
     -fx-font-weight: bold;
 }
 
+/* =========================================================
+   PERICIAS
+========================================================= */
+
+.pericias-scroll {
+    -fx-background-color: transparent;
+    -fx-background: transparent;
+    -fx-border-color: transparent;
+}
+
+.pericias-scroll > .viewport {
+    -fx-background-color: #0D0D12;
+}
+
+.pericias-page {
+    -fx-background-color: #0D0D12;
+    -fx-padding: 30 36 36 36;
+}
+
+.section-subtitle {
+    -fx-text-fill: #A1A1AA;
+    -fx-font-size: 13px;
+}
+
+#periciasContainer {
+    -fx-padding: 4 0 0 0;
+}
 
 /* =========================================================
    ABAS AINDA VAZIAS
 ========================================================= */
 
-#periciasPane,
+
 #equipamentosPane,
 #habilidadesPane {
     -fx-background-color: #0D0D12;
