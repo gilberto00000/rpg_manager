@@ -5,6 +5,7 @@ import com.example.rpg_manager.model.Classes;
 import com.example.rpg_manager.model.Personagem;
 import com.example.rpg_manager.repository.ClassesRepository;
 import com.example.rpg_manager.services.PersonagemServices;
+import com.example.rpg_manager.utils.ConfirmDialog;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -23,9 +24,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.net.URL;
-import java.util.EnumMap;
-import java.util.Map;
-import java.util.ResourceBundle;
+import java.util.*;
 
 
 public class FichaPersonagemController implements Initializable {
@@ -584,6 +583,30 @@ public class FichaPersonagemController implements Initializable {
             personagemAtual.setRodadasMorrendo(rodadas + 1);
             renderizarFicha();
         }
+    }
+
+    // restaurar status
+
+    @FXML
+    private void recuperarTodosStatus() {
+
+        boolean confirmou = ConfirmDialog.show(
+                salvarBtn.getScene().getWindow(),
+                "Recuperar recursos",
+                """
+                Vida, PE e Sanidade serão restaurados ao máximo.
+    
+                As rodadas em morrendo voltarão para zero.
+                """,
+                "Recuperar"
+        );
+
+        if (!confirmou) {
+            return;
+        }
+
+        personagemAtual.recuperarTodosStatus();
+        renderizarFicha();
     }
 
 }

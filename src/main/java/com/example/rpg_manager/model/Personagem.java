@@ -120,6 +120,13 @@ public class Personagem {
         };
     }
 
+    public void recuperarTodosStatus() {
+        vidaAtual = getVidaMaxima();
+        peAtual = getPeMaximo();
+        sanidadeAtual = getSanidadeMaxima();
+        rodadasMorrendo = 0;
+    }
+
     public int getPontosRestantes() {
         return pontosDisponiveis -
                 (agilidade + forca + intelecto + presenca + vigor);

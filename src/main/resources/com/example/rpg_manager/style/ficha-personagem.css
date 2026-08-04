@@ -467,6 +467,42 @@
    BARRAS DE RECURSOS
 ========================================================= */
 
+.recover-status-button {
+    -fx-background-color: #15352E;
+    -fx-text-fill: #A7F3D0;
+
+    -fx-border-color: #047857;
+    -fx-border-width: 1;
+    -fx-border-radius: 11;
+    -fx-background-radius: 11;
+
+    -fx-padding: 10 16;
+
+    -fx-font-size: 13px;
+    -fx-font-weight: bold;
+
+    -fx-cursor: hand;
+}
+
+.recover-status-button:hover {
+    -fx-background-color: #065F46;
+    -fx-text-fill: white;
+
+    -fx-effect: dropshadow(
+            gaussian,
+            rgba(16, 185, 129, 0.22),
+            10,
+            0.15,
+            0,
+            3
+    );
+}
+
+.recover-status-button:pressed {
+    -fx-scale-x: 0.97;
+    -fx-scale-y: 0.97;
+}
+
 .progress-bar {
     -fx-pref-height: 13;
     -fx-min-height: 13;

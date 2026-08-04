@@ -100,7 +100,18 @@
 
                         <VBox spacing="22" styleClass="status-page">
 
-                            <Label styleClass="section-title" text="Recursos atuais" />
+                            <HBox alignment="CENTER_LEFT" spacing="15">
+
+                                <Label styleClass="section-title"
+                                       text="Recursos atuais"/>
+
+                                <Region HBox.hgrow="ALWAYS"/>
+
+                                <Button text="↻ Recuperar tudo"
+                                        onAction="#recuperarTodosStatus"
+                                        styleClass="recover-status-button"/>
+
+                            </HBox>
 
                             <GridPane hgap="18" styleClass="status-grid" vgap="16">
 

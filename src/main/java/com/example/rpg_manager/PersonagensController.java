@@ -2,6 +2,7 @@ package com.example.rpg_manager;
 
 import com.example.rpg_manager.model.Personagem;
 import com.example.rpg_manager.services.PersonagemServices;
+import com.example.rpg_manager.utils.ConfirmDialog;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -158,23 +159,22 @@ public class PersonagensController implements Initializable {
 
     private void excluirPersonagem(Personagem personagem) {
 
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-
-        alert.setTitle("Excluir personagem");
-
-        alert.setHeaderText(
-                "Deseja realmente excluir " + personagem.getNome() + "?"
+        boolean confirmou = ConfirmDialog.show(
+                gridPersonagens.getScene().getWindow(),
+                "Excluir personagem",
+                "Deseja realmente excluir "
+                        + personagem.getNome()
+                        + "?",
+                "Excluir"
         );
 
-        Optional<ButtonType> resultado = alert.showAndWait();
-
-        if (resultado.isPresent() && resultado.get() == ButtonType.OK) {
-
-            service.excluir(personagem.getId());
-
-            atualizarCards();
-
+        if (!confirmou){
+            return;
         }
+
+        service.excluir(personagem.getId());
+
+        atualizarCards();
     }
 
     //paginação
