@@ -239,26 +239,26 @@ public class FichaPersonagemController implements Initializable {
 
     }
 
-    public void carregarPersonagem(Personagem personagem) {
-
-        this.personagemAtual = personagem;
-
-        nomeField.setText(personagem.getNome());
-
-        classeCombo.setValue(personagem.getClasse());
-
-        nexSpinner.getValueFactory().setValue(personagem.getNex());
-
-        caminhoAvatar = personagem.getAvatar();
-
-        if (caminhoAvatar != null) {
-
-            avatarPreview.setImage(
-                    new Image(new File(caminhoAvatar).toURI().toString())
-            );
-
-        }
-    }
+//    public void carregarPersonagem(Personagem personagem) {
+//
+//        this.personagemAtual = personagem;
+//
+//        nomeField.setText(personagem.getNome());
+//
+//        classeCombo.setValue(personagem.getClasse());
+//
+//        nexSpinner.getValueFactory().setValue(personagem.getNex());
+//
+//        caminhoAvatar = personagem.getAvatar();
+//
+//        if (caminhoAvatar != null) {
+//
+//            avatarPreview.setImage(
+//                    new Image(new File(caminhoAvatar).toURI().toString())
+//            );
+//
+//        }
+//    }
 
     @FXML
     private void salvar() throws IOException {
@@ -737,4 +737,5 @@ public class FichaPersonagemController implements Initializable {
                 .trim()
                 .toLowerCase();
     }
+
 }

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox prefHeight="280" prefWidth="220" spacing="12" styleClass="character-card" stylesheets="@../style/personagem-card.css" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.rpg_manager.HabilidadesCardController">
+
+    <ImageView fx:id="avatarImage" fitHeight="120" fitWidth="120" preserveRatio="true" />
+
+    <Label fx:id="nomeLabel" styleClass="card-title" />
+
+    <Region VBox.vgrow="ALWAYS" />
+
+    <HBox spacing="10">
+
+        <Button fx:id="editarBtn" onAction="#editar" styleClass="primary-button" text="Ver" />
+
+        <Button fx:id="excluirBtn" onAction="#excluir" styleClass="danger-button" text="Excluir" />
+
+    </HBox>
+
+</VBox>

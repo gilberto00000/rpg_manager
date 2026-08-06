@@ -752,3 +752,72 @@
 #habilidadesPane {
     -fx-background-color: #0D0D12;
 }
+
+/* ===========================
+   TEXT AREA
+   =========================== */
+
+.custom-text-area {
+    -fx-background-color: #18181F;
+
+    -fx-background-radius: 14;
+    -fx-border-radius: 14;
+
+    -fx-border-color: #34343D;
+    -fx-border-width: 1.5;
+
+    -fx-padding: 6;
+
+    -fx-text-fill: #F8FAFC;
+    -fx-prompt-text-fill: #71717A;
+
+    -fx-font-size: 14px;
+}
+
+.custom-text-area:hover {
+    -fx-border-color: #52525B;
+}
+
+.custom-text-area:focused {
+    -fx-border-color: #8B5CF6;
+
+    -fx-effect: dropshadow(
+            gaussian,
+            rgba(139,92,246,0.25),
+            12,
+            0.2,
+            0,
+            0
+    );
+}
+
+.custom-text-area .content {
+    -fx-background-color: #18181F;
+    -fx-background-radius: 12;
+}
+
+.custom-text-area .scroll-pane {
+    -fx-background-color: transparent;
+}
+
+.custom-text-area .scroll-pane > .viewport {
+    -fx-background-color: transparent;
+}
+
+.custom-text-area .scroll-bar:vertical {
+    -fx-background-color: transparent;
+}
+
+.custom-text-area .scroll-bar:vertical .track {
+    -fx-background-color: #27272A;
+    -fx-background-radius: 999;
+}
+
+.custom-text-area .scroll-bar:vertical .thumb {
+    -fx-background-color: #52525B;
+    -fx-background-radius: 999;
+}
+
+.custom-text-area .scroll-bar:vertical .thumb:hover {
+    -fx-background-color: #7C3AED;
+}

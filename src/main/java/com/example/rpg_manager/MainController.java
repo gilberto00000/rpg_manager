@@ -86,7 +86,21 @@ public class MainController implements Initializable {
         centerPane.getChildren().setAll(tela);
     }
 
+    @FXML
+    private void abrirHabilidades() throws IOException{
+        FXMLLoader loader = new FXMLLoader(
+                getClass().getResource("fxml/Habilidades.fxml")
+        );
 
+        Parent tela = loader.load();
+
+        centerPane.getChildren().setAll(tela);
+    }
+
+    @FXML
+    private void abrirItens(){
+
+    }
 
 
 }

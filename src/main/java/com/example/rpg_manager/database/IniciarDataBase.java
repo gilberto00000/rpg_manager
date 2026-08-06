@@ -38,6 +38,21 @@ public class IniciarDataBase {
                     );
             """);
 
+            stmt.execute("""
+            
+            CREATE TABLE IF NOT EXISTS habilidades(
+                
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                
+                nome TEXT NOT NULL,
+                avatar TEXT,
+                descricao TEXT
+                );
+            )
+            
+            
+            """);
+
         }   catch (SQLException e){
             e.printStackTrace();
             }
