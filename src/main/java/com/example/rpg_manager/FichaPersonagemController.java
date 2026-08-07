@@ -122,18 +122,17 @@ public class FichaPersonagemController implements Initializable {
         );
 
 
-
         personagemAtual = new Personagem();
 
-
-
-        renderizarFicha();
-        carregarPericias();
         inicializarPericiasSeNecessario();
+
+        carregarPericias();
 
         buscarPericiaField.textProperty().addListener(
                 (observable, textoAnterior, textoNovo) -> carregarPericias()
         );
+
+        renderizarFicha();
     }
 
     public void setPersonagem(Personagem personagem) {
@@ -685,7 +684,6 @@ public class FichaPersonagemController implements Initializable {
                 controller.configurar(
                         pericia,
                         personagemAtual,
-
                         // Ao marcar como treinada ou alterar bônus,
                         // reorganiza a lista
                         this::carregarPericias

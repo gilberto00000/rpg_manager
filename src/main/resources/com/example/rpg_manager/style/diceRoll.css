@@ -1,15 +1,235 @@
+.dice-page {
+    -fx-background-color:
+            radial-gradient(
+                    center 50% 20%,
+                    radius 80%,
+                    rgba(109, 40, 217, 0.16),
+                    transparent
+            ),
+            linear-gradient(
+                    to bottom right,
+                    #111118,
+                    #09090d
+            );
 
-.backk {
-    -fx-background-color: white;
+    -fx-font-family: "Segoe UI", "Inter", sans-serif;
 }
 
 
-/*.hori {*/
-/*    -fx-border-color: black;*/
-/*}*/
+/* =========================================================
+   CABEÇALHO
+   ========================================================= */
 
-.dadoBtn {
-    -fx-background-color: black;
-    -fx-border: none;
-    -fx-box-shadow: none;
+.dice-title {
+    -fx-text-fill: #f8f7ff;
+    -fx-font-size: 28px;
+    -fx-font-weight: 800;
+}
+
+.dice-subtitle {
+    -fx-text-fill: #9692a6;
+    -fx-font-size: 14px;
+}
+
+
+/* =========================================================
+   RESULTADO
+   ========================================================= */
+
+.result-card {
+    -fx-background-color:
+            linear-gradient(
+                    to bottom right,
+                    rgba(36, 28, 55, 0.96),
+                    rgba(19, 18, 28, 0.98)
+            );
+
+    -fx-background-radius: 22px;
+
+    -fx-border-color:
+            linear-gradient(
+                    to bottom right,
+                    #8b5cf6,
+                    #5b21b6
+            );
+
+    -fx-border-width: 1.5px;
+    -fx-border-radius: 22px;
+
+    -fx-effect: dropshadow(
+            gaussian,
+            rgba(109, 40, 217, 0.32),
+            24,
+            0.22,
+            0,
+            7
+    );
+
+    -fx-padding: 18px 30px;
+}
+
+.result-caption {
+    -fx-text-fill: #a78bfa;
+    -fx-font-size: 12px;
+    -fx-font-weight: 800;
+    -fx-letter-spacing: 2px;
+}
+
+.result-number {
+    -fx-text-fill: #ffffff;
+    -fx-font-size: 64px;
+    -fx-font-weight: 900;
+
+    -fx-effect: dropshadow(
+            gaussian,
+            rgba(167, 139, 250, 0.28),
+            15,
+            0.3,
+            0,
+            2
+    );
+}
+
+
+/* =========================================================
+   GRID DOS DADOS
+   ========================================================= */
+
+.dice-grid {
+    -fx-background-color: rgba(19, 19, 27, 0.72);
+    -fx-background-radius: 24px;
+
+    -fx-border-color: rgba(255, 255, 255, 0.055);
+    -fx-border-width: 1px;
+    -fx-border-radius: 24px;
+
+    -fx-padding: 24px;
+
+    -fx-effect: dropshadow(
+            gaussian,
+            rgba(0, 0, 0, 0.42),
+            20,
+            0.16,
+            0,
+            6
+    );
+}
+
+
+/* =========================================================
+   BOTÕES DOS DADOS
+   ========================================================= */
+
+.dice-button {
+    -fx-pref-width: 150px;
+    -fx-pref-height: 105px;
+
+    -fx-min-width: 135px;
+    -fx-min-height: 95px;
+
+    -fx-background-color:
+            linear-gradient(
+                    to bottom right,
+                    #24232e,
+                    #191820
+            );
+
+    -fx-background-radius: 18px;
+
+    -fx-border-color: #454150;
+    -fx-border-width: 1.2px;
+    -fx-border-radius: 18px;
+
+    -fx-cursor: hand;
+    -fx-padding: 10px;
+
+    -fx-effect: dropshadow(
+            gaussian,
+            rgba(0, 0, 0, 0.40),
+            12,
+            0.18,
+            0,
+            4
+    );
+}
+
+.dice-button:hover {
+    -fx-background-color:
+            linear-gradient(
+                    to bottom right,
+                    #342852,
+                    #211b31
+            );
+
+    -fx-border-color: #8b5cf6;
+
+    -fx-translate-y: -3px;
+
+    -fx-effect: dropshadow(
+            gaussian,
+            rgba(124, 58, 237, 0.48),
+            20,
+            0.22,
+            0,
+            7
+    );
+}
+
+.dice-button:pressed {
+    -fx-background-color: #17131f;
+    -fx-border-color: #a78bfa;
+
+    -fx-translate-y: 0px;
+    -fx-scale-x: 0.97;
+    -fx-scale-y: 0.97;
+
+    -fx-effect: dropshadow(
+            gaussian,
+            rgba(124, 58, 237, 0.28),
+            9,
+            0.14,
+            0,
+            2
+    );
+}
+
+.dice-button:focused {
+    -fx-border-color: #a78bfa;
+    -fx-border-width: 1.5px;
+}
+
+
+
+/* =========================================================
+   TEXTO INTERNO DOS DADOS
+   ========================================================= */
+
+.dice-prefix {
+    -fx-text-fill: #9c95ab;
+    -fx-font-size: 13px;
+    -fx-font-weight: 700;
+}
+
+.dice-value {
+    -fx-text-fill: #f9f7ff;
+    -fx-font-size: 31px;
+    -fx-font-weight: 900;
+}
+
+.dice-button:hover .dice-prefix {
+    -fx-text-fill: #c4b5fd;
+}
+
+.dice-button:hover .dice-value {
+    -fx-text-fill: #ffffff;
+}
+
+
+/* =========================================================
+   TEXTO INFERIOR
+   ========================================================= */
+
+.dice-hint {
+    -fx-text-fill: #716d7e;
+    -fx-font-size: 12px;
 }
