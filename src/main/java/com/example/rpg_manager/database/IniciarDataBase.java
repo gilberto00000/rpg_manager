@@ -56,21 +56,21 @@ public class IniciarDataBase {
 
 
             stmt.execute("""
-                    CREATE TABLE IF NOT EXISTS personagem_habilidade (
-                        personagem_id INTEGER NOT NULL,
-                        habilidade_id INTEGER NOT NULL,
-                        
-                        PRIMARY KEY (personagem_id, habilidade_id),
-                        
-                        FOREIGN KEY (personagem_id)
-                            REFERENCES personagem(id)
-                            ON DELETE CASCADE,
-                            
-                        FOREIGBN KEY (habilidade_id)
-                            REFERENCES habilidades(id)
-                            ON DELETE CASCADE
-                        )
-                    """);
+    CREATE TABLE IF NOT EXISTS personagem_habilidade (
+        personagem_id INTEGER NOT NULL,
+        habilidade_id INTEGER NOT NULL,
+
+        PRIMARY KEY (personagem_id, habilidade_id),
+
+        FOREIGN KEY (personagem_id)
+            REFERENCES personagem(id)
+            ON DELETE CASCADE,
+
+        FOREIGN KEY (habilidade_id)
+            REFERENCES habilidade(id)
+            ON DELETE CASCADE
+    )
+""");
 
         }   catch (SQLException e){
             e.printStackTrace();

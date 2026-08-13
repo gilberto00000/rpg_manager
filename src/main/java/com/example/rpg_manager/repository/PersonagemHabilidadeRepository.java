@@ -63,42 +63,41 @@ public class PersonagemHabilidadeRepository {
         List<Habilidade> habilidades = new ArrayList<>();
 
         String sql = """
-                
-                SELECT h.*
-                FROM habilidades h
-                INNER JOIN personagem_habilidade ph
-                    ON ph.personagem_id = h.id
-                WHERE ph.personagem_id = ?
-                ORDER BY h.nome
-                
-                """;
+        SELECT h.*
+        FROM habilidades h
+        INNER JOIN personagem_habilidade ph
+            ON ph.habilidade_id = h.id
+        WHERE ph.personagem_id = ?
+        ORDER BY h.nome
+        """;
 
         try (
                 Connection con = ConnectionFactory.getConnection();
                 PreparedStatement ps = con.prepareStatement(sql)
-        ){
+        ) {
             ps.setInt(1, personagemId);
 
-            try (
-                    ResultSet rs = ps.executeQuery()
-            ){
-                while (rs.next()){
+            try (ResultSet rs = ps.executeQuery()) {
+                while (rs.next()) {
                     Habilidade habilidade = new Habilidade();
 
                     habilidade.setId(rs.getInt("id"));
+                    habilidade.setAvatar(rs.getString("avatar"));
                     habilidade.setNome(rs.getString("nome"));
                     habilidade.setDescricao(
-                        rs.getString("descrição")
+                            rs.getString("descricao")
                     );
+
+                    habilidades.add(habilidade);
                 }
             }
-        }catch (SQLException e){
+
+        } catch (SQLException e) {
             throw new RuntimeException(
-                    "Erro ao listar as habilidades do personagem",
+                    "Erro ao listar habilidades do personagem",
                     e
             );
         }
-
 
         return habilidades;
     }
@@ -130,6 +129,34 @@ public class PersonagemHabilidadeRepository {
         } catch (SQLException e){
             throw new RuntimeException(
                     "Erro ao verificar habilidades",
+                    e
+            );
+        }
+    }
+
+    public void removerTodas(int personagemId) {
+
+        String sql = """
+        DELETE FROM personagem_habilidade
+        WHERE personagem_id = ?
+        """;
+
+        try (
+                Connection con =
+                        ConnectionFactory.getConnection();
+
+                PreparedStatement ps =
+                        con.prepareStatement(sql)
+        ) {
+
+            ps.setInt(1, personagemId);
+
+            ps.executeUpdate();
+
+        } catch (SQLException e) {
+
+            throw new RuntimeException(
+                    "Erro ao remover habilidades do personagem",
                     e
             );
         }

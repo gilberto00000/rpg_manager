@@ -2,6 +2,8 @@ package com.example.rpg_manager;
 
 import com.example.rpg_manager.model.*;
 import com.example.rpg_manager.repository.ClassesRepository;
+import com.example.rpg_manager.services.PersonagemHabilidadeService;
+import com.example.rpg_manager.services.HabilidadesService;
 import com.example.rpg_manager.services.PersonagemServices;
 import com.example.rpg_manager.utils.ConfirmDialog;
 import javafx.collections.FXCollections;
@@ -10,6 +12,9 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.geometry.Pos;
+import javafx.scene.layout.FlowPane;
+import javafx.scene.layout.Priority;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -103,6 +108,13 @@ public class FichaPersonagemController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+
+        habilidadeCombo.setItems(
+                FXCollections.observableArrayList(
+                        habilidadeService.listar()
+                )
+        );
+
         classeCombo.setItems(
                 FXCollections.observableArrayList(classesRepository.listar())
         );
@@ -146,11 +158,23 @@ public class FichaPersonagemController implements Initializable {
             );
         }
 
+        List<Habilidade> habilidades =
+                personagemHabilidadeService.listar(
+                        personagem
+                );
+
+        personagemAtual.setHabilidades(
+                habilidades
+        );
+
+
         preencherCampos();
         renderizarFicha();
 
         inicializarPericiasSeNecessario();
         carregarPericias();
+
+        carregarHabilidadesDoPersonagem();
     }
 
     private void preencherCampos() {
@@ -238,29 +262,9 @@ public class FichaPersonagemController implements Initializable {
 
     }
 
-//    public void carregarPersonagem(Personagem personagem) {
-//
-//        this.personagemAtual = personagem;
-//
-//        nomeField.setText(personagem.getNome());
-//
-//        classeCombo.setValue(personagem.getClasse());
-//
-//        nexSpinner.getValueFactory().setValue(personagem.getNex());
-//
-//        caminhoAvatar = personagem.getAvatar();
-//
-//        if (caminhoAvatar != null) {
-//
-//            avatarPreview.setImage(
-//                    new Image(new File(caminhoAvatar).toURI().toString())
-//            );
-//
-//        }
-//    }
 
     @FXML
-    private void salvar() throws IOException {
+    private void salvar() {
 
         montarPersonagem();
 
@@ -274,14 +278,15 @@ public class FichaPersonagemController implements Initializable {
 
         }
 
-        System.out.println(personagemAtual.getId());
+        personagemHabilidadeService.sincronizar(
+                personagemAtual
+        );
 
-        if ( aoSalvar != null){
+        if (aoSalvar != null) {
             aoSalvar.run();
         }
 
         fecharJanela();
-
     }
 
     private Runnable aoSalvar;
@@ -736,4 +741,120 @@ public class FichaPersonagemController implements Initializable {
                 .toLowerCase();
     }
 
+    @FXML
+    private ComboBox<Habilidade> habilidadeCombo;
+
+    @FXML
+    private FlowPane habilidadesContainer;
+
+    private final HabilidadesService habilidadeService =
+            new HabilidadesService();
+
+    private final PersonagemHabilidadeService personagemHabilidadeService =
+            new PersonagemHabilidadeService();
+
+    @FXML
+    private void adicionarHabilidade() {
+
+        Habilidade habilidade =
+                habilidadeCombo.getValue();
+
+        if (habilidade == null) {
+            return;
+        }
+
+        boolean jaPossui =
+                personagemAtual
+                        .getHabilidades()
+                        .stream()
+                        .anyMatch(h ->
+                                Objects.equals(
+                                        h.getId(),
+                                        habilidade.getId()
+                                )
+                        );
+
+        if (jaPossui) {
+            return;
+        }
+
+        personagemAtual
+                .getHabilidades()
+                .add(habilidade);
+
+        carregarHabilidadesNaTela();
+
+        habilidadeCombo
+                .getSelectionModel()
+                .clearSelection();
+    }
+
+
+    private void carregarHabilidadesNaTela() {
+
+        habilidadesContainer.getChildren().clear();
+
+        for (Habilidade habilidade : personagemAtual.getHabilidades()) {
+
+            try {
+
+                FXMLLoader loader = new FXMLLoader(
+                        getClass().getResource(
+                                "/com/example/rpg_manager/fxml/habilidades-card.fxml"
+                        )
+                );
+
+                VBox card = loader.load();
+
+                HabilidadesCardController controller =
+                        loader.getController();
+
+                controller.setHabilidade(habilidade);
+
+                controller.setOnRemover(
+                        this::removerHabilidade
+                );
+
+                habilidadesContainer.getChildren().add(card);
+
+            } catch (IOException e) {
+
+                throw new RuntimeException(
+                        "Erro ao carregar habilidade "
+                                + habilidade.getNome(),
+                        e
+                );
+            }
+        }
+    }
+
+    private void carregarHabilidadesDoPersonagem() {
+
+        if (personagemAtual.getId() == null) {
+            carregarHabilidadesNaTela();
+            return;
+        }
+
+        List<Habilidade> habilidades =
+                personagemHabilidadeService.listar(
+                        personagemAtual
+                );
+
+        personagemAtual.setHabilidades(habilidades);
+
+        carregarHabilidadesNaTela();
+    }
+    private void removerHabilidade(Habilidade habilidade) {
+
+        personagemAtual
+                .getHabilidades()
+                .removeIf(h ->
+                        Objects.equals(
+                                h.getId(),
+                                habilidade.getId()
+                        )
+                );
+
+        carregarHabilidadesNaTela();
+    }
 }

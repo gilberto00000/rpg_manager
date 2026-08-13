@@ -21,6 +21,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
+<?import javafx.scene.layout.FlowPane?>
 <BorderPane prefHeight="768" prefWidth="1366" styleClass="root" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.rpg_manager.FichaPersonagemController">
 
     <top>
@@ -298,9 +299,31 @@
             </Tab>
 
             <Tab text="Habilidades">
+                <content>
+                    <VBox spacing="18"
+                          styleClass="habilidades-page">
 
-                <AnchorPane fx:id="habilidadesPane" />
+                        <HBox alignment="CENTER_LEFT"
+                              spacing="12">
 
+                            <ComboBox fx:id="habilidadeCombo"
+                                      promptText="Selecione uma habilidade"
+                                      prefWidth="320"/>
+
+                            <Button text="Adicionar"
+                                    onAction="#adicionarHabilidade"
+                                    styleClass="primary-button"/>
+
+                        </HBox>
+
+                        <FlowPane fx:id="habilidadesContainer"
+                                  hgap="18"
+                                  vgap="18"
+                                  prefWrapLength="900"
+                                  styleClass="habilidades-container"/>
+
+                    </VBox>
+                </content>
             </Tab>
 
         </TabPane>
