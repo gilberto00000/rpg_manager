@@ -1,0 +1,117 @@
+.cenario-card {
+    -fx-background-color: #18181F;
+    -fx-background-radius: 18;
+
+    -fx-border-color: #34343D;
+    -fx-border-radius: 18;
+    -fx-border-width: 1.2;
+
+    -fx-padding: 16;
+
+    -fx-alignment: center;
+}
+
+.cenario-card:hover {
+    -fx-border-color: #7C3AED;
+
+    -fx-effect: dropshadow(
+            gaussian,
+            rgba(109, 40, 217, 0.28),
+            16,
+            0.22,
+            0,
+            5
+    );
+}
+
+.cenario-image-container {
+    -fx-background-color: #0D0D12;
+    -fx-background-radius: 13;
+
+    -fx-border-color: #292932;
+    -fx-border-radius: 13;
+    -fx-border-width: 1;
+
+    -fx-padding: 3;
+}
+
+.cenario-image-container .image-view {
+    -fx-effect: dropshadow(
+            gaussian,
+            rgba(0, 0, 0, 0.38),
+            10,
+            0.15,
+            0,
+            3
+    );
+}
+
+.cenario-card-title {
+    -fx-text-fill: #F9FAFB;
+    -fx-font-size: 17px;
+    -fx-font-weight: bold;
+
+    -fx-alignment: center-left;
+}
+
+.cenario-display-button,
+.cenario-edit-button,
+.cenario-delete-button {
+    -fx-background-radius: 10;
+    -fx-border-radius: 10;
+
+    -fx-padding: 8 13;
+
+    -fx-font-size: 13px;
+    -fx-font-weight: bold;
+
+    -fx-cursor: hand;
+}
+
+.cenario-display-button {
+    -fx-background-color: #6D28D9;
+    -fx-text-fill: white;
+}
+
+.cenario-display-button:hover {
+    -fx-background-color: #7C3AED;
+
+    -fx-effect: dropshadow(
+            gaussian,
+            rgba(109, 40, 217, 0.28),
+            10,
+            0.15,
+            0,
+            3
+    );
+}
+
+.cenario-edit-button {
+    -fx-background-color: #27272A;
+
+    -fx-text-fill: #E4E4E7;
+
+    -fx-border-color: #52525B;
+    -fx-border-width: 1;
+}
+
+.cenario-edit-button:hover {
+    -fx-background-color: #3F3F46;
+    -fx-border-color: #8B5CF6;
+}
+
+.cenario-delete-button {
+    -fx-background-color: #7F1D1D;
+    -fx-text-fill: white;
+}
+
+.cenario-delete-button:hover {
+    -fx-background-color: #991B1B;
+}
+
+.cenario-display-button:pressed,
+.cenario-edit-button:pressed,
+.cenario-delete-button:pressed {
+    -fx-scale-x: 0.96;
+    -fx-scale-y: 0.96;
+}

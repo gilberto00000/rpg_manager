@@ -1,0 +1,7 @@
+.cenario-viewer {
+    -fx-background-color: #000000;
+}
+
+.cenario-viewer .image-view {
+    -fx-effect: none;
+}

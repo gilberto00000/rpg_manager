@@ -293,9 +293,39 @@
             </Tab>
 
             <Tab text="Equipamentos">
+                <content>
 
-                <AnchorPane fx:id="equipamentosPane" />
+                    <VBox spacing="18"
+                          styleClass="equipamentos-page">
 
+                        <HBox alignment="CENTER_LEFT"
+                              spacing="12">
+
+                            <ComboBox fx:id="itemCombo"
+                                      promptText="Selecione um item"
+                                      prefWidth="320"/>
+
+                            <Button text="Adicionar"
+                                    onAction="#adicionarItem"
+                                    styleClass="primary-button"/>
+
+                            <Region HBox.hgrow="ALWAYS"/>
+
+                            <Label fx:id="espacosEquipamentoLabel"
+                                   text="0 / 10"
+                                   styleClass="section-subtitle"/>
+
+                        </HBox>
+
+                        <FlowPane fx:id="itensContainer"
+                                  hgap="18"
+                                  vgap="18"
+                                  prefWrapLength="900"
+                                  styleClass="itens-container"/>
+
+                    </VBox>
+
+                </content>
             </Tab>
 
             <Tab text="Habilidades">

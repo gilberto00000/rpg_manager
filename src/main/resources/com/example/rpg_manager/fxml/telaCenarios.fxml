@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+
+<StackPane fx:id="mainPane"
+           prefHeight="768"
+           prefWidth="1366"
+           xmlns="http://javafx.com/javafx/21"
+           xmlns:fx="http://javafx.com/fxml/1"
+           fx:controller="com.example.rpg_manager.CenariosController">
+
+    <!-- Background -->
+    <ImageView fx:id="backgroundId"
+               preserveRatio="false"/>
+
+    <!-- Conteúdo principal -->
+    <BorderPane fx:id="borderPane"
+                styleClass="cenarios-page">
+
+        <!-- =====================================================
+             CABEÇALHO
+        ====================================================== -->
+
+        <top>
+            <HBox alignment="CENTER_LEFT"
+                  spacing="20"
+                  styleClass="cenarios-header">
+
+                <VBox spacing="7">
+
+                    <Label text="Cenários"
+                           styleClass="cenarios-title"/>
+
+                    <Label text="Gerencie os cenários da campanha"
+                           styleClass="cenarios-subtitle"/>
+
+                </VBox>
+
+                <Region HBox.hgrow="ALWAYS"/>
+
+                <Button text="+ Criar cenário"
+                        onAction="#novoCenario"
+                        styleClass="create-cenario-button"/>
+
+            </HBox>
+        </top>
+
+
+        <!-- =====================================================
+             CARDS
+        ====================================================== -->
+
+        <center>
+            <ScrollPane fitToWidth="true"
+                        hbarPolicy="NEVER"
+                        styleClass="cenarios-scroll">
+
+                <GridPane fx:id="gridCenarios"
+                          hgap="22"
+                          vgap="22"
+                          styleClass="cenarios-grid">
+
+                    <padding>
+                        <Insets top="26"
+                                right="26"
+                                bottom="26"
+                                left="26"/>
+                    </padding>
+
+                </GridPane>
+
+            </ScrollPane>
+        </center>
+
+
+        <!-- =====================================================
+             PAGINAÇÃO
+        ====================================================== -->
+
+        <bottom>
+            <HBox alignment="CENTER"
+                  spacing="12"
+                  styleClass="pagination-bar">
+
+                <!-- Ex:
+                     1–6 de 18 cenários
+                -->
+                <Label fx:id="paginationInfoLabel"
+                       text="0 cenários"
+                       styleClass="pagination-info"/>
+
+                <Region HBox.hgrow="ALWAYS"/>
+
+                <!-- Página anterior -->
+                <Button fx:id="previousPageButton"
+                        text="‹"
+                        onAction="#paginaAnterior"
+                        styleClass="pagination-arrow"/>
+
+                <!-- Botões 1, 2, 3... são criados pelo controller -->
+                <HBox fx:id="pageButtonsContainer"
+                      alignment="CENTER"
+                      spacing="8"/>
+
+                <!-- Próxima página -->
+                <Button fx:id="nextPageButton"
+                        text="›"
+                        onAction="#proximaPagina"
+                        styleClass="pagination-arrow"/>
+
+            </HBox>
+        </bottom>
+
+    </BorderPane>
+
+
+    <!-- =====================================================
+         CSS
+    ====================================================== -->
+
+    <stylesheets>
+        <URL value="@../style/cenarios.css"/>
+    </stylesheets>
+
+</StackPane>

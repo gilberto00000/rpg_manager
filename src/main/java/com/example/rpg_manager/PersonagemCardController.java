@@ -1,6 +1,7 @@
 package com.example.rpg_manager;
 
 import com.example.rpg_manager.model.Personagem;
+import com.example.rpg_manager.utils.ImageStorage;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -50,25 +51,35 @@ public class PersonagemCardController {
 
         nexLabel.setText("NEX " + personagem.getNex() + "%");
 
-        if (personagem.getAvatar() == null || personagem.getAvatar().isBlank()) {
-
-            avatarImage.setImage(new Image(
-                    getClass().getResourceAsStream(
-                            "/com/example/rpg_manager/images/default-avatar.png"
-                    )
-            ));
-
-        } else {
-
-            avatarImage.setImage(new Image(
-                    new File(personagem.getAvatar()).toURI().toString()
-            ));
-
-        }
+        carregarAvatar();
 
     }
 
 
+    private void carregarAvatar() {
+
+        String caminho = personagem.getAvatar();
+
+        if (caminho == null || caminho.isBlank()) {
+            carregarAvatarPadrao();
+            return;
+        }
+
+        File arquivo = ImageStorage.carregarArquivo(
+                caminho
+        );
+
+        if (arquivo == null || !arquivo.exists()) {
+            carregarAvatarPadrao();
+            return;
+        }
+
+        avatarImage.setImage(
+                new Image(
+                        arquivo.toURI().toString()
+                )
+        );
+    }
 
     public void setOnEditar(Consumer<Personagem> onEditar) {
         this.onEditar = onEditar;
@@ -90,6 +101,17 @@ public class PersonagemCardController {
         if (onExcluir != null) {
             onExcluir.accept(personagem);
         }
+    }
+
+    private void carregarAvatarPadrao() {
+
+        avatarImage.setImage(
+                new Image(
+                        getClass().getResourceAsStream(
+                                "/com/example/rpg_manager/images/default-avatar.png"
+                        )
+                )
+        );
     }
 }
 

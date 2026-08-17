@@ -1,6 +1,7 @@
 package com.example.rpg_manager;
 
 import com.example.rpg_manager.model.Habilidade;
+import com.example.rpg_manager.model.Item;
 import com.example.rpg_manager.utils.ImageStorage;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -12,7 +13,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.function.Consumer;
 
-public class HabilidadesCardController {
+public class ItemCardController {
 
     @FXML
     private Label nomeLabel;
@@ -26,27 +27,38 @@ public class HabilidadesCardController {
     @FXML
     private Button excluirBtn;
 
-    private Habilidade habilidade;
+    private Item item;
 
-    private Consumer<Habilidade> onEditar;
-    private Consumer<Habilidade> onExcluir;
-    private Consumer<Habilidade> onRemover;
+    private Consumer<Item> onEditar;
+    private Consumer<Item> onExcluir;
+    private Consumer<Item> onRemover;
 
-    public void setHabilidade(Habilidade habilidade) {
+    public void setItem(Item item) {
+        this.item = item;
 
-        this.habilidade = habilidade;
-
-        nomeLabel.setText(
-                habilidade.getNome()
-        );
+        nomeLabel.setText(item.getNome());
 
         carregarAvatar();
+    }
+
+    public void setOnEditar(Consumer<Item> onEditar) {
+        this.onEditar = onEditar;
+    }
+
+    public void setOnExcluir(Consumer<Item> onExcluir) {
+        this.onExcluir = onExcluir;
+    }
+
+    public void setOnRemover(Consumer<Item> onRemover) {
+        this.onRemover = onRemover;
+
+        excluirBtn.setText("Remover");
     }
 
     private void carregarAvatar() {
 
         File arquivo = ImageStorage.carregarArquivo(
-                habilidade.getAvatar()
+                item.getAvatar()
         );
 
         if (arquivo == null || !arquivo.exists()) {
@@ -54,7 +66,7 @@ public class HabilidadesCardController {
             avatarImage.setImage(
                     new Image(
                             getClass().getResourceAsStream(
-                                    "/com/example/rpg_manager/images/default-habilidade.png"
+                                    "/com/example/rpg_manager/images/default-item.png"
                             )
                     )
             );
@@ -69,24 +81,10 @@ public class HabilidadesCardController {
         );
     }
 
-    public void setOnEditar(Consumer<Habilidade> onEditar) {
-        this.onEditar = onEditar;
-    }
-
-    public void setOnExcluir(Consumer<Habilidade> onExcluir) {
-        this.onExcluir = onExcluir;
-    }
-
-    public void setOnRemover(Consumer<Habilidade> onRemover) {
-        this.onRemover = onRemover;
-
-        excluirBtn.setText("Remover");
-    }
-
     @FXML
     private void editar() throws IOException {
         if (onEditar != null) {
-            onEditar.accept(habilidade);
+            onEditar.accept(item);
         }
     }
 
@@ -94,12 +92,12 @@ public class HabilidadesCardController {
     private void excluir() throws IOException {
 
         if (onRemover != null) {
-            onRemover.accept(habilidade);
+            onRemover.accept(item);
             return;
         }
 
         if (onExcluir != null) {
-            onExcluir.accept(habilidade);
+            onExcluir.accept(item);
         }
     }
 }

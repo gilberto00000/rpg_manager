@@ -33,14 +33,14 @@ public class Personagem {
 
     private List<Condicao> condicoes = new ArrayList<>();
     private List<Pericia> pericias = new ArrayList<>();
-    private List<Equipamento> equipamentos = new ArrayList<>();
+    private List<Item> itens = new ArrayList<>();
     private List<Habilidade> habilidades = new ArrayList<>();
 
     public Personagem() {
 
         this.condicoes = new ArrayList<>();
         this.pericias = new ArrayList<>();
-        this.equipamentos = new ArrayList<>();
+        this.itens = new ArrayList<>();
         this.habilidades = new ArrayList<>();
     }
 
@@ -276,12 +276,12 @@ public class Personagem {
         this.pericias = pericias;
     }
 
-    public List<Equipamento> getEquipamentos() {
-        return equipamentos;
+    public List<Item> getItens() {
+        return itens;
     }
 
-    public void setEquipamentos(List<Equipamento> equipamentos) {
-        this.equipamentos = equipamentos;
+    public void setItens(List<Item> itens) {
+        this.itens = itens;
     }
 
     public List<Habilidade> getHabilidades() {
@@ -312,7 +312,7 @@ public class Personagem {
                 ", trilhaProgresso=" + trilhaProgresso +
                 ", condicoes=" + condicoes +
                 ", pericias=" + pericias +
-                ", equipamentos=" + equipamentos +
+                ", equipamentos=" + itens +
                 ", habilidades=" + habilidades +
                 '}';
     }

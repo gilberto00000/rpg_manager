@@ -1,13 +1,13 @@
 package com.example.rpg_manager.model;
 
-public class Equipamento {
+public class Item {
 
     private Integer id;
     private String avatar;
     private String nome;
     private String descricao;
 
-    public Equipamento() {
+    public Item() {
     }
 
     public Integer getId() {
@@ -40,5 +40,10 @@ public class Equipamento {
 
     public void setDescricao(String descricao) {
         this.descricao = descricao;
+    }
+
+    @Override
+    public String toString() {
+        return nome;
     }
 }

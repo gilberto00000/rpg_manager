@@ -1,8 +1,7 @@
 package com.example.rpg_manager;
 
-import com.example.rpg_manager.model.Cenario;
-import com.example.rpg_manager.services.CenarioService;
-import com.example.rpg_manager.utils.ConfirmDialog;
+import com.example.rpg_manager.model.Item;
+import com.example.rpg_manager.services.ItemService;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -10,12 +9,8 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
@@ -24,19 +19,10 @@ import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
 
-public class CenariosController implements Initializable {
+public class ItensController implements Initializable {
 
     @FXML
-    private BorderPane borderPane;
-
-    @FXML
-    private GridPane gridCenarios;
-
-    @FXML
-    private StackPane mainPane;
-
-    @FXML
-    private ImageView backgroundId;
+    private GridPane gridItens;
 
     @FXML
     private Label paginationInfoLabel;
@@ -50,8 +36,7 @@ public class CenariosController implements Initializable {
     @FXML
     private HBox pageButtonsContainer;
 
-    private final CenarioService service =
-            new CenarioService();
+    private final ItemService service = new ItemService();
 
     private int paginaAtual = 0;
 
@@ -65,63 +50,57 @@ public class CenariosController implements Initializable {
             URL location,
             ResourceBundle resources
     ) {
-
-
-
         atualizarCards();
     }
 
 
-
-
     /*
-     * ======================================================
-     * CRIAR CENÁRIO
-     * ======================================================
+     * ==================================================
+     * CRIAR ITEM
+     * ==================================================
      */
 
     @FXML
-    private void novoCenario() {
+    private void novoItem() {
 
         try {
 
-            FXMLLoader loader =
-                    new FXMLLoader(
-                            getClass().getResource(
-                                    "/com/example/rpg_manager/fxml/FichaCenario.fxml"
-                            )
-                    );
+            FXMLLoader loader = new FXMLLoader(
+                    getClass().getResource(
+                            "/com/example/rpg_manager/fxml/FichaItem.fxml"
+                    )
+            );
 
-            Parent root =
-                    loader.load();
+            Parent root = loader.load();
 
-            FichaCenarioController controller =
+            FichaItemController controller =
                     loader.getController();
 
+            /*
+             * Quando salvar o item,
+             * atualiza a tela principal automaticamente.
+             */
             controller.setAoSalvar(
                     this::atualizarCards
             );
 
-            Stage janela =
-                    new Stage();
+            Stage janela = new Stage();
 
-            janela.setTitle(
-                    "Novo cenário"
-            );
+            janela.setTitle("Novo item");
 
             janela.setScene(
                     new Scene(root)
             );
 
-            janela.setMinWidth(850);
-            janela.setMinHeight(600);
+            janela.setMinWidth(700);
+            janela.setMinHeight(550);
 
             janela.show();
 
         } catch (IOException e) {
 
             throw new RuntimeException(
-                    "Erro ao abrir ficha de cenário",
+                    "Erro ao abrir ficha do item",
                     e
             );
         }
@@ -129,18 +108,18 @@ public class CenariosController implements Initializable {
 
 
     /*
-     * ======================================================
+     * ==================================================
      * CARREGAR CARDS
-     * ======================================================
+     * ==================================================
      */
 
     private void atualizarCards() {
 
-        gridCenarios
+        gridItens
                 .getChildren()
                 .clear();
 
-        List<Cenario> todos =
+        List<Item> todos =
                 service.listar();
 
         atualizarControlesPaginacao(
@@ -148,21 +127,18 @@ public class CenariosController implements Initializable {
         );
 
         int inicio =
-                paginaAtual
-                        * itensPorPagina;
+                paginaAtual * itensPorPagina;
 
-        int fim =
-                Math.min(
-                        inicio
-                                + itensPorPagina,
-                        todos.size()
-                );
+        int fim = Math.min(
+                inicio + itensPorPagina,
+                todos.size()
+        );
 
-        if (inicio >= todos.size()) {
+        if (inicio > fim) {
             return;
         }
 
-        List<Cenario> pagina =
+        List<Item> itensDaPagina =
                 todos.subList(
                         inicio,
                         fim
@@ -171,40 +147,34 @@ public class CenariosController implements Initializable {
         int coluna = 0;
         int linha = 0;
 
-        for (Cenario cenario : pagina) {
+        for (Item item : itensDaPagina) {
 
             try {
 
                 FXMLLoader loader =
                         new FXMLLoader(
                                 getClass().getResource(
-                                        "/com/example/rpg_manager/fxml/cenario-card.fxml"
+                                        "/com/example/rpg_manager/fxml/item-card.fxml"
                                 )
                         );
 
                 VBox card =
                         loader.load();
 
-                CenarioCardController controller =
+                ItemCardController controller =
                         loader.getController();
 
-                controller.setCenario(
-                        cenario
-                );
-
-                controller.setOnExibir(
-                        this::exibirCenario
-                );
+                controller.setItem(item);
 
                 controller.setOnEditar(
-                        this::editarCenario
+                        this::editarItem
                 );
 
                 controller.setOnExcluir(
-                        this::excluirCenario
+                        this::excluirItem
                 );
 
-                gridCenarios.add(
+                gridItens.add(
                         card,
                         coluna,
                         linha
@@ -222,8 +192,8 @@ public class CenariosController implements Initializable {
             } catch (IOException e) {
 
                 throw new RuntimeException(
-                        "Erro ao carregar cenário "
-                                + cenario.getNome(),
+                        "Erro ao carregar card do item "
+                                + item.getNome(),
                         e
                 );
             }
@@ -232,49 +202,29 @@ public class CenariosController implements Initializable {
 
 
     /*
-     * ======================================================
-     * EXIBIR CENÁRIO
-     * ======================================================
+     * ==================================================
+     * EDITAR ITEM
+     * ==================================================
      */
 
-    private void exibirCenario(
-            Cenario cenario
-    ) {
-
-        CenarioViewer.exibir(
-                cenario
-        );
-    }
-
-
-    /*
-     * ======================================================
-     * EDITAR CENÁRIO
-     * ======================================================
-     */
-
-    private void editarCenario(
-            Cenario cenario
-    ) {
+    private void editarItem(Item item) {
 
         try {
 
             FXMLLoader loader =
                     new FXMLLoader(
                             getClass().getResource(
-                                    "/com/example/rpg_manager/fxml/FichaCenario.fxml"
+                                    "/com/example/rpg_manager/fxml/FichaItem.fxml"
                             )
                     );
 
             Parent root =
                     loader.load();
 
-            FichaCenarioController controller =
+            FichaItemController controller =
                     loader.getController();
 
-            controller.setCenario(
-                    cenario
-            );
+            controller.setItem(item);
 
             controller.setAoSalvar(
                     this::atualizarCards
@@ -284,23 +234,23 @@ public class CenariosController implements Initializable {
                     new Stage();
 
             janela.setTitle(
-                    "Editar cenário — "
-                            + cenario.getNome()
+                    "Editar item — "
+                            + item.getNome()
             );
 
             janela.setScene(
                     new Scene(root)
             );
 
-            janela.setMinWidth(850);
-            janela.setMinHeight(600);
+            janela.setMinWidth(700);
+            janela.setMinHeight(550);
 
             janela.show();
 
         } catch (IOException e) {
 
             throw new RuntimeException(
-                    "Erro ao abrir cenário para edição",
+                    "Erro ao abrir item para edição",
                     e
             );
         }
@@ -308,25 +258,23 @@ public class CenariosController implements Initializable {
 
 
     /*
-     * ======================================================
-     * EXCLUIR CENÁRIO
-     * ======================================================
+     * ==================================================
+     * EXCLUIR ITEM
+     * ==================================================
      */
 
-    private void excluirCenario(
-            Cenario cenario
-    ) {
+    private void excluirItem(Item item) {
 
         boolean confirmou =
-                ConfirmDialog.show(
-                        gridCenarios
+                com.example.rpg_manager.utils.ConfirmDialog.show(
+                        gridItens
                                 .getScene()
                                 .getWindow(),
 
-                        "Excluir cenário",
+                        "Excluir item",
 
                         "Deseja realmente excluir "
-                                + cenario.getNome()
+                                + item.getNome()
                                 + "?",
 
                         "Excluir"
@@ -337,10 +285,14 @@ public class CenariosController implements Initializable {
         }
 
         service.excluir(
-                cenario.getId()
+                item.getId()
         );
 
-        List<Cenario> restantes =
+        /*
+         * Se excluiu o último item de uma página,
+         * pode ser necessário voltar uma página.
+         */
+        List<Item> restantes =
                 service.listar();
 
         int novasPaginas =
@@ -353,7 +305,6 @@ public class CenariosController implements Initializable {
                 );
 
         if (paginaAtual >= novasPaginas) {
-
             paginaAtual =
                     novasPaginas - 1;
         }
@@ -363,9 +314,9 @@ public class CenariosController implements Initializable {
 
 
     /*
-     * ======================================================
+     * ==================================================
      * PAGINAÇÃO
-     * ======================================================
+     * ==================================================
      */
 
     @FXML
@@ -398,14 +349,14 @@ public class CenariosController implements Initializable {
 
 
     private void atualizarControlesPaginacao(
-            int totalCenarios
+            int totalItens
     ) {
 
         totalPaginas =
                 Math.max(
                         1,
                         (int) Math.ceil(
-                                (double) totalCenarios
+                                (double) totalItens
                                         / itensPorPagina
                         )
                 );
@@ -414,65 +365,58 @@ public class CenariosController implements Initializable {
                 paginaAtual
                         >= totalPaginas
         ) {
-
             paginaAtual =
                     totalPaginas - 1;
         }
 
+        previousPageButton.setDisable(
+                paginaAtual == 0
+        );
 
-        if (previousPageButton != null) {
-
-            previousPageButton.setDisable(
-                    paginaAtual == 0
-            );
-        }
-
-
-        if (nextPageButton != null) {
-
-            nextPageButton.setDisable(
-                    paginaAtual
-                            >= totalPaginas - 1
-            );
-        }
+        nextPageButton.setDisable(
+                paginaAtual
+                        >= totalPaginas - 1
+        );
 
 
-        if (paginationInfoLabel != null) {
+        /*
+         * Exemplo:
+         * 1–6 de 15 itens
+         */
 
-            int inicio =
-                    totalCenarios == 0
-                            ? 0
-                            : paginaAtual
-                              * itensPorPagina
-                              + 1;
+        int inicio =
+                totalItens == 0
+                        ? 0
+                        : paginaAtual
+                          * itensPorPagina
+                          + 1;
 
-            int fim =
-                    Math.min(
-                            (paginaAtual + 1)
-                                    * itensPorPagina,
-                            totalCenarios
-                    );
+        int fim =
+                Math.min(
+                        (paginaAtual + 1)
+                                * itensPorPagina,
+                        totalItens
+                );
 
-            paginationInfoLabel.setText(
-                    inicio
-                            + "–"
-                            + fim
-                            + " de "
-                            + totalCenarios
-                            + " cenários"
-            );
-        }
+        paginationInfoLabel.setText(
+                inicio
+                        + "–"
+                        + fim
+                        + " de "
+                        + totalItens
+                        + " itens"
+        );
 
 
-        if (pageButtonsContainer == null) {
-            return;
-        }
-
+        /*
+         * Botões:
+         *
+         * [1] [2] [3]
+         */
 
         pageButtonsContainer
                 .getChildren()
                 .clear();
-
 
         for (
                 int i = 0;
@@ -480,8 +424,7 @@ public class CenariosController implements Initializable {
                 i++
         ) {
 
-            int indicePagina =
-                    i;
+            int indicePagina = i;
 
             Button pageButton =
                     new Button(
@@ -496,10 +439,8 @@ public class CenariosController implements Initializable {
                             "pagination-page-button"
                     );
 
-
             if (
-                    i
-                            == paginaAtual
+                    i == paginaAtual
             ) {
 
                 pageButton
@@ -508,7 +449,6 @@ public class CenariosController implements Initializable {
                                 "pagination-page-button-active"
                         );
             }
-
 
             pageButton.setOnAction(
                     event -> {
@@ -519,7 +459,6 @@ public class CenariosController implements Initializable {
                         atualizarCards();
                     }
             );
-
 
             pageButtonsContainer
                     .getChildren()

@@ -78,7 +78,7 @@ public class MainController implements Initializable {
     @FXML
     private void abrirCenarios() throws IOException {
         FXMLLoader loader = new FXMLLoader(
-                getClass().getResource("fxml/cenarios.fxml")
+                getClass().getResource("fxml/telaCenarios.fxml")
         );
 
         Parent tela = loader.load();
@@ -98,8 +98,14 @@ public class MainController implements Initializable {
     }
 
     @FXML
-    private void abrirItens(){
+    private void abrirItens() throws IOException {
+        FXMLLoader loader = new FXMLLoader(
+                getClass().getResource("fxml/Itens.fxml")
+        );
 
+        Parent tela = loader.load();
+
+        centerPane.getChildren().setAll(tela);
     }
 
 

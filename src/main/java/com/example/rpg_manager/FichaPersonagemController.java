@@ -2,10 +2,9 @@ package com.example.rpg_manager;
 
 import com.example.rpg_manager.model.*;
 import com.example.rpg_manager.repository.ClassesRepository;
-import com.example.rpg_manager.services.PersonagemHabilidadeService;
-import com.example.rpg_manager.services.HabilidadesService;
-import com.example.rpg_manager.services.PersonagemServices;
+import com.example.rpg_manager.services.*;
 import com.example.rpg_manager.utils.ConfirmDialog;
+import com.example.rpg_manager.utils.ImageStorage;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -115,6 +114,12 @@ public class FichaPersonagemController implements Initializable {
                 )
         );
 
+        itemCombo.setItems(
+                FXCollections.observableArrayList(
+                        itemService.listar()
+                )
+        );
+
         classeCombo.setItems(
                 FXCollections.observableArrayList(classesRepository.listar())
         );
@@ -151,10 +156,18 @@ public class FichaPersonagemController implements Initializable {
         this.personagemAtual = personagem;
         this.caminhoAvatar = personagem.getAvatar();
 
-        if (caminhoAvatar != null && !caminhoAvatar.isBlank()){
+        caminhoAvatar = personagem.getAvatar();
+
+        File arquivo = ImageStorage.carregarArquivo(
+                caminhoAvatar
+        );
+
+        if (arquivo != null && arquivo.exists()) {
 
             avatarPreview.setImage(
-                    new Image(new File(caminhoAvatar).toURI().toString())
+                    new Image(
+                            arquivo.toURI().toString()
+                    )
             );
         }
 
@@ -167,6 +180,15 @@ public class FichaPersonagemController implements Initializable {
                 habilidades
         );
 
+        List<Item> itens =
+                personagemItemService.listar(
+                        personagem
+                );
+
+        personagemAtual.setItens(itens);
+
+        carregarItensNaTela();
+
 
         preencherCampos();
         renderizarFicha();
@@ -175,6 +197,25 @@ public class FichaPersonagemController implements Initializable {
         carregarPericias();
 
         carregarHabilidadesDoPersonagem();
+    }
+
+    private void prepararAvatarParaSalvar() {
+
+        if (caminhoAvatar == null
+                || caminhoAvatar.isBlank()) {
+            return;
+        }
+
+        if (ImageStorage.ehImagemInterna(caminhoAvatar)) {
+            return;
+        }
+
+        File original = new File(caminhoAvatar);
+
+        caminhoAvatar = ImageStorage.salvarImagem(
+                original,
+                "personagens"
+        );
     }
 
     private void preencherCampos() {
@@ -266,6 +307,8 @@ public class FichaPersonagemController implements Initializable {
     @FXML
     private void salvar() {
 
+        prepararAvatarParaSalvar();
+
         montarPersonagem();
 
         if (personagemAtual.getId() == null) {
@@ -279,6 +322,10 @@ public class FichaPersonagemController implements Initializable {
         }
 
         personagemHabilidadeService.sincronizar(
+                personagemAtual
+        );
+
+        personagemItemService.sincronizar(
                 personagemAtual
         );
 
@@ -856,5 +903,99 @@ public class FichaPersonagemController implements Initializable {
                 );
 
         carregarHabilidadesNaTela();
+    }
+
+    //aba equipamentos
+
+    @FXML
+    private ComboBox<Item> itemCombo;
+
+    @FXML
+    private FlowPane itensContainer;
+
+    @FXML
+    private Label espacosEquipamentoLabel;
+
+    private final ItemService itemService =
+            new ItemService();
+
+    private final PersonagemItemService personagemItemService =
+            new PersonagemItemService();
+
+    @FXML
+    private void adicionarItem() {
+
+        Item item = itemCombo.getValue();
+
+        if (item == null) {
+            return;
+        }
+
+        if (personagemAtual.getItens().size() >= 10) {
+            return;
+        }
+
+        personagemAtual
+                .getItens()
+                .add(item);
+
+        carregarItensNaTela();
+
+        itemCombo
+                .getSelectionModel()
+                .clearSelection();
+    }
+
+    private void removerItem(Item item) {
+
+        personagemAtual
+                .getItens()
+                .remove(item);
+
+        carregarItensNaTela();
+    }
+
+    private void carregarItensNaTela() {
+
+        itensContainer.getChildren().clear();
+
+        for (Item item : personagemAtual.getItens()) {
+
+            try {
+
+                FXMLLoader loader = new FXMLLoader(
+                        getClass().getResource(
+                                "/com/example/rpg_manager/fxml/item-card.fxml"
+                        )
+                );
+
+                VBox card = loader.load();
+
+                ItemCardController controller =
+                        loader.getController();
+
+                controller.setItem(item);
+
+                controller.setOnRemover(
+                        this::removerItem
+                );
+
+                itensContainer
+                        .getChildren()
+                        .add(card);
+
+            } catch (IOException e) {
+                throw new RuntimeException(
+                        "Erro ao carregar item "
+                                + item.getNome(),
+                        e
+                );
+            }
+        }
+
+        espacosEquipamentoLabel.setText(
+                personagemAtual.getItens().size()
+                        + " / 10"
+        );
     }
 }

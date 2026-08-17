@@ -2,6 +2,7 @@ package com.example.rpg_manager;
 
 import com.example.rpg_manager.model.Habilidade;
 import com.example.rpg_manager.services.HabilidadesService;
+import com.example.rpg_manager.utils.ImageStorage;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -43,7 +44,7 @@ public class FichaHabilidadesController implements Initializable {
         avatarPreview.setImage(
                 new Image(
                         getClass().getResourceAsStream(
-                                "/com/example/rpg_manager/images/default-avatar.png"
+                                "/com/example/rpg_manager/images/default-habilidade.png"
                         )
                 )
         );
@@ -62,17 +63,32 @@ public class FichaHabilidadesController implements Initializable {
         stage.close();
     }
 
-    public void setHabilidade(Habilidade habilidade){
+    public void setHabilidade(Habilidade habilidade) {
+
         this.habilidadeAtual = habilidade;
+
         this.caminhoAvatar = habilidade.getAvatar();
 
-        if (caminhoAvatar != null && !caminhoAvatar.isBlank()){
+        nomeField.setText(
+                habilidade.getNome()
+        );
+
+        descricaoField.setText(
+                habilidade.getDescricao()
+        );
+
+        File arquivo = ImageStorage.carregarArquivo(
+                caminhoAvatar
+        );
+
+        if (arquivo != null && arquivo.exists()) {
+
             avatarPreview.setImage(
-                    new Image(new File(caminhoAvatar).toURI().toString())
+                    new Image(
+                            arquivo.toURI().toString()
+                    )
             );
         }
-
-        preencherCampos();
     }
 
     private void preencherCampos() {
@@ -109,6 +125,23 @@ public class FichaHabilidadesController implements Initializable {
         }
     }
 
+    private void prepararAvatarParaSalvar() {
+
+        if (caminhoAvatar == null
+                || caminhoAvatar.isBlank()) {
+            return;
+        }
+
+        if (ImageStorage.ehImagemInterna(caminhoAvatar)) {
+            return;
+        }
+
+        caminhoAvatar = ImageStorage.salvarImagem(
+                new File(caminhoAvatar),
+                "habilidades"
+        );
+    }
+
     private void montarHabilidade(){
         if (habilidadeAtual == null){
             habilidadeAtual = new Habilidade();
@@ -122,6 +155,8 @@ public class FichaHabilidadesController implements Initializable {
 
     @FXML
     private void salvar(){
+
+        prepararAvatarParaSalvar();
 
         montarHabilidade();
 

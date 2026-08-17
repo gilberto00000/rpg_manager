@@ -1,264 +1,204 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
+<?import java.net.URL?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane fx:id="resultRoll"
-            maxHeight="-Infinity"
-            maxWidth="-Infinity"
-            minHeight="-Infinity"
-            minWidth="-Infinity"
-            prefHeight="600.0"
-            prefWidth="1024.0"
+<BorderPane prefHeight="768"
+            prefWidth="1366"
             styleClass="dice-page"
-            stylesheets="@../style/diceRoll.css"
-            xmlns="http://javafx.com/javafx/26"
+            xmlns="http://javafx.com/javafx/21"
             xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="com.example.rpg_manager.DiceRollController">
 
-    <children>
+    <center>
 
-        <VBox alignment="TOP_CENTER"
-              spacing="28.0"
-              AnchorPane.bottomAnchor="32.0"
-              AnchorPane.leftAnchor="45.0"
-              AnchorPane.rightAnchor="45.0"
-              AnchorPane.topAnchor="32.0">
+        <VBox alignment="CENTER"
+              spacing="22"
+              styleClass="dice-content">
 
-            <children>
 
-                <!-- Cabeçalho -->
-                <VBox alignment="CENTER" spacing="7.0">
-                    <children>
-                        <Label styleClass="dice-title"
-                               text="Rolagem de Dados" />
+            <!-- =========================================
+                 HISTÓRICO DAS ROLAGENS
+            ========================================== -->
 
-                        <Label styleClass="dice-subtitle"
-                               text="Escolha o dado que deseja rolar" />
-                    </children>
-                </VBox>
+            <Label fx:id="detalhesRolagem"
+                   text=""
+                   wrapText="true"
+                   styleClass="dice-details"/>
 
-                <!-- Resultado -->
-                <StackPane prefHeight="155.0"
-                           maxWidth="430.0"
-                           styleClass="result-card">
 
-                    <children>
+            <!-- =========================================
+                 RESULTADO TOTAL
+            ========================================== -->
 
-                        <VBox alignment="CENTER" spacing="4.0">
-                            <children>
-                                <Label styleClass="result-caption"
-                                       text="RESULTADO" />
+            <Label fx:id="resultRolar"
+                   text="0"
+                   styleClass="dice-total"/>
 
-                                <Label fx:id="resultRolar"
-                                       alignment="CENTER"
-                                       maxWidth="Infinity"
-                                       styleClass="result-number"
-                                       text="—" />
-                            </children>
-                        </VBox>
 
-                    </children>
-                </StackPane>
+            <!-- =========================================
+                 MODIFICADOR
+            ========================================== -->
 
-                <Region prefHeight="2.0" />
+            <VBox alignment="CENTER"
+                  spacing="8">
 
-                <!-- Dados -->
-                <GridPane alignment="CENTER"
-                          hgap="24.0"
-                          vgap="24.0"
-                          styleClass="dice-grid">
+                <Label text="Modificador"
+                       styleClass="modifier-title"/>
 
-                    <children>
+                <HBox alignment="CENTER"
+                      spacing="45">
 
-                        <Button id="2"
-                                mnemonicParsing="false"
-                                onAction="#rolarDado"
-                                styleClass="dice-button"
-                                GridPane.columnIndex="0"
-                                GridPane.rowIndex="0">
+                    <Button text="−"
+                            onAction="#diminuirModificador"
+                            styleClass="dice-main-action"/>
 
-                            <graphic>
-                                <VBox alignment="CENTER" spacing="3.0">
-                                    <children>
-                                        <Label styleClass="dice-prefix"
-                                               text="D" />
-                                        <Label styleClass="dice-value"
-                                               text="2" />
-                                    </children>
-                                </VBox>
-                            </graphic>
+                    <Label fx:id="modificadorLabel"
+                           text="0"
+                           styleClass="modifier-value"/>
 
-                        </Button>
+                    <Button text="+"
+                            onAction="#aumentarModificador"
+                            styleClass="dice-main-action"/>
 
-                        <Button id="4"
-                                mnemonicParsing="false"
-                                onAction="#rolarDado"
-                                styleClass="dice-button"
-                                GridPane.columnIndex="1"
-                                GridPane.rowIndex="0">
-
-                            <graphic>
-                                <VBox alignment="CENTER" spacing="3.0">
-                                    <children>
-                                        <Label styleClass="dice-prefix"
-                                               text="D" />
-                                        <Label styleClass="dice-value"
-                                               text="4" />
-                                    </children>
-                                </VBox>
-                            </graphic>
-
-                        </Button>
-
-                        <Button id="6"
-                                mnemonicParsing="false"
-                                onAction="#rolarDado"
-                                styleClass="dice-button"
-                                GridPane.columnIndex="2"
-                                GridPane.rowIndex="0">
-
-                            <graphic>
-                                <VBox alignment="CENTER" spacing="3.0">
-                                    <children>
-                                        <Label styleClass="dice-prefix"
-                                               text="D" />
-                                        <Label styleClass="dice-value"
-                                               text="6" />
-                                    </children>
-                                </VBox>
-                            </graphic>
-
-                        </Button>
-
-                        <Button id="8"
-                                mnemonicParsing="false"
-                                onAction="#rolarDado"
-                                styleClass="dice-button"
-                                GridPane.columnIndex="3"
-                                GridPane.rowIndex="0">
-
-                            <graphic>
-                                <VBox alignment="CENTER" spacing="3.0">
-                                    <children>
-                                        <Label styleClass="dice-prefix"
-                                               text="D" />
-                                        <Label styleClass="dice-value"
-                                               text="8" />
-                                    </children>
-                                </VBox>
-                            </graphic>
-
-                        </Button>
-
-                        <Button id="10"
-                                mnemonicParsing="false"
-                                onAction="#rolarDado"
-                                styleClass="dice-button"
-                                GridPane.columnIndex="0"
-                                GridPane.rowIndex="1">
-
-                            <graphic>
-                                <VBox alignment="CENTER" spacing="3.0">
-                                    <children>
-                                        <Label styleClass="dice-prefix"
-                                               text="D" />
-                                        <Label styleClass="dice-value"
-                                               text="10" />
-                                    </children>
-                                </VBox>
-                            </graphic>
-
-                        </Button>
-
-                        <Button id="12"
-                                mnemonicParsing="false"
-                                onAction="#rolarDado"
-                                styleClass="dice-button"
-                                GridPane.columnIndex="1"
-                                GridPane.rowIndex="1">
-
-                            <graphic>
-                                <VBox alignment="CENTER" spacing="3.0">
-                                    <children>
-                                        <Label styleClass="dice-prefix"
-                                               text="D" />
-                                        <Label styleClass="dice-value"
-                                               text="12" />
-                                    </children>
-                                </VBox>
-                            </graphic>
-
-                        </Button>
-
-                        <Button id="20"
-                                mnemonicParsing="false"
-                                onAction="#rolarDado"
-                                styleClass="dice-button"
-                                GridPane.columnIndex="2"
-                                GridPane.rowIndex="1">
-
-                            <graphic>
-                                <VBox alignment="CENTER" spacing="3.0">
-                                    <children>
-                                        <Label styleClass="dice-prefix"
-                                               text="D" />
-                                        <Label styleClass="dice-value"
-                                               text="20" />
-                                    </children>
-                                </VBox>
-                            </graphic>
-
-                        </Button>
-
-                        <Button id="100"
-                                mnemonicParsing="false"
-                                onAction="#rolarDado"
-                                styleClass="dice-button"
-                                GridPane.columnIndex="3"
-                                GridPane.rowIndex="1">
-
-                            <graphic>
-                                <VBox alignment="CENTER" spacing="3.0">
-                                    <children>
-                                        <Label styleClass="dice-prefix"
-                                               text="D" />
-                                        <Label styleClass="dice-value"
-                                               text="100" />
-                                    </children>
-                                </VBox>
-                            </graphic>
-
-                        </Button>
-
-                    </children>
-
-                    <padding>
-                        <Insets top="5.0"
-                                right="5.0"
-                                bottom="5.0"
-                                left="5.0" />
-                    </padding>
-
-                </GridPane>
-
-                <HBox alignment="CENTER">
-                    <children>
-                        <Label styleClass="dice-hint"
-                               text="Clique em um dado para realizar a rolagem" />
-                    </children>
                 </HBox>
 
-            </children>
+            </VBox>
+
+
+            <!-- =========================================
+                 RESET
+            ========================================== -->
+
+            <Button text="↻"
+                    onAction="#limparRolagem"
+                    styleClass="reset-button"/>
+
+
+            <Region prefHeight="10"/>
+
+
+            <!-- =========================================
+                 DADOS
+            ========================================== -->
+
+            <GridPane alignment="CENTER"
+                      hgap="30"
+                      vgap="30"
+                      styleClass="dice-grid">
+
+
+                <!-- D2 -->
+                <StackPane GridPane.columnIndex="0"
+                           GridPane.rowIndex="0">
+
+                    <Button id="2"
+                            text="2"
+                            onAction="#rolarDado"
+                            styleClass="dice-button, d2-button"/>
+
+                </StackPane>
+
+
+                <!-- D4 -->
+                <StackPane GridPane.columnIndex="1"
+                           GridPane.rowIndex="0">
+
+                    <Button id="4"
+                            text="4"
+                            onAction="#rolarDado"
+                            styleClass="dice-button, d4-button"/>
+
+                </StackPane>
+
+
+                <!-- D6 -->
+                <StackPane GridPane.columnIndex="2"
+                           GridPane.rowIndex="0">
+
+                    <Button id="6"
+                            text="6"
+                            onAction="#rolarDado"
+                            styleClass="dice-button, d6-button"/>
+
+                </StackPane>
+
+
+                <!-- D8 -->
+                <StackPane GridPane.columnIndex="3"
+                           GridPane.rowIndex="0">
+
+                    <Button id="8"
+                            text="8"
+                            onAction="#rolarDado"
+                            styleClass="dice-button, d8-button"/>
+
+                </StackPane>
+
+
+                <!-- D10 -->
+                <StackPane GridPane.columnIndex="0"
+                           GridPane.rowIndex="1">
+
+                    <Button id="10"
+                            text="10"
+                            onAction="#rolarDado"
+                            styleClass="dice-button, d10-button"/>
+
+                </StackPane>
+
+
+                <!-- D12 -->
+                <StackPane GridPane.columnIndex="1"
+                           GridPane.rowIndex="1">
+
+                    <Button id="12"
+                            text="12"
+                            onAction="#rolarDado"
+                            styleClass="dice-button, d12-button"/>
+
+                </StackPane>
+
+
+                <!-- D20 -->
+                <StackPane GridPane.columnIndex="2"
+                           GridPane.rowIndex="1">
+
+                    <Button id="20"
+                            text="20"
+                            onAction="#rolarDado"
+                            styleClass="dice-button, d20-button"/>
+
+                </StackPane>
+
+
+                <!-- D100 -->
+                <StackPane GridPane.columnIndex="3"
+                           GridPane.rowIndex="1">
+
+                    <Button id="100"
+                            text="100"
+                            onAction="#rolarDado"
+                            styleClass="dice-button, d100-button"/>
+
+                </StackPane>
+
+            </GridPane>
 
         </VBox>
 
-    </children>
-</AnchorPane>
+    </center>
+
+
+    <stylesheets>
+        <URL value="@../style/diceRoll.css"/>
+    </stylesheets>
+
+</BorderPane>

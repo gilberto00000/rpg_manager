@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.StackPane?>
+
+<StackPane fx:id="root"
+           prefWidth="1280"
+           prefHeight="720"
+           styleClass="cenario-viewer"
+           xmlns="http://javafx.com/javafx/21"
+           xmlns:fx="http://javafx.com/fxml/1"
+           fx:controller="com.example.rpg_manager.CenarioViewerController">
+
+    <ImageView fx:id="cenarioImage"
+               preserveRatio="true"
+               smooth="true"/>
+
+    <stylesheets>
+        <URL value="@../style/cenario-viewer.css"/>
+    </stylesheets>
+
+</StackPane>
