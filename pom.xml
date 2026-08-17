@@ -65,7 +65,7 @@
 
                 <configuration>
                     <mainClass>
-                        com.example.rpg_manager/com.example.rpg_manager.HelloApplication
+                        com.example.rpg_manager/com.example.rpg_manager.MainApp
                     </mainClass>
 
                     <launcher>rpg-manager</launcher>
